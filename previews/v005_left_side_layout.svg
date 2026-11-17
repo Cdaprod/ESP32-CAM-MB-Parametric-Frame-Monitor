@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1460" height="710" viewBox="0 0 1460 710" role="img" aria-labelledby="title desc">
+<title id="title">V005 left-side camera orientation over horizontal 4040 rail</title>
+<desc id="desc">Engineering schematic (not CAD render) showing the horizontal 4040 extrusion, left-side mounting, adjustable arm and inward-pointing camera towards the print bed.</desc>
+<rect width="1460" height="710" fill="#f1f5f9"/>
+<rect x="40" y="32" width="1380" height="90" rx="14" fill="#102538"/>
+<text x="65" y="80" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700">V005  |  LEFT-SIDE OVER-RAIL CONFIGURATION</text>
+<text x="66" y="108" fill="#c9dfec" font-family="Arial,sans-serif" font-size="16">Schematic plan view · 4040 rail unchanged · +Y outside/left · −Y toward bed</text>
+<rect x="160" y="245" width="1050" height="135" rx="8" fill="#8e9cac" stroke="#48586b" stroke-width="3"/>
+<g stroke="#64748b" stroke-width="6"><path d="M160 269H1210 M160 356H1210"/><path d="M160 291H1210 M160 334H1210"/></g>
+<text x="690" y="310" fill="#183247" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" font-weight="700">4040 RAIL  —  X AXIS (HORIZONTAL)</text>
+<rect x="595" y="377" width="185" height="35" rx="5" fill="#102538"/>
+<rect x="615" y="412" width="142" height="63" rx="10" fill="#e97028" stroke="#8b451e" stroke-width="3"/>
+<circle cx="678" cy="441" r="23" fill="#f5ba45" stroke="#9c681c" stroke-width="5"/>
+<path d="M676 462 L740 494 L820 523" fill="none" stroke="#ed813b" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="739" cy="494" r="23" fill="#f5ba45" stroke="#9c681c" stroke-width="5"/>
+<rect x="810" y="490" width="102" height="135" rx="14" fill="#12728b" stroke="#155067" stroke-width="4"/>
+<rect x="816" y="490" width="90" height="18" rx="5" fill="#e2aa40"/>
+<circle cx="860" cy="503" r="9" fill="#23384b"/>
+<path d="M864 490 Q863 443 816 415 Q762 382 731 347 Q694 305 692 209 L692 150" fill="none" stroke="#1e7d57" stroke-width="7" stroke-dasharray="16 10"/>
+<path d="M674 172 L692 139 L710 172" fill="none" stroke="#1e7d57" stroke-width="7" stroke-linejoin="round"/>
+<text x="720" y="190" fill="#116044" font-family="Arial,sans-serif" font-size="22" font-weight="700">−Y  →  PRINT BED / INSIDE</text>
+<path d="M1080 410V626" stroke="#bc572b" stroke-width="4"/>
+<path d="M1068 606 L1080 630 L1092 606" fill="none" stroke="#bc572b" stroke-width="4"/>
+<text x="1104" y="590" fill="#a04d24" font-family="Arial,sans-serif" font-size="21">+Y  LEFT / OUTSIDE</text>
+<text x="176" y="438" fill="#25394d" font-family="Arial,sans-serif" font-size="18">Side-face clamp · 2 × M5 metal T-nuts</text>
+<path d="M479 431 L600 405" stroke="#25394d" stroke-width="2"/>
+<text x="305" y="560" fill="#25394d" font-family="Arial,sans-serif" font-size="19">Two articulated links</text>
+<path d="M504 542 L727 493" stroke="#25394d" stroke-width="2"/>
+<text x="965" y="680" fill="#566779" font-family="Arial,sans-serif" font-size="15">Drawing is an orientation schematic, not a CAD-derived render or a measured printer layout.</text>
+</svg>

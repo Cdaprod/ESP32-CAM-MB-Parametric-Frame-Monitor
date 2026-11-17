@@ -3,8 +3,22 @@
 **A little camera, a 4040 extrusion, and a lot of iterative CAD.**  
 *Designed by [Cdaprod](https://github.com/Cdaprod) · Python/CadQuery · 3D printing · Open hardware prototype*
 
-![V004 horizontal 4040 frame monitor assembly](previews/v004_horizontal_assembly.png)
+![V005 left-side frame orientation](previews/v005_left_side_layout.svg)
 
+
+## V005 — I moved the camera to the **left side** of the rail
+
+The V004 design was mechanically stronger, but its installation was still shown on the wrong face. The rail should stay horizontal; the mount belongs on its **left/outside side**, with the camera facing **back over the extrusion toward the printer bed**.
+
+![V005 left-side orientation diagram](previews/v005_left_side_layout.svg)
+
+This version retains the seven V004 printable models unchanged. The Python assembly applies a rigid **+90° rotation about the horizontal rail's X axis** to the installed hardware, not to the rail. In world coordinates, **+Y is left/outside, −Y is toward the bed, +Z is up**. The model uses **+30° base yaw, −30° elbow, and +12° camera pitch**. The nominal lens-center ray crosses over the rail with **7.5 mm top clearance** and points inward toward the bed.
+
+I ran the 26-component geometric checks: no unintended intersection between the rail and mount, arm, or housing; both captured metal T-nuts remain **0.65 mm recessed**; and the stationary extrusion is still horizontal.
+
+**Rebuild from the published sources:** [V005 parametric assembly](src/build_v005.py) · [V005 geometric checks](src/validate_v005.py) · [V005 actual-BREP renderer](src/render_v005.py) · [engineering notes](docs/ENGINEERING_NOTES_V005.md). GitHub Actions generates the complete V005 STEP and uploads it as a build artifact.
+
+> **Prototype caveat:** The diagram is an orientation schematic, not a mechanical render. The actual CAD preview can be generated with the renderer. The real printer, camera field of view, USB connector, rail fit, and print-bed travel envelope have not been measured or physically validated.
 
 ## V004 — the changes I made after mounting it horizontally
 

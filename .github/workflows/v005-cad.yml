@@ -1,0 +1,39 @@
+name: V005 side-mount CAD regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/build_v005.py'
+      - 'src/validate_v005.py'
+      - 'src/build_v004.py'
+      - 'src/build_assembly.py'
+      - 'src/v001_mount.py'
+      - '.github/workflows/v005-cad.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - '.github/workflows/v005-cad.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'cadquery>=2.4,<3' 'shapely>=2,<3' 'numpy>=1.26,<3' 'trimesh>=4,<5'
+      - name: Generate V005 assembly and verify over-rail clearance
+        run: |
+          python src/build_v005.py
+          python src/validate_v005.py
+      - name: Upload V005 complete assembly STEP and CAD manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: V005-left-side-4040-CAD
+          path: |
+            step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V005.step
+            docs/manifest_v005.json
+            docs/validation_v005.json
+          if-no-files-found: error
