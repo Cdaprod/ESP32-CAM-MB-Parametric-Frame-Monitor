@@ -1,14 +1,19 @@
-name: Documentation and asset integrity
+name: Current release and asset integrity
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  repository-integrity:
+  verify-current-release:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Verify README preview paths and archived source integrity
+      - name: Check V006 README, current JSON, BOM, CAD exports, images and history
         run: python tests/test_repo_assets.py

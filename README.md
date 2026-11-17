@@ -1,171 +1,109 @@
 # ESP32-CAM-MB | Parametric Frame Monitor
 
-**A little camera, a 4040 extrusion, and a lot of iterative CAD.**  
-*Designed by [Cdaprod](https://github.com/Cdaprod) · Python/CadQuery · 3D printing · Open hardware prototype*
+**A little camera, a horizontal 4040 rail, four hand-adjustable joints, and an outboard USB cable.**
 
-![V005 left-side frame orientation](previews/v005_left_side_layout.svg)
+*An open Python/CadQuery hardware project by [Cdaprod](https://github.com/Cdaprod).*
 
+**Current release: V006 — CAD-validated prototype; physical fit unverified.**  
+[Assembly STEP](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V006.step) · [Python generator](src/build_v006.py) · [Validation](docs/validation_v006.json) · [Hardware BOM](docs/BOM.csv) · [Physical fit register](docs/PHYSICAL_FIT_REGISTER_V006.csv)
 
-## V005 — I moved the camera to the **left side** of the rail
+![V006 4040 horizontal left-side frame mount with wrist pivot](previews/v006_wrist_full_assembly.png)
 
-The V004 design was mechanically stronger, but its installation was still shown on the wrong face. The rail should stay horizontal; the mount belongs on its **left/outside side**, with the camera facing **back over the extrusion toward the printer bed**.
+## Why I'm building this
 
-![V005 left-side orientation diagram](previews/v005_left_side_layout.svg)
+I'm a software and systems engineer who enjoys making physical hardware programmable, repeatable, and serviceable. I wanted a budget-friendly ESP32-CAM-MB looking back over my printer bed, mounted directly to the stationary frame—not a one-off glued bracket or an unreliable clip.
 
-This version retains the seven V004 printable models unchanged. The Python assembly applies a rigid **+90° rotation about the horizontal rail's X axis** to the installed hardware, not to the rail. In world coordinates, **+Y is left/outside, −Y is toward the bed, +Z is up**. The model uses **+30° base yaw, −30° elbow, and +12° camera pitch**. The nominal lens-center ray crosses over the rail with **7.5 mm top clearance** and points inward toward the bed.
+I began with a parametric T-slot interface, then kept correcting what the geometry and the physical installation demanded: proper metal clamping hardware, a key that cannot bottom out, the correct *left-side* horizontal mounting orientation, a fully captured board, enough adjustment to aim the camera, and an electrical cable that doesn't sweep through the tightening knobs. The source code and earlier revisions are here because the engineering decisions matter as much as the finished render.
 
-I ran the 26-component geometric checks: no unintended intersection between the rail and mount, arm, or housing; both captured metal T-nuts remain **0.65 mm recessed**; and the stationary extrusion is still horizontal.
+V006 is **the current development configuration**. Earlier models are retained as history and references, not current print instructions.
 
-**Rebuild from the published sources:** [V005 parametric assembly](src/build_v005.py) · [V005 geometric checks](src/validate_v005.py) · [V005 actual-BREP renderer](src/render_v005.py) · [engineering notes](docs/ENGINEERING_NOTES_V005.md). GitHub Actions generates the complete V005 STEP and uploads it as a build artifact.
+## What's new in V006
 
-> **Prototype caveat:** The diagram is an orientation schematic, not a mechanical render. The actual CAD preview can be generated with the renderer. The real printer, camera field of view, USB connector, rail fit, and print-bed travel envelope have not been measured or physically validated.
+![Fourth pivot and protective USB route](previews/v006_wrist_and_cable_detail.png)
 
-## V004 — the changes I made after mounting it horizontally
+The 4040 rail remains horizontal (world X axis). The bracket is on its **left/outside +Y face**, looking back over the rail toward the bed (−Y). Two M5 metal T-nuts carry the clamp load; the undercut printed key is recessed **0.65 mm** and serves only as a locator.
 
-I started this as a small camera mount, but a useful engineering project needs more than a nice-looking render. When I looked closely at the original assembly, five details needed to change: the key's clamp clearance, the rail orientation, hand-operated articulation, full cradle retention, and the power-cable path.
+V006 adds a **fourth independent M4 wrist-yaw pivot** between the distal link and the revised camera shell. Base, elbow, pitch, and wrist are all adjusted using captive fasteners and hand wheels. The shell has continuous side walls, a removable optical bezel, antenna access and a lower USB exit.
 
-![V004 horizontal 4040 assembly, from actual Python-generated CAD geometry](previews/v004_horizontal_assembly.png)
+The illustrated **3.2 mm nominal USB cable** leaves the bottom of the shell, tracks underneath and behind it, and runs outboard of the moving arm links and thumbwheel envelopes.
 
-V004 now uses the **horizontal 4040 front-rail configuration**. A short captured alignment key stays **0.65 mm below the rail face**, while two actual **metal T-nuts** (shown as nominal CAD envelopes) receive the M5 clamp bolts. The printed key is there to align the mount, **not** to become the structural screw thread.
+![Camera wrist shown at an additional tested angle](previews/v006_wrist_rotated_20deg.png)
 
-![V004 three hand-operated joints and USB cable guidance](previews/v004_knobs_and_cable.png)
+### CAD results—not physical qualification
 
-There are **three hand-operated M4 pivot wheels** across two short articulated links, so I can reposition the camera without reaching for a wrench every time. Each wheel captures the metal screw head; the receiving parts include captive hex-nut pockets. The cable exits at the **bottom of the housing**, makes a service loop, and follows the link saddles back to the rail.
+| V006 check | Result |
+|---|---:|
+| Positioned component/reference entries | 30 |
+| Independently adjustable hand-wheel joints | 4 |
+| Sampled articulation poses passed | 13 of 13 |
+| Smallest modeled cable-to-hand-wheel separation | 7.132 mm |
+| Smallest modeled cable-to-rail separation | 3.802 mm |
+| **New** watertight printable shapes | 2 |
+| Real printer, board, cable/boot and fastening fit | **Unverified** |
 
-![V004 closed-side camera housing with front viewing aperture and bolted bezel](previews/v004_camera_case.png)
+The [validation JSON](docs/validation_v006.json) reports sampled solid-distance checks. This is **not** proof of continuous collision-free motion, cable bend radius, strain relief, printer-axis travel, load rating, vibration resistance, or thermal safety.
 
-The previous camera cradle was still visually open along its side. This one is a **full perimeter enclosure**, with continuous left and right side walls, a removable four-screw front bezel, an optical opening, an antenna window, and a bottom USB outlet. The nominal camera is blocked in all six axial motion directions, and the bezel can be removed for maintenance.
+## Files to build the current design
 
-**Validated in CAD:** 26 assembled component/reference entries, seven watertight printable meshes, six retained motion directions, 27 sampled articulation poses, and zero interference across the checked mating components. **Not yet validated physically:** actual ESP32-CAM-MB fit, rail profile, screw torque, printer travel, cable strain or vibration. Camera pitch has a **0° to +30° validated range**; negative tilt is not approved due to a housing/support collision.
+| Purpose | File |
+|---|---|
+| Complete 4040/camera/hardware assembly | [V006 assembled STEP](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V006.step) |
+| **New** printable wrist adapter | [STL](stl/V006_wrist_adapter.stl) · [STEP](step/V006_wrist_adapter.step) |
+| **New** printable camera shell with wrist leaf | [STL](stl/V006_camera_shell.stl) · [STEP](step/V006_camera_shell.step) |
+| Reusable alignment key | [V004 key STL](stl/V004_recessed_alignment_key.stl) |
+| Reusable mounting plate | [V004 plate STL](stl/V004_mount_plate.stl) |
+| Reusable two arm links | [First link](stl/V004_first_arm.stl) · [Second link](stl/V004_second_arm.stl) |
+| Reusable removable bezel | [V004 bezel STL](stl/V004_removable_camera_bezel.stl) |
+| Reusable printed hand wheel (print four) | [V004 hand wheel STL](stl/V004_M4_thumbwheel.stl) |
+| Current generator, validator, renderer | [Build](src/build_v006.py) · [Validate](src/validate_v006.py) · [Render](src/render_v006.py) |
+| Hardware purchasing and fit | [Current BOM](docs/BOM.csv) · [Fit measurements](docs/PHYSICAL_FIT_REGISTER_V006.csv) |
 
-- [V004 full STEP assembly](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V004.step)
-- [Python model source](src/build_v004.py) · [validation](src/validate_v004.py) · [renderer](src/render_v004.py)
-- [V004 engineering corrections and fit requirements](docs/ENGINEERING_NOTES_V004.md) · [V004 hardware BOM](docs/BOM_V004.csv)
+**Do not use V004's old camera shell in place of V006's shell.** The wrist adapter requires the revised mating hinge leaf. Eight *unique* printable part geometries form the V006 system, with four printed instances of the shared hand wheel.
 
-The prior V003 project remains intact below. V004 is a new revision, **not an overwrite**.
+### Rebuild from source
 
----
+Requires Python 3.11+, CadQuery and the dependencies in [requirements.txt](requirements.txt).
 
-## Why I built this
-
-I’m a software and systems engineer who likes connecting the physical and digital worlds. I spend a lot of time building things, breaking assumptions, measuring twice, and turning my tools into systems I can improve. This project started with a practical question: **could I mount an inexpensive ESP32-CAM-MB to my printer frame, point it at the bed, and still be able to reposition or service the camera without starting over?**
-
-Instead of gluing a camera to the printer or publishing a one-off bracket, I wanted the whole assembly to be parametric. The 4040 rail and undercut T-slot key give me a reusable mechanical interface. The arm adds positioning. The cradle adds board retention. And each version records *why* a design changed.
-
-The best part is that the CAD isn't just a pretty render: the Python source regenerates the parts and assembly, the STEP and STLs are here, and the images below come from the actual CAD geometry.
-
-> **Historical release: V003 — captive cradle (V004 now adds the horizontal mounting improvements).** V002 is preserved exactly in `reference/V002_original_preserved.zip`. This is a prototype: the photographed/recovered rail geometry and nominal camera-stack envelope still need caliper confirmation against your physical hardware.
-
-## The build, in pictures
-
-### 1 — The full 4040 assembly
-
-![Complete 23-piece positioned assembly](previews/assembled_oblique.png)
-
-A 40 × 40 × 180 mm reference extrusion, a captured undercut sliding key, a mounting plate, a 60 mm arm, and a camera cradle. All the screws, washers, locknuts and inserts are modeled in the demonstration. The recovered rail has two slots per face, on **20 mm centers**; we mount on an actual offset slot, not a fictional central slot.
-
-### 2 — The connection that started it all
-
-![4040 slot fit section showing the captured T-slot shape](previews/4040_slot_fit_section.png)
-
-My recovered parametric T-slot interface is intentionally *captured by the extrusion undercuts* rather than being a loose rectangular tab. In the demo, the two M5 fasteners align with the pilot holes in the sliding key. **For a printer running under vibration or heat, substitute an appropriate metal T-nut/fastener interface**: the tapped-plastic connection is only a geometric prototype.
-
-### 3 — The problem with V002
-
-![Open V002 cradle compared with the V003 positively retained design](previews/v002_vs_v003_comparison.png)
-
-V002 positioned the camera but left an escape path along the open top. That’s fine while it is upright on a desk, but it is not a design I'd trust when I flip or tilt the camera to get the bed shot I want.
-
-### 4 — A cradle I can turn upside down
-
-![V003 retained camera and new upper bridge](previews/captured_camera_closeup.png)
-
-V003 keeps the original arm and frame interface and changes only the cradle assembly. It adds **two reinforced towers, wider front lips, and a removable U-shaped top retainer** fixed by **two M2.5 screws into brass inserts**. No dependence on a fragile snap-fit and no need to glue the board in forever.
-
-![Upside-down geometry-derived retention demonstration](previews/upside_down_retention.png)
-
-The nominal board is blocked in all six axis-aligned translation tests in the CAD model. This is a *geometric test*, not a real inversion/drop/vibration qualification; I'll still test the print before it gets installed on a moving machine.
-
-### 5 — How the retainer goes together
-
-![Exploded retainer, inserts and two bolts](previews/exploded_retainer.png)
-
-![Camera front: lens and upper retainer geometry](previews/camera_front_and_retainer.png)
-
-The bridge can come back off when I want to reflash or swap the board. The front optics remain unobstructed in the nominal envelope; real antenna, USB plug, headers and cable-strain relief must be measured.
-
-## At a glance
-
-| Parameter | Demonstration value | Notes |
-|---|---:|---|
-| Reference extrusion | 40 × 40 × 180 mm | Photo-derived 4040 profile; verify real rail |
-| Slots on each face | 2, ±10 mm from center | Not a centered single-slot profile |
-| Articulated arm | 60 mm | Original V002 arm retained |
-| ESP32-CAM-MB envelope | 27 × 40 × 16 mm | **Provisional** assembly dimensions |
-| Printable parts | 5 | Individual STEP + watertight STL exports |
-| Assembled STEP | 23 named solids | Includes simplified fastener representations |
-| Base fasteners | 2 × M5 × 8 | Printed pilot/key demonstrator only |
-| Pivot hardware | 2 × M4 × 25 | Yaw and pitch joints |
-| Cradle screws | 2 × M2.5 × 8 | Into nominal brass heat-set inserts |
-| Nominal top gap | 1.25 mm | Confirm physical PCB fit before printing |
-
-## Files I actually use
-
-```text
-ESP32-CAM-MB-Parametric-Frame-Monitor/
-├── README.md                     # This story and embedded geometry previews
-├── previews/                     # Nine real, tracked PNG renders
-├── src/                          # Python CAD builders, renderers, validators
-├── reference/                    # Original OpenSCAD T-slot and V002 ZIP
-├── step/                         # Full assembly and independently editable solids
-├── stl/                          # Five individual printable models
-├── viewer/                       # Offline HTML viewer and colored GLB
-├── docs/                         # BOM, parameters, validation, provenance
-├── tests/                        # Lightweight repo/integrity check
-└── .github/workflows/            # Documentation/assets CI
-```
-
-**Start with these:** [`full assembled STEP`](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V003.step) · [`captive cradle STL`](stl/V003_anti_inversion_cradle.stl) · [`top retainer STL`](stl/V003_bolted_top_retainer.stl) · [`offline viewer`](viewer/OPEN_V003_OFFLINE.html) · [`bill of materials`](docs/BOM.csv).
-
-The offline viewer is self-contained. For the most dependable viewing experience, download or clone the repo and open the HTML file locally. You can also open the GLB in a compatible 3D viewer.
-
-## Rebuild from Python
-
-Requires **Python 3.11+**, CadQuery and supporting rendering/mesh libraries. The original build uses CadQuery, Shapely, Trimesh, NumPy, Matplotlib, VTK, Plotly, and Pillow. The software environment is not pinned in this version, so dependency changes may affect reproduction.
-
-`/src/build_v003.py`
+`/Makefile`
 
 ```bash
-python -m pip install cadquery shapely trimesh numpy matplotlib vtk plotly pillow
-python src/build_v003.py
-python src/validate_v003.py
-python src/export_viewer_v003.py
-# Headless Linux:
-xvfb-run -a python src/render_v003.py
-# Desktop macOS:
-python src/render_v003.py
+python -m pip install -r requirements.txt
+make build       # STEP assembly + V006 printable STEP/STL
+make validate    # 13 sampled CAD poses and cable clearance
+make docs        # README, metadata, BOM, history, asset integrity
+# For headless Linux preview generation (requires Xvfb):
+xvfb-run -a python src/render_v006.py
 ```
 
-Read [`docs/validation_v003.json`](docs/validation_v003.json) for the source CAD check results and [`docs/provenance.json`](docs/provenance.json) for the archived V002 checksum. A small standard-library CI test checks that every README-linked local image exists and that the original V002 archive remains present and readable.
+[GitHub Actions CAD workflow](.github/workflows/v006-cad.yml) · [Current release integrity CI](.github/workflows/assets.yml)
 
-## What I will verify on the real printer
+## Repository map
 
-- Exact ESP32-CAM-MB overall stack height and component projections, USB cable direction, lens and antenna access.
-- Actual extrusion profile and slot width at the selected front corner, including whether the mounting face has this *specific* 4040 double-slot geometry.
-- Heat-set insert manufacturer's hole and depth recommendations, print orientation and layer adhesion.
-- Printer travel clearance, cable snag zones, heat, vibration and a physical upside-down retention test.
-
-I don't want a STEP model that only looks convincing. I want parts whose geometry, assumptions, and limitations are all visible so the next design iteration is based on measurements rather than guesses.
+- **Root:** this V006 README, [VERSION](VERSION), [CHANGELOG](CHANGELOG.md), [Makefile](Makefile), [requirements](requirements.txt).
+- **`src/`:** V006 is current; V001–V005 sources remain for reproducibility.
+- **`step/` and `stl/`:** current V006 assembly, revised parts, reused V004 parts, and version-labeled historical outputs.
+- **`previews/`:** three actual geometry-derived V006 renders above plus older reference images.
+- **`docs/`:** [documentation index](docs/README.md), [release pointer](docs/CURRENT_RELEASE.json), [current BOM](docs/BOM.csv), [V006 engineering notes](docs/ENGINEERING_NOTES_V006.md), [model manifest](docs/manifest_v006.json), [validation](docs/validation_v006.json), [verification scope](docs/VALIDATION_SCOPE.md).
+- **`reference/`:** recovered original T-slot OpenSCAD and preserved V002 ZIP.
+- **`viewer/`:** historical V003-only offline viewer; **not** a V006 viewer.
+- **`tests/` and `.github/workflows/`:** current-release and CAD regression checks.
 
 ## Version history
 
-- **V001 —** modular base, articulated arm and initial ESP32-CAM-MB cradle.
-- **V002 —** unified 4040 extrusion + captured parametric key + monitor assembly, with modeled fasteners.
-- **V003 —** separate bolted retainer, insert towers and stronger retaining lips; unchanged upstream rail/arm geometry, V002 archived byte-for-byte.
+| Version | Mechanical change |
+|---|---|
+| V001 | Initial modular frame mount and open cradle |
+| V002 | Recovered 4040 extrusion, captured T-slot interface, assembly hardware |
+| V003 | Bolted positive camera retention |
+| V004 | 0.65 mm recessed key, metal M5 T-nuts, horizontal rail, three thumbwheels, full shell and bottom USB exit |
+| V005 | Left-side mount aimed back over the horizontal rail toward the printer bed |
+| **V006** | **New independent wrist pivot and revised shell; fourth knob; outboard cable routing validated at 13 poses** |
 
-For the full detailed assembly instructions, tolerances, numerical register and geometric validation method, see [`docs/ENGINEERING_NOTES_V003.md`](docs/ENGINEERING_NOTES_V003.md).
+[Older V003 render](previews/captured_camera_closeup.png) · [V004 render](previews/v004_horizontal_assembly.png) · [V005 orientation schematic](previews/v005_left_side_layout.svg) · [Complete design history](CHANGELOG.md)
+
+The final acceptance step is physical: measure the real rail and ESP32-CAM-MB, select the actual metal fasteners, print fit coupons, route and strain-relieve the cable, and test clearance throughout the printer's full travel before operating.
 
 ---
 
-*Built by [Cdaprod](https://github.com/Cdaprod) — part of my ongoing effort to build useful tools, learn by making, and share the actual source rather than only a screenshot.*  
+*Built by [Cdaprod](https://github.com/Cdaprod) because I learn by building, measuring, iterating, and publishing the actual source.*  
 **#DevOpsDad · #HackThePlanet · #3DPrinting · #OpenHardware**
