@@ -1,18 +1,20 @@
-# Documentation index — V008
+# Documentation — current V009 CAD release
 
-[Project README](../README.md) · [V008 complete STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V008.step)
+[Main README with the real V009 previews](../README.md) · [Full V009 assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step)
 
-| Current file | What it covers |
+| Current V009 artifact | Purpose |
 |---|---|
-| [CURRENT_RELEASE.json](CURRENT_RELEASE.json) | Machine-readable authoritative release and artifact paths |
-| [ENGINEERING_NOTES_V008.md](ENGINEERING_NOTES_V008.md) | Both new through-guides, shared cable route and geometry constraints |
-| [BOM.csv](BOM.csv) / [BOM_V008.csv](BOM_V008.csv) | Current hardware and printable parts |
-| [PHYSICAL_FIT_REGISTER_V008.csv](PHYSICAL_FIT_REGISTER_V008.csv) | Measurements required on actual hardware |
-| [manifest_v008.json](manifest_v008.json) | 30 assembled components and reference envelopes |
-| [validation_v008.json](validation_v008.json) | 13 sampled poses, cable-to-guide, knob and rail clearances |
-| [VALIDATION_SCOPE.md](VALIDATION_SCOPE.md) | What CAD tests do not establish |
-| [RELEASE_INDEX.md](RELEASE_INDEX.md) | Earlier revisions versus current build |
+| [CURRENT_RELEASE.json](CURRENT_RELEASE.json) | Machine-readable authoritative current version and model paths |
+| [ENGINEERING_NOTES_V009.md](ENGINEERING_NOTES_V009.md) | Tapered arm geometry and preserved cable-guide coordinates |
+| [BOM.csv](BOM.csv) / [BOM_V009.csv](BOM_V009.csv) | Current hardware and printable arm parts |
+| [PHYSICAL_FIT_REGISTER_V009.csv](PHYSICAL_FIT_REGISTER_V009.csv) | Physical measurements and structural testing pending |
+| [manifest_v009.json](manifest_v009.json) | Thirty positioned assembly and reference components |
+| [validation_v009.json](validation_v009.json) | Thirteen poses, clearance report and watertight STLs |
+| [VALIDATION_SCOPE.md](VALIDATION_SCOPE.md) | What CAD tests do and do not establish |
+| [RELEASE_INDEX.md](RELEASE_INDEX.md) | Revision lineage |
 
-Build via `python src/build.py build`; validate via `python src/build.py validate`; geometry renders via `xvfb-run -a python src/build.py render` on headless Linux. [GitHub workflow](../.github/workflows/v008-cad.yml).
+**Actual V009 CAD renders:** [Full assembly](../previews/v009_full_assembly.png) · [Cable guide and arms](../previews/v009_cable_guides.png) · [20° wrist](../previews/v009_wrist_20_degrees.png)
 
-Previous versioned documents are retained as historical design records, not actively maintained V008 documentation.
+Build: `python src/build.py build` · Validate: `python src/build.py validate` · Render: `xvfb-run -a python src/build.py render`.
+
+V008 remains the historical reference, but V009 is the current checked assembly. Nothing is physically load-rated or verified against the full printer travel envelope.
