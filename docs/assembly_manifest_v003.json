@@ -1,0 +1,175 @@
+{
+  "units": "mm",
+  "rev": "V003",
+  "base": "V002; original ZIP preserved in reference/",
+  "capture_spec": {
+    "front_lip_overlap_width": 2.2,
+    "tower_x_inner": 14.05,
+    "tower_x_outer": 22.55,
+    "tower_y_back": -92.5,
+    "tower_y_front": -80.5,
+    "tower_z_bottom": 38.2,
+    "tower_z_top": 49.25,
+    "cap_z_base": 49.25,
+    "cap_thickness": 3.0,
+    "cap_y_rear": -91.0,
+    "cap_y_front": -80.5,
+    "cap_bridge_y_front": -88.6,
+    "cap_bridge_half_x": 11.2,
+    "cap_wing_inner_x": 10.8,
+    "insert_x": 18.3,
+    "insert_y": -86.5,
+    "insert_pocket_d": 3.45,
+    "insert_outer_d": 3.7,
+    "insert_inner_d": 2.55,
+    "insert_length": 4.0,
+    "insert_top_z": 49.2,
+    "cap_clearance_d": 2.9,
+    "screw_d": 2.5,
+    "screw_length": 8.0,
+    "screw_head_d": 4.5,
+    "screw_head_height": 2.5,
+    "nominal_board_top_z": 48.0,
+    "nominal_camera_top_clearance": 1.25
+  },
+  "original_v002_assembly": {
+    "rail_length": 180.0,
+    "rail_size": 40.0,
+    "slot_pitch": 20.0,
+    "active_slot_y": 10.0,
+    "key_length": 45.0,
+    "key_pilot_d": 4.2,
+    "key_clearance": 0.18,
+    "m5_nominal_d": 5.0,
+    "m5_length": 8.0,
+    "m5_head_d": 8.5,
+    "m5_head_height": 5.0,
+    "m4_nominal_d": 4.0,
+    "m4_length": 25.0,
+    "m4_head_d": 7.0,
+    "m4_head_height": 4.0,
+    "m4_washer_od": 8.0,
+    "m4_washer_id": 4.4,
+    "m4_nut_af": 7.0,
+    "m4_nut_height": 4.0,
+    "yaw_deg": -22.0,
+    "pitch_deg": 12.0
+  },
+  "parts": [
+    {
+      "name": "4040_reference_extrusion",
+      "kind": "reference",
+      "volume_mm3": 84488.8948
+    },
+    {
+      "name": "V5_profile_matched_key_M5_pilots",
+      "kind": "printed",
+      "volume_mm3": 2089.4282
+    },
+    {
+      "name": "V001_mount_base_4040_slot_10",
+      "kind": "printed",
+      "volume_mm3": 8612.0674
+    },
+    {
+      "name": "V001_60mm_yaw_arm",
+      "kind": "printed",
+      "volume_mm3": 7596.0555
+    },
+    {
+      "name": "V003_anti_inversion_cradle",
+      "kind": "printed",
+      "volume_mm3": 11456.407
+    },
+    {
+      "name": "ESP32_CAM_MB_nominal_envelope",
+      "kind": "reference",
+      "volume_mm3": 15261.3717
+    },
+    {
+      "name": "M5x8_socket_screw_1",
+      "kind": "hardware",
+      "volume_mm3": 397.8499
+    },
+    {
+      "name": "M5x8_socket_screw_2",
+      "kind": "hardware",
+      "volume_mm3": 397.8499
+    },
+    {
+      "name": "M4x25_yaw_socket_bolt",
+      "kind": "hardware",
+      "volume_mm3": 448.6117
+    },
+    {
+      "name": "M4_yaw_washer_bottom",
+      "kind": "hardware",
+      "volume_mm3": 35.0602
+    },
+    {
+      "name": "M4_yaw_washer_pivot",
+      "kind": "hardware",
+      "volume_mm3": 17.5301
+    },
+    {
+      "name": "M4_yaw_washer_top",
+      "kind": "hardware",
+      "volume_mm3": 35.0602
+    },
+    {
+      "name": "M4_yaw_hex_locknut",
+      "kind": "hardware",
+      "volume_mm3": 114.3233
+    },
+    {
+      "name": "M4x25_pitch_socket_bolt",
+      "kind": "hardware",
+      "volume_mm3": 448.6117
+    },
+    {
+      "name": "M4_pitch_washer_lug_inner",
+      "kind": "hardware",
+      "volume_mm3": 35.0602
+    },
+    {
+      "name": "M4_pitch_washer_ear_gap",
+      "kind": "hardware",
+      "volume_mm3": 45.5782
+    },
+    {
+      "name": "M4_pitch_washer_outer",
+      "kind": "hardware",
+      "volume_mm3": 35.0602
+    },
+    {
+      "name": "M4_pitch_hex_locknut",
+      "kind": "hardware",
+      "volume_mm3": 114.3233
+    },
+    {
+      "name": "V003_bolted_top_retainer",
+      "kind": "printed",
+      "volume_mm3": 856.1388
+    },
+    {
+      "name": "M2p5_brass_insert_left",
+      "kind": "hardware",
+      "volume_mm3": 22.5802
+    },
+    {
+      "name": "M2p5x8_socket_screw_left",
+      "kind": "hardware",
+      "volume_mm3": 73.4881
+    },
+    {
+      "name": "M2p5_brass_insert_right",
+      "kind": "hardware",
+      "volume_mm3": 22.5802
+    },
+    {
+      "name": "M2p5x8_socket_screw_right",
+      "kind": "hardware",
+      "volume_mm3": 73.4881
+    }
+  ]
+}

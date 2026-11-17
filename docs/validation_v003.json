@@ -1,0 +1,245 @@
+{
+  "revision": "V003",
+  "test_kind": "Geometric BREP+STL, no physical testing",
+  "component_count": 23,
+  "parts": {
+    "4040_reference_extrusion": {
+      "valid": true,
+      "volume_mm3": 84488.8948,
+      "type": "reference"
+    },
+    "V5_profile_matched_key_M5_pilots": {
+      "valid": true,
+      "volume_mm3": 2089.4282,
+      "type": "printed",
+      "watertight_stl": true,
+      "volume_delta_percent": 0.0051
+    },
+    "V001_mount_base_4040_slot_10": {
+      "valid": true,
+      "volume_mm3": 8612.0674,
+      "type": "printed",
+      "watertight_stl": true,
+      "volume_delta_percent": 0.0079
+    },
+    "V001_60mm_yaw_arm": {
+      "valid": true,
+      "volume_mm3": 7596.0555,
+      "type": "printed",
+      "watertight_stl": true,
+      "volume_delta_percent": 0.0184
+    },
+    "V003_anti_inversion_cradle": {
+      "valid": true,
+      "volume_mm3": 11456.407,
+      "type": "printed",
+      "watertight_stl": true,
+      "volume_delta_percent": 0.002
+    },
+    "ESP32_CAM_MB_nominal_envelope": {
+      "valid": true,
+      "volume_mm3": 15261.3717,
+      "type": "reference"
+    },
+    "M5x8_socket_screw_1": {
+      "valid": true,
+      "volume_mm3": 397.8499,
+      "type": "hardware"
+    },
+    "M5x8_socket_screw_2": {
+      "valid": true,
+      "volume_mm3": 397.8499,
+      "type": "hardware"
+    },
+    "M4x25_yaw_socket_bolt": {
+      "valid": true,
+      "volume_mm3": 448.6117,
+      "type": "hardware"
+    },
+    "M4_yaw_washer_bottom": {
+      "valid": true,
+      "volume_mm3": 35.0602,
+      "type": "hardware"
+    },
+    "M4_yaw_washer_pivot": {
+      "valid": true,
+      "volume_mm3": 17.5301,
+      "type": "hardware"
+    },
+    "M4_yaw_washer_top": {
+      "valid": true,
+      "volume_mm3": 35.0602,
+      "type": "hardware"
+    },
+    "M4_yaw_hex_locknut": {
+      "valid": true,
+      "volume_mm3": 114.3233,
+      "type": "hardware"
+    },
+    "M4x25_pitch_socket_bolt": {
+      "valid": true,
+      "volume_mm3": 448.6117,
+      "type": "hardware"
+    },
+    "M4_pitch_washer_lug_inner": {
+      "valid": true,
+      "volume_mm3": 35.0602,
+      "type": "hardware"
+    },
+    "M4_pitch_washer_ear_gap": {
+      "valid": true,
+      "volume_mm3": 45.5782,
+      "type": "hardware"
+    },
+    "M4_pitch_washer_outer": {
+      "valid": true,
+      "volume_mm3": 35.0602,
+      "type": "hardware"
+    },
+    "M4_pitch_hex_locknut": {
+      "valid": true,
+      "volume_mm3": 114.3233,
+      "type": "hardware"
+    },
+    "V003_bolted_top_retainer": {
+      "valid": true,
+      "volume_mm3": 856.1388,
+      "type": "printed",
+      "watertight_stl": true,
+      "volume_delta_percent": 0.0028
+    },
+    "M2p5_brass_insert_left": {
+      "valid": true,
+      "volume_mm3": 22.5802,
+      "type": "hardware"
+    },
+    "M2p5x8_socket_screw_left": {
+      "valid": true,
+      "volume_mm3": 73.4881,
+      "type": "hardware"
+    },
+    "M2p5_brass_insert_right": {
+      "valid": true,
+      "volume_mm3": 22.5802,
+      "type": "hardware"
+    },
+    "M2p5x8_socket_screw_right": {
+      "valid": true,
+      "volume_mm3": 73.4881,
+      "type": "hardware"
+    }
+  },
+  "resting_collisions": {
+    "cradle_vs_board_mm3": 0.0,
+    "cap_vs_board_mm3": 0.0,
+    "cradle_vs_cap_mm3": 0.0,
+    "cradle_vs_arm_mm3": 0.0
+  },
+  "directions_blocked": {
+    "+Z (upside-down escape)": {
+      "tested_displacement_mm": 3,
+      "cradle_blocking_volume_mm3": 0.0,
+      "retainer_blocking_volume_mm3": 189.945
+    },
+    "-Z (normal gravity)": {
+      "tested_displacement_mm": 4,
+      "cradle_blocking_volume_mm3": 475.67,
+      "retainer_blocking_volume_mm3": 0.0
+    },
+    "+Y (toward lens)": {
+      "tested_displacement_mm": 2,
+      "cradle_blocking_volume_mm3": 173.91,
+      "retainer_blocking_volume_mm3": 0.0
+    },
+    "-Y (toward back panel)": {
+      "tested_displacement_mm": 2,
+      "cradle_blocking_volume_mm3": 1591.676,
+      "retainer_blocking_volume_mm3": 0.0
+    },
+    "+X (right)": {
+      "tested_displacement_mm": 2,
+      "cradle_blocking_volume_mm3": 786.625,
+      "retainer_blocking_volume_mm3": 0.0
+    },
+    "-X (left)": {
+      "tested_displacement_mm": 2,
+      "cradle_blocking_volume_mm3": 786.625,
+      "retainer_blocking_volume_mm3": 0.0
+    }
+  },
+  "articulation": [
+    {
+      "yaw_deg": -30,
+      "pitch_deg": -15,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": -30,
+      "pitch_deg": 0,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": -30,
+      "pitch_deg": 15,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 0,
+      "pitch_deg": -15,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 0,
+      "pitch_deg": 0,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 0,
+      "pitch_deg": 15,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 30,
+      "pitch_deg": -15,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 30,
+      "pitch_deg": 0,
+      "max_unwanted_intersection_mm3": 0.0
+    },
+    {
+      "yaw_deg": 30,
+      "pitch_deg": 15,
+      "max_unwanted_intersection_mm3": 0.0
+    }
+  ],
+  "hardware_fit": {
+    "-1_insert_vs_cradle_mm3": 5.6156,
+    "-1_insert_vs_cap_mm3": 0.0,
+    "-1_screw_vs_cradle_mm3": 0.0,
+    "-1_screw_vs_cap_mm3": 0.0,
+    "-1_screw_vs_insert_mm3": 0.0,
+    "1_insert_vs_cradle_mm3": 5.6156,
+    "1_insert_vs_cap_mm3": 0.0,
+    "1_screw_vs_cradle_mm3": 0.0,
+    "1_screw_vs_cap_mm3": 0.0,
+    "1_screw_vs_insert_mm3": 0.0
+  },
+  "limits": [
+    "Board 27 x 40 x 16 mm envelope and exact components/connectors remain provisional.",
+    "M2.5 heat-set inserts are schematic cylinders with intentional pilot interference; verify manufacturer hole/insert thermal spec before print.",
+    "Simulated obstruction in six cardinal axes is not proof against all possible rotation paths or physical vibration.",
+    "4040 slot source is recovered photo-derived geometry, not certified extrusion manufacturer STEP.",
+    "M5x8 into printed undercut key remains demonstrator only; use qualified metal T-nut for actual printer mounting.",
+    "No real load, drop, torque, vibration, thermal, or machine-travel tests performed."
+  ],
+  "summary": {
+    "status": "PASS - geometry only",
+    "BREP_solids": 23,
+    "printable_STLs_watertight": 5,
+    "articulation_poses_passed": 9,
+    "escape_axes_blocked": 6,
+    "board_to_top_retainer_gap_mm": 1.25
+  }
+}

@@ -1,0 +1,14 @@
+Part,Quantity,Nominal dimensions,Status/notes
+4040_extrusion_reference,1,40 x 40 x 180 mm,"Photo-derived reference, not actual Neptune extrusion"
+V5_profile_matched_key_M5_pilots,1,45mm L; M5 pilot 4.2mm,Printed; demonstration only; prefer metal T-nuts
+V001_mount_base_4040_slot_10,1,18 x 51 x 6 mm,Unchanged V002
+V001_60mm_yaw_arm,1,60mm reach,Unchanged V002
+V003_anti_inversion_cradle,1,27 x 40 mm nominal PCB,NEW print; towers + 2.2mm front lips
+V003_bolted_top_retainer,1,45.1 x 10.5 x 3 mm envelope,NEW print; U-bridge; 1.25mm above nominal board
+M2p5_heatset_insert,2,OD3.7 ID2.55 L4.0 mm nominal,Confirm vendor insert diameter and correct pocket size
+M2p5x8_socket_screw,2,M2.5 x 8; head OD4.5,NEW; 3mm cap + 5mm under-cap reach
+M5x8_socket_screw,2,M5 x 8,"Unchanged V002, demonstrator plastic tap pilot"
+M4x25_socket_screw,2,M4 x 25,Unchanged V002; yaw/pitch joints
+M4_washers_and_shims,6,Various t from 0.5 to 1.3,Unchanged V002; verify real hardware
+M4_hex_locknut,2,"AF7, nominal 4mm tall",Unchanged V002
+ESP32_CAM_MB_envelope,1,27 x 40 x provisional 16 mm,Reference volume only; hardware not physically verified
