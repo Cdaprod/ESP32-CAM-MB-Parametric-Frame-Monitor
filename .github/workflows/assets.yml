@@ -1,18 +1,23 @@
 name: Current release and asset integrity
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows:
+      - V010 complete parametric CAD assembly, clearance and release
+    types: [completed]
   pull_request:
   workflow_dispatch:
 permissions:
   contents: read
 jobs:
   verify-current:
+    if: github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Check V010 README images, exported models, BOM and version
-        run: python tests/test_repo_assets.py
+      - name: Verify current README images, release artifacts, BOM, versions and viewer hashes
+        run: |
+          python tests/test_repo_assets.py
+          python tests/test_viewer_current.py
