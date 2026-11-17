@@ -4,7 +4,9 @@
 
 Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real STEP/STL models, and actual geometry-derived renders.
 
-**Current development release: V010 (CAD-only prototype).** Real cable bending, snap-fit fatigue, 4040 rail fit, camera connector geometry, fastener preload, and full printer travel remain physically unverified.
+**Current development release: V010 (CAD-only prototype; NOT print-qualified).** Real cable bending, snap-fit fatigue, 4040 rail fit, camera connector geometry, fastener preload, and full printer travel remain physically unverified.
+
+**Print-readiness audit:** [12 prioritized, source-verified defects and acceptance gates](docs/PRINT_READINESS_AUDIT_V010.md) · [GitHub issue #5](https://github.com/Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor/issues/5). **Do not install V010 on a moving printer** based only on CAD watertightness or screenshot appearance.
 
 ## Explore the latest assembly in 3D
 
@@ -12,7 +14,7 @@ Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real 
 
 **[Open/download the current interactive offline HTML viewer](viewer/index.html)** · [Complete color-coded GLB](viewer/COMPLETE_ASSEMBLY.glb) · [Viewer version and checksums](viewer/release.json)
 
-Orbit, zoom and toggle individual component groups in the standalone viewer. Its HTML bundles the JavaScript, so after downloading you can open it on your phone or computer without an internet connection. GitHub README pages cannot execute embedded HTML or iframes; this linked preview opens the viewer file, which can be downloaded locally. The same viewer can also be hosted online through GitHub Pages when Pages is enabled.
+Orbit, zoom and toggle individual component groups in the standalone viewer. The viewer now retains the complete CAD tessellation rather than omitting triangles, and the provisional cable reference starts hidden because its hard-angled routing is not a physical cable simulation. Its HTML bundles the JavaScript, so after downloading you can open it on your phone or computer without an internet connection. GitHub README pages cannot execute embedded HTML or iframes; this linked preview opens the viewer file, which can be downloaded locally. The same viewer can also be hosted online through GitHub Pages when Pages is enabled.
 
 
 **V010 finishing update:** Both structural arms now use R0.70 mm fillets on re-entrant triangular web corners and R1.0 mm exterior taper blends. The handwheel grip rims have 0.80 mm chamfers; the camera shell has R0.90 mm exterior corner fillets. The bezel and 4040 mounting-plate edges receive 0.30 mm chamfers and the wrist bridge R0.70 mm fillets. All pivot bores, captive-nut pockets, T-slot datums and USB clip throats are preserved. The images below are regenerated from actual finished BREP geometry.

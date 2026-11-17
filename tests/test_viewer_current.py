@@ -16,6 +16,13 @@ assert meta["viewer_glb"]==release["viewer_glb"]=="viewer/COMPLETE_ASSEMBLY.glb"
 assert release["viewer_manifest"]=="viewer/release.json"
 assert meta["fully_offline"] and meta["standalone_html"]
 assert meta["part_count"]==len(meta["component_names"])==30
+assert meta["plotly_mesh_policy"]=="all_faces", "Viewer must not drop triangles"
+assert len(meta["plotly_face_counts"])==30
+assert set(meta["plotly_face_counts"])==set(meta["component_names"])
+assert all(n>0 for n in meta["plotly_face_counts"].values())
+assert meta["reference_cable_default_hidden"] is True
+source=(ROOT/"src/frame_monitor/viewer.py").read_text()
+assert "f[::stride]" not in source, "Face-stride sampling visually corrupts solid surfaces"
 assert html_path.stat().st_size>3000000
 assert f'<meta name="frame-monitor-release" content="{version}">' in html
 assert "Plotly.newPlot" in html

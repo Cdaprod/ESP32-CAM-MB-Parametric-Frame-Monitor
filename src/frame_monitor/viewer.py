@@ -4,7 +4,7 @@ Uses current config and assembled CAD solids; never imports a historical build.
 Stable outputs: viewer/index.html, COMPLETE_ASSEMBLY.glb and release.json.
 """
 from pathlib import Path
-import hashlib, json, math, re
+import hashlib, json, re
 import numpy as np
 import plotly.graph_objects as go
 import plotly.io as pio
@@ -27,6 +27,7 @@ def build_viewer(root):
 
     scene = trimesh.Scene(base_frame=f"ESP32_CAM_MB_{version}")
     traces, groups_seen = [], set()
+    full_face_counts = {}
     labels = {"reference":"Frame and references",
               "reference_cable":"Cable reference",
               "printed":"Printed parts", "hardware":"Metal hardware"}
@@ -40,18 +41,21 @@ def build_viewer(root):
         rgba = np.array([*[round(float(c)*255) for c in color],255],dtype=np.uint8)
         mesh.visual.vertex_colors = np.tile(rgba,(len(v),1))
         scene.add_geometry(mesh,geom_name=name,node_name=name)
-        # HTML viewing meshes decimated; GLB retains full CAD tessellation.
-        stride=max(1,math.ceil(len(f)/2200))
-        triangles_small=f[::stride]
-        used, inv=np.unique(triangles_small.reshape(-1),return_inverse=True)
-        vf=v[used]; ff=inv.reshape((-1,3))
+        # Never drop every Nth triangle: skipping faces creates open surfaces
+        # and falsely looks like holes in valid knobs, shells and cable meshes.
+        # Use the complete tessellation in both HTML and GLB until a verified
+        # topology-preserving simplifier is available.
+        full_face_counts[name] = int(len(f))
         group=labels.get(kind,kind)
         rgb="rgb("+",".join(str(round(float(x)*255)) for x in color)+")"
         traces.append(go.Mesh3d(
-            x=vf[:,0],y=vf[:,1],z=vf[:,2],
-            i=ff[:,0],j=ff[:,1],k=ff[:,2],
+            x=v[:,0],y=v[:,1],z=v[:,2],
+            i=f[:,0],j=f[:,1],k=f[:,2],
             name=group,legendgroup=group,showlegend=group not in groups_seen,
             hovertemplate=name+"<extra></extra>",color=rgb,
+            # The current cable reference is a chain of rigid straight cylinders
+            # with outdated outboard waypoints; hide until the user opts in.
+            visible="legendonly" if kind=="reference_cable" else True,
             opacity=.68 if name=="ESP32_CAM_MB_provisional_envelope" else 1,
             lighting=dict(ambient=.62,diffuse=.76,specular=.17,roughness=.60)))
         groups_seen.add(group)
@@ -101,6 +105,9 @@ header p{{font-size:12px;margin:0;color:#c9d7e3}}
           "source":"src/frame_monitor/assembly.py::components",
           "part_count":len(parts),"component_names":[n for n,*_ in parts],
           "fully_offline":True,"standalone_html":True,
+          "plotly_mesh_policy":"all_faces",
+          "plotly_face_counts":full_face_counts,
+          "reference_cable_default_hidden":True,
           "previews_sha256":{p:sha(root/p) for p in previews},
           "assembly_step":release["assembly_step"],
           "assembly_step_sha256":sha(step),
