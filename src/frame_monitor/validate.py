@@ -1,0 +1,72 @@
+"""Surface-distance checks for two corrected cable guides across joint poses."""
+from __future__ import annotations
+import json
+from pathlib import Path
+import cadquery as cq
+import trimesh
+from .config import CONFIG
+from .assembly import components
+from .geometry import first_arm, second_arm
+
+
+def validate(root:Path):
+    root=Path(root)
+    (root/'stl').mkdir(exist_ok=True,parents=True)
+    meshes=[]
+    for name,shape in (('V008_first_arm',first_arm()),('V008_second_arm',second_arm())):
+        assert shape.isValid() and len(shape.Solids())==1,(name,'invalid solid')
+        path=root/'stl'/f'{name}.stl'
+        cq.exporters.export(shape,str(path),tolerance=.08,angularTolerance=.12)
+        mesh=trimesh.load(path,force='mesh')
+        assert mesh.is_watertight and mesh.is_volume and mesh.body_count==1,(name,'non-manifold')
+        assert abs(mesh.volume/shape.Volume()-1)<.005,(name,'mesh volume mismatch')
+        meshes.append({'name':name,'watertight':True,'single_body':True,
+                       'mesh_volume_mm3':round(mesh.volume,3)})
+    poses=[]
+    for angles in CONFIG.sampled_poses:
+        parts=components(*angles)
+        shapes={name:solid for name,solid,*_ in parts}
+        assert len(shapes)==len(parts)==30,(angles,'component count')
+        assert all(shape.isValid() for shape in shapes.values()),(angles,'invalid BREP')
+        cable=shapes['V006_USB_outboard_cable_reference']
+        sections=cable.Solids()
+        knobs=[name for name in shapes if 'thumbwheel' in name]
+        assert len(knobs)==4,knobs
+        wheel_gaps={name:min(section.distance(shapes[name]) for section in sections) for name in knobs}
+        rail_gap=min(section.distance(shapes['4040_horizontal_reference']) for section in sections)
+        assert min(wheel_gaps.values())>=CONFIG.cable_to_knob_min_mm,(angles,wheel_gaps)
+        assert rail_gap>=CONFIG.cable_to_rail_min_mm,(angles,rail_gap)
+        guides=('V008_first_arm','V008_second_arm')
+        guide_gaps={name:min(section.distance(shapes[name]) for section in sections) for name in guides}
+        unwanted={name:sum(section.intersect(shapes[name]).Volume() for section in sections)
+                  for name in guides}
+        assert max(unwanted.values())<.01,(angles,unwanted)
+        # Ensures the route runs inside BOTH 3.8 mm guide bores with 0.30 mm
+        # nominal radial clearance, rather than merely passing nearby.
+        assert all(.24<=gap<=.5 for gap in guide_gaps.values()),(angles,guide_gaps)
+        poses.append({
+            'pose_degrees':list(angles),
+            'thumbwheel_surface_gap_mm':{name:round(gap,3) for name,gap in wheel_gaps.items()},
+            'cable_to_rail_mm':round(rail_gap,3),
+            'cable_to_guide_mm':{name:round(gap,3) for name,gap in guide_gaps.items()},
+            'unintended_cable_guide_overlap_mm3':{name:round(v,5) for name,v in unwanted.items()}
+        })
+        print('PASS',angles,'guides',guide_gaps,'knob',min(wheel_gaps.values()),flush=True)
+    summary={
+      'revision':CONFIG.release,'status':'PASS CAD-only',
+      'sampled_poses':len(poses),'component_entries':len(parts),
+      'arm_guides_aligned':2,'watertight_new_stls':len(meshes),
+      'min_cable_to_knob_mm':round(min(v for p in poses for v in p['thumbwheel_surface_gap_mm'].values()),3),
+      'min_cable_to_rail_mm':round(min(p['cable_to_rail_mm'] for p in poses),3),
+      'physical_qualification':'UNVERIFIED'
+    }
+    report={
+      'summary':summary,'printable_meshes':meshes,'poses':poses,
+      'limitations':['13 sampled poses are not an exhaustive four-DOF motion proof',
+       'No minimum dynamic cable bend radius, connector, cable strain or sag validation',
+       'Nominal rail, camera board, metal hardware and cable dimensions',
+       'Actual printer travel, torque, vibration and thermal clearance unverified']
+    }
+    (root/'docs').mkdir(parents=True,exist_ok=True)
+    (root/'docs'/'validation_v008.json').write_text(json.dumps(report,indent=2)+'\n')
+    return report

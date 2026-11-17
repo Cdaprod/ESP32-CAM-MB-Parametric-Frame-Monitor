@@ -1,0 +1,71 @@
+name: V008 unified parametric CAD build and release artifacts
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/build.py'
+      - 'src/frame_monitor/**'
+      - 'tests/test_v008_outputs.py'
+      - '.github/workflows/v008-cad.yml'
+  pull_request:
+    paths:
+      - 'src/build.py'
+      - 'src/frame_monitor/**'
+      - 'tests/test_v008_outputs.py'
+      - '.github/workflows/v008-cad.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v008-cad-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build-validate-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CAD and headless rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libgl1 libglib2.0-0
+          python -m pip install -r requirements.txt
+      - name: Build complete unified V008 assembly
+        run: python src/build.py build
+      - name: Validate two arm guides and cable clearance in 13 poses
+        run: python src/build.py validate
+      - name: Render three real geometry previews
+        run: xvfb-run -a python src/build.py render
+      - name: Gate all deliverables and metadata
+        run: PYTHONPATH=src python tests/test_v008_outputs.py
+      - name: Commit generated V008 artifacts to main after validation
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add step/V008_first_arm.step step/V008_second_arm.step step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V008.step
+          git add stl/V008_first_arm.stl stl/V008_second_arm.stl
+          git add previews/v008_full_assembly.png previews/v008_cable_guides.png previews/v008_wrist_20_degrees.png
+          git add docs/manifest_v008.json docs/validation_v008.json
+          if git diff --cached --quiet; then
+            echo 'V008 generated CAD artifacts already match the repository.'
+          else
+            git commit -m 'build(cad): publish verified unified V008 assembly and previews'
+            git push origin HEAD:main
+          fi
+      - name: Upload V008 generated models and validation as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ESP32-CAM-MB-V008-verified-CAD
+          if-no-files-found: error
+          path: |
+            step/*V008.step
+            stl/V008_*.stl
+            previews/v008_*.png
+            docs/manifest_v008.json
+            docs/validation_v008.json
