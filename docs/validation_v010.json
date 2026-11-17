@@ -17,25 +17,25 @@
       "name": "V010_first_arm",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 4476.041
+      "mesh_volume_mm3": 4507.599
     },
     {
       "name": "V010_second_arm",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 8107.014
+      "mesh_volume_mm3": 8138.572
     },
     {
       "name": "V010_scalloped_thumbwheel",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 2260.521
+      "mesh_volume_mm3": 2247.324
     },
     {
       "name": "V010_relieved_camera_shell",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 17446.187
+      "mesh_volume_mm3": 17410.703
     }
   ],
   "poses": [
@@ -72,7 +72,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.65,
         "M4_thumbwheel_elbow_swing": 1.684,
-        "M4_thumbwheel_camera_tilt": 10.618,
+        "M4_thumbwheel_camera_tilt": 10.989,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -118,7 +118,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.652,
         "M4_thumbwheel_elbow_swing": 1.684,
-        "M4_thumbwheel_camera_tilt": 10.618,
+        "M4_thumbwheel_camera_tilt": 10.989,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -164,7 +164,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.684,
         "M4_thumbwheel_elbow_swing": 1.65,
-        "M4_thumbwheel_camera_tilt": 10.618,
+        "M4_thumbwheel_camera_tilt": 10.989,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -210,7 +210,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.684,
         "M4_thumbwheel_elbow_swing": 1.652,
-        "M4_thumbwheel_camera_tilt": 10.618,
+        "M4_thumbwheel_camera_tilt": 10.989,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -256,7 +256,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.684,
         "M4_thumbwheel_elbow_swing": 1.684,
-        "M4_thumbwheel_camera_tilt": 10.637,
+        "M4_thumbwheel_camera_tilt": 11.007,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -302,7 +302,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.684,
         "M4_thumbwheel_elbow_swing": 1.684,
-        "M4_thumbwheel_camera_tilt": 10.575,
+        "M4_thumbwheel_camera_tilt": 10.947,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -348,7 +348,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.65,
         "M4_thumbwheel_elbow_swing": 1.652,
-        "M4_thumbwheel_camera_tilt": 10.637,
+        "M4_thumbwheel_camera_tilt": 11.007,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
@@ -394,7 +394,7 @@
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.65,
         "M4_thumbwheel_elbow_swing": 1.65,
-        "M4_thumbwheel_camera_tilt": 10.575,
+        "M4_thumbwheel_camera_tilt": 10.947,
         "M4_thumbwheel_wrist": 7.287
       },
       "cable_to_rail_mm": 3.802,
