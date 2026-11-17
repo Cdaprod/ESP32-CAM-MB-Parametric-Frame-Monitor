@@ -1,13 +1,11 @@
 PYTHON ?= python
-.PHONY: build validate render all docs test check
+.PHONY: build validate render test all
 build:
 	$(PYTHON) src/build.py build
-validate: build
+validate:
 	$(PYTHON) src/build.py validate
-render: validate
-	$(PYTHON) src/build.py render
-docs:
-	$(PYTHON) tests/test_repo_assets.py
-test: docs
-check: docs
-all: render docs
+render:
+	xvfb-run -a $(PYTHON) src/build.py render
+test:
+	$(PYTHON) tests/test_v010_outputs.py
+all: build validate render test

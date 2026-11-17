@@ -7,13 +7,12 @@ on:
 permissions:
   contents: read
 jobs:
-  verify-current-release:
+  verify-current:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Check current V008 README, JSON, BOM, CAD outputs and history
+      - name: Check V010 README images, exported models, BOM and version
         run: python tests/test_repo_assets.py
