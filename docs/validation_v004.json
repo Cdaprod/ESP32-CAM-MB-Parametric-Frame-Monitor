@@ -1,0 +1,242 @@
+{
+  "revision": "V004",
+  "scope": "CAD-only geometric checks; physical testing outstanding",
+  "key_recess_mm": 0.65,
+  "metal_tnut_recess_mm": 0.65,
+  "stls": {
+    "V004_recessed_alignment_key": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0
+    },
+    "V004_mount_plate": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0083
+    },
+    "V004_first_arm": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0113
+    },
+    "V004_second_arm": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0148
+    },
+    "V004_full_sidewall_camera_shell": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0017
+    },
+    "V004_removable_camera_bezel": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0059
+    },
+    "V004_M4_thumbwheel": {
+      "watertight": true,
+      "single_body": true,
+      "volume_error_percent": 0.0013
+    }
+  },
+  "collision_clearance_mm3": {
+    "4040_horizontal_reference | V004_recessed_alignment_key": 0.0,
+    "4040_horizontal_reference | M5_metal_tnut_left": 0.0,
+    "4040_horizontal_reference | M5_metal_tnut_right": 0.0,
+    "4040_horizontal_reference | V004_mount_plate": 0.0,
+    "V004_mount_plate | V004_first_arm": 0.0,
+    "V004_first_arm | V004_second_arm": 0.0,
+    "V004_second_arm | V004_full_sidewall_camera_shell": 0.0,
+    "V004_full_sidewall_camera_shell | V004_removable_camera_bezel": 0.0,
+    "V004_full_sidewall_camera_shell | ESP32_CAM_MB_provisional_envelope": 0.0,
+    "V004_removable_camera_bezel | ESP32_CAM_MB_provisional_envelope": 0.0,
+    "M4_thumbwheel_camera_tilt | V004_full_sidewall_camera_shell": 0.0
+  },
+  "retention_axes": {
+    "+X": 2040.0,
+    "-X": 2040.0,
+    "+Y": 2537.16,
+    "-Y": 3240.0,
+    "+Z": 1836.0,
+    "-Z": 928.0
+  },
+  "articulation": [
+    {
+      "base_deg": -25,
+      "elbow_deg": -30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": -30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": -30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 0,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 0,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 0,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": -25,
+      "elbow_deg": 30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": -30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": -30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": -30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 0,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 0,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 0,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 0,
+      "elbow_deg": 30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": -30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": -30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": -30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 0,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 0,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 0,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 30,
+      "pitch_deg": 0,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 30,
+      "pitch_deg": 15,
+      "max_interference_mm3": 0.0
+    },
+    {
+      "base_deg": 25,
+      "elbow_deg": 30,
+      "pitch_deg": 30,
+      "max_interference_mm3": 0.0
+    }
+  ],
+  "summary": {
+    "status": "PASS CAD-only",
+    "components": 26,
+    "printable_models": 7,
+    "tested_poses": 27,
+    "blocked_translation_directions": 6
+  },
+  "known_limits": [
+    "Provisional camera stack and non-certified 4040 profile",
+    "Cable route is schematic; real USB connector fit and bend radius untested",
+    "Camera pitch range currently 0..30deg only; negative tilt hits support",
+    "Metal hardware depicted without real threads; captive hex pockets need fit tests",
+    "No physical torque/vibration/thermal/travel/load validation"
+  ]
+}

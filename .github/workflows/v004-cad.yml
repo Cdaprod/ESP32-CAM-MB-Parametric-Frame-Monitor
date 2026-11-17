@@ -1,0 +1,30 @@
+name: V004 geometry regression
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/build_v004.py'
+      - 'src/validate_v004.py'
+      - 'src/build_assembly.py'
+      - 'src/v001_mount.py'
+      - 'tests/**'
+      - '.github/workflows/v004-cad.yml'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - '.github/workflows/v004-cad.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'cadquery>=2.4,<3' 'shapely>=2,<3' 'trimesh>=4,<5' 'numpy>=1.26,<3' 'matplotlib>=3.8,<4' 'pillow>=10,<13'
+      - name: Regenerate V004 STEP/STLs and CAD acceptance checks
+        run: python src/validate_v004.py
+      - name: Verify README images and legacy files
+        run: python tests/test_repo_assets.py

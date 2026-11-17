@@ -1,0 +1,15 @@
+item,quantity,description,status
+4040 extrusion,1,180 mm modeled dual-slot extrusion reference,photo-derived actual rail must match
+Printed alignment key,1,11 mm centered captured alignment key 0.65 mm recessed,prototype STL
+Metal sliding M5 T-nut,2,9 mm nominal undercut nut aligned to offset slot,choose real 4040 compatible hardware
+M5 socket bolt,2,M5x8 reference clamp screws,verify real grip length
+Printed mounting plate,1,rail-to-arm interface,prototype STL
+Printed articulated link A,1,35 mm lower joint with cable saddle,prototype STL
+Printed articulated link B,1,35 mm upper joint with cable saddle,prototype STL
+Printed thumbwheel,3,23 mm polygon knob with captive M4 hex-head recess,prototype STL
+M4 bolt,3,nominal 25 / 19 / 23 mm shaft lengths depending joint,verify real lengths
+M4 hex nut,3,captive receiving nut in hex pockets,verify recess fit
+Printed camera case,1,full sidewall shell with bottom USB exit,prototype STL
+Printed camera bezel,1,4 screw removable optical and antenna cover,prototype STL
+M2.5 screw,4,bezel screw nominal shaft length 7 mm,verify real head/length
+USB cable,1,3.2 mm OD illustrated reference routing only,verify power connector and strain relief

@@ -3,7 +3,34 @@
 **A little camera, a 4040 extrusion, and a lot of iterative CAD.**  
 *Designed by [Cdaprod](https://github.com/Cdaprod) · Python/CadQuery · 3D printing · Open hardware prototype*
 
-![V003 complete monitor mounted on the 4040 extrusion](previews/assembled_oblique.png)
+![V004 horizontal 4040 frame monitor assembly](previews/v004_horizontal_assembly.png)
+
+
+## V004 — the changes I made after mounting it horizontally
+
+I started this as a small camera mount, but a useful engineering project needs more than a nice-looking render. When I looked closely at the original assembly, five details needed to change: the key's clamp clearance, the rail orientation, hand-operated articulation, full cradle retention, and the power-cable path.
+
+![V004 horizontal 4040 assembly, from actual Python-generated CAD geometry](previews/v004_horizontal_assembly.png)
+
+V004 now uses the **horizontal 4040 front-rail configuration**. A short captured alignment key stays **0.65 mm below the rail face**, while two actual **metal T-nuts** (shown as nominal CAD envelopes) receive the M5 clamp bolts. The printed key is there to align the mount, **not** to become the structural screw thread.
+
+![V004 three hand-operated joints and USB cable guidance](previews/v004_knobs_and_cable.png)
+
+There are **three hand-operated M4 pivot wheels** across two short articulated links, so I can reposition the camera without reaching for a wrench every time. Each wheel captures the metal screw head; the receiving parts include captive hex-nut pockets. The cable exits at the **bottom of the housing**, makes a service loop, and follows the link saddles back to the rail.
+
+![V004 closed-side camera housing with front viewing aperture and bolted bezel](previews/v004_camera_case.png)
+
+The previous camera cradle was still visually open along its side. This one is a **full perimeter enclosure**, with continuous left and right side walls, a removable four-screw front bezel, an optical opening, an antenna window, and a bottom USB outlet. The nominal camera is blocked in all six axial motion directions, and the bezel can be removed for maintenance.
+
+**Validated in CAD:** 26 assembled component/reference entries, seven watertight printable meshes, six retained motion directions, 27 sampled articulation poses, and zero interference across the checked mating components. **Not yet validated physically:** actual ESP32-CAM-MB fit, rail profile, screw torque, printer travel, cable strain or vibration. Camera pitch has a **0° to +30° validated range**; negative tilt is not approved due to a housing/support collision.
+
+- [V004 full STEP assembly](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V004.step)
+- [Python model source](src/build_v004.py) · [validation](src/validate_v004.py) · [renderer](src/render_v004.py)
+- [V004 engineering corrections and fit requirements](docs/ENGINEERING_NOTES_V004.md) · [V004 hardware BOM](docs/BOM_V004.csv)
+
+The prior V003 project remains intact below. V004 is a new revision, **not an overwrite**.
+
+---
 
 ## Why I built this
 
@@ -13,7 +40,7 @@ Instead of gluing a camera to the printer or publishing a one-off bracket, I wan
 
 The best part is that the CAD isn't just a pretty render: the Python source regenerates the parts and assembly, the STEP and STLs are here, and the images below come from the actual CAD geometry.
 
-> **Current release: V003 — captive cradle.** V002 is preserved exactly in `reference/V002_original_preserved.zip`. This is a prototype: the photographed/recovered rail geometry and nominal camera-stack envelope still need caliper confirmation against your physical hardware.
+> **Historical release: V003 — captive cradle (V004 now adds the horizontal mounting improvements).** V002 is preserved exactly in `reference/V002_original_preserved.zip`. This is a prototype: the photographed/recovered rail geometry and nominal camera-stack envelope still need caliper confirmation against your physical hardware.
 
 ## The build, in pictures
 

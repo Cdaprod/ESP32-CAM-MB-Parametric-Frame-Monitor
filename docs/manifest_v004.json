@@ -1,0 +1,179 @@
+{
+  "revision": "V004",
+  "units": "mm",
+  "scope": "prototype geometry, physical fit unverified",
+  "parameters": {
+    "face_key_recess": 0.65,
+    "radial_slide_clearance": 0.18,
+    "key_length": 11.0,
+    "nut_length": 9.0,
+    "mount_hole_pitch": 30.0,
+    "arm_segment_length": 35.0,
+    "arm_width": 14.0,
+    "first_pivot_y": -17.0,
+    "elbow_pivot_y": -52.0,
+    "camera_pivot_y": -87.0,
+    "camera_pivot_z": -12.0,
+    "shell_width": 36.0,
+    "shell_back_y": -116.0,
+    "shell_front_y": -92.0,
+    "shell_bottom_z": 2.0,
+    "shell_top_z": 53.0,
+    "board_width": 27.0,
+    "board_height": 40.0,
+    "board_stack_depth": 17.0,
+    "yaw_deg": 18.0,
+    "elbow_deg": -15.0,
+    "camera_pitch_deg": 12.0
+  },
+  "printable_parts": [
+    {
+      "name": "V004_recessed_alignment_key",
+      "volume_mm3": 524.18,
+      "valid": true
+    },
+    {
+      "name": "V004_mount_plate",
+      "volume_mm3": 8514.87,
+      "valid": true
+    },
+    {
+      "name": "V004_first_arm",
+      "volume_mm3": 3805.1,
+      "valid": true
+    },
+    {
+      "name": "V004_second_arm",
+      "volume_mm3": 7534.83,
+      "valid": true
+    },
+    {
+      "name": "V004_full_sidewall_camera_shell",
+      "volume_mm3": 18255.99,
+      "valid": true
+    },
+    {
+      "name": "V004_removable_camera_bezel",
+      "volume_mm3": 4652.07,
+      "valid": true
+    },
+    {
+      "name": "V004_M4_thumbwheel",
+      "volume_mm3": 2584.48,
+      "valid": true
+    }
+  ],
+  "components": [
+    {
+      "name": "4040_horizontal_reference",
+      "type": "reference"
+    },
+    {
+      "name": "V004_recessed_alignment_key",
+      "type": "printed"
+    },
+    {
+      "name": "M5_metal_tnut_left",
+      "type": "hardware"
+    },
+    {
+      "name": "M5_metal_tnut_right",
+      "type": "hardware"
+    },
+    {
+      "name": "V004_mount_plate",
+      "type": "printed"
+    },
+    {
+      "name": "V004_first_arm",
+      "type": "printed"
+    },
+    {
+      "name": "V004_second_arm",
+      "type": "printed"
+    },
+    {
+      "name": "V004_full_sidewall_camera_shell",
+      "type": "printed"
+    },
+    {
+      "name": "V004_removable_camera_bezel",
+      "type": "printed"
+    },
+    {
+      "name": "ESP32_CAM_MB_provisional_envelope",
+      "type": "reference"
+    },
+    {
+      "name": "M5x8_fastener_1",
+      "type": "hardware"
+    },
+    {
+      "name": "M5x8_fastener_2",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_base_roll",
+      "type": "printed"
+    },
+    {
+      "name": "M4_bolt_base_roll",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_elbow_swing",
+      "type": "printed"
+    },
+    {
+      "name": "M4_bolt_elbow_swing",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_camera_tilt",
+      "type": "printed"
+    },
+    {
+      "name": "M4_bolt_camera_tilt",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_base_roll",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_elbow_swing",
+      "type": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_camera_tilt",
+      "type": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_1",
+      "type": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_2",
+      "type": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_3",
+      "type": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_4",
+      "type": "hardware"
+    },
+    {
+      "name": "USB_bottom_exit_arm_routing_reference",
+      "type": "reference_cable"
+    }
+  ],
+  "warnings": [
+    "Nominal PCB envelope; actual ESP32-CAM-MB connectors must be measured",
+    "Recovered 4040 is photo-derived, not a manufacturer-certified section",
+    "M5 T-nuts and M4 hardware depicted without real helical threads",
+    "Plate-on-face clamp and key recess must be checked on physical extrusion",
+    "Full tool-less tightening torque, servo vibration and machine travel are not tested"
+  ]
+}
