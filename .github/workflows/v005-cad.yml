@@ -1,18 +1,5 @@
-name: V005 side-mount CAD regression
+name: Historical V005 side-mount CAD regression (manual)
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'src/build_v005.py'
-      - 'src/validate_v005.py'
-      - 'src/build_v004.py'
-      - 'src/build_assembly.py'
-      - 'src/v001_mount.py'
-      - '.github/workflows/v005-cad.yml'
-  pull_request:
-    paths:
-      - 'src/**'
-      - '.github/workflows/v005-cad.yml'
   workflow_dispatch:
 jobs:
   validate:
