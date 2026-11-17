@@ -55,6 +55,13 @@ def shell():
     s=s.fuse(block(5,S.wrist_y_mm,-3.5,5,-113-S.wrist_y_mm,6.3))
     s=s.fuse(cyl_z(7,5.8,S.wrist_x_mm,S.wrist_y_mm,-3.5))
     s=s.cut(cyl_z(2.15,7,S.wrist_x_mm,S.wrist_y_mm,-4))
+    # Nominal 3mm sidewalls: 0.8mm triangular outer reliefs leave >=2.2mm.
+    for x in (-18,17.2):
+        for y0,z0 in ((-107,16),(-107,36)):
+            pocket=(cq.Workplane('YZ')
+                 .polyline([(y0,z0),(y0+10,z0),(y0+5,z0+9)])
+                 .close().extrude(.8).val().translate((x,0,0)))
+            s=s.cut(pocket)
     return s.clean()
 
 def pose_cam(s,wrist=0.0):

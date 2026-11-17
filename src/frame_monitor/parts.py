@@ -138,11 +138,18 @@ def board_envelope():
     return body.fuse(lens).clean()
 
 def thumbwheel():
-    # printed 12-sided wrench-free hand wheel w/ hex-head recess and through M4 shaft
-    knob=cq.Workplane('XY').polygon(12,23).extrude(7).val()
-    knob=knob.cut(cyl_z(2.15,9,0,0,-1))
-    knob=knob.cut(hex_pocket(7.2,3.2,(0,0,4)))
-    return knob.clean()
+    """V010 topology-inspired tactile knob; preserves M4/hex and 23mm envelope."""
+    from math import pi,sin,cos
+    wheel=cq.Workplane('XY').polygon(12,23).extrude(7).val()
+    for i in range(12):
+        a=2*pi*i/12
+        wheel=wheel.cut(cyl_z(1.35,9,11.6*cos(a),11.6*sin(a),-1))
+    for i in range(6):
+        a=2*pi*(i+.5)/6
+        wheel=wheel.cut(cyl_z(1.05,9,7.65*cos(a),7.65*sin(a),-1))
+    wheel=wheel.cut(cyl_z(2.15,9,0,0,-1))
+    wheel=wheel.cut(hex_pocket(7.2,3.2,(0,0,4)))
+    return wheel.clean()
 
 def m4_bolt(length):
     # nominal smooth shank with M4 7mm hex head, shoulder at Z=0, shaft toward -Z

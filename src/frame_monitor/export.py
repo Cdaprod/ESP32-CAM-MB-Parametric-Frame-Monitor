@@ -6,28 +6,31 @@ import cadquery as cq
 from .config import CONFIG
 from .assembly import components
 from .geometry import first_arm,second_arm
+from . import parts as cad_parts,wrist
 
 
 def build(root:Path):
     root=Path(root)
     for folder in ('step','stl','docs','previews'):
         (root/folder).mkdir(exist_ok=True,parents=True)
-    for name,shape in (('V009_first_arm',first_arm()),('V009_second_arm',second_arm())):
+    for name,shape in (('V010_first_arm',first_arm()),('V010_second_arm',second_arm()),
+                       ('V010_scalloped_thumbwheel',cad_parts.thumbwheel()),
+                       ('V010_relieved_camera_shell',wrist.shell())):
         assert shape.isValid() and len(shape.Solids())==1,name
         cq.exporters.export(shape,str(root/'step'/f'{name}.step'))
         cq.exporters.export(shape,str(root/'stl'/f'{name}.stl'),tolerance=.08,angularTolerance=.12)
     parts=components()
-    assembly=cq.Assembly(name='ESP32_CAM_MB_4040_UNIFIED_V009')
+    assembly=cq.Assembly(name='ESP32_CAM_MB_4040_UNIFIED_V010')
     for name,shape,color,kind in parts:
         assert shape.isValid(),name
         assembly.add(shape,name=name,color=cq.Color(*color))
-    assembly.save(str(root/'step'/'COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step'),exportType='STEP')
+    assembly.save(str(root/'step'/'COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step'),exportType='STEP')
     manifest={
       'revision':CONFIG.release,'generator':'src/build.py',
       'parameters':asdict(CONFIG),'component_count':len(parts),
       'components':[{'name':name,'kind':kind} for name,shape,color,kind in parts],
-      'new_printable':['V009_first_arm','V009_second_arm'],
+      'new_printable':['V010_first_arm','V010_second_arm','V010_scalloped_thumbwheel','V010_relieved_camera_shell'],
       'base':'V006 four-joint articulated wrist; historical versioned scripts not imported'
     }
-    (root/'docs'/'manifest_v009.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    (root/'docs'/'manifest_v010.json').write_text(json.dumps(manifest,indent=2)+'\n')
     return parts

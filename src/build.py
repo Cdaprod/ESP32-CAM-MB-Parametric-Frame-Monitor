@@ -21,7 +21,7 @@ def main():
     if task in ('build','all'):build(ROOT)
     if task in ('validate','all'):validate(ROOT)
     if task in ('render','all'):render(ROOT)
-    print('V009 task complete:',task)
+    print('V010 task complete:',task)
 
 
 if __name__=='__main__':
