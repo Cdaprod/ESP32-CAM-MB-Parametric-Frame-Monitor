@@ -114,7 +114,7 @@ def profile_figure():
     ax.add_patch(Patch(p,facecolor='#edf1f5',edgecolor='#222f39',lw=2))
     from .primitives import v5_key
     # V5 key polygon is captured parametrically; use XY face from extrusion projection
-    from build_assembly import original_key_with_m5_pilots
+    from .rail import original_key_with_m5_pilots
     k=v5_key(V,V.key_length)
     # recover precise flat section from the BREP at z=0 by shapely key recipe
     pts=[(0,-V.slot_mouth/2),(V.slot_lip_depth,-V.slot_mouth/2),

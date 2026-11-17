@@ -15,5 +15,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Check V006 README, current JSON, BOM, CAD exports, images and history
+      - name: Check current V008 README, JSON, BOM, CAD outputs and history
         run: python tests/test_repo_assets.py
