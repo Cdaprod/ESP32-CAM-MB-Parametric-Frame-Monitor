@@ -1,0 +1,64 @@
+name: V010 complete parametric CAD assembly, clearance and release
+on:
+  push:
+    branches: [main, design/v010-integrated-cable-clips]
+    paths:
+      - 'src/build.py'
+      - 'src/frame_monitor/**'
+      - 'tests/test_v010_outputs.py'
+      - '.github/workflows/v010-cad.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: v010-cad-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  build-validate-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CAD and headless rendering dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y xvfb libgl1 libglib2.0-0
+          python -m pip install -r requirements.txt
+      - name: Generate V010 STEP and four printable STLs
+        run: python src/build.py build
+      - name: Verify 18 articulated cable poses and single-body watertight meshes
+        run: python src/build.py validate
+      - name: Render eight geometry-derived engineering previews
+        run: xvfb-run -a python src/build.py render
+      - name: Verify real PNGs, CAD exports, BOM and current-release metadata
+        run: python tests/test_v010_outputs.py
+      - name: Commit verified CAD outputs to V010 design branch
+        if: github.event_name == 'push' && github.ref == 'refs/heads/design/v010-integrated-cable-clips'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png docs/manifest_v010.json docs/validation_v010.json
+          if git diff --cached --quiet; then
+            echo 'All generated models already match the committed sources.'
+          else
+            git commit -m 'build(cad): publish verified V010 assembly and real previews [skip ci]'
+            git push origin HEAD:design/v010-integrated-cable-clips
+          fi
+      - name: Archive complete V010 models, previews and validation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ESP32-CAM-MB-V010-verified-CAD
+          if-no-files-found: error
+          path: |
+            step/*V010.step
+            stl/V010_*.stl
+            previews/v010_*.png
+            docs/manifest_v010.json
+            docs/validation_v010.json
+            docs/BOM_V010.csv
+            docs/ENGINEERING_NOTES_V010.md

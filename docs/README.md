@@ -1,20 +1,9 @@
-# Documentation — current V009 CAD release
+# Documentation — current V010 release
 
-[Main README with the real V009 previews](../README.md) · [Full V009 assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step)
+[Project README with eight actual CAD images](../README.md) · [V010 assembled STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step)
 
-| Current V009 artifact | Purpose |
-|---|---|
-| [CURRENT_RELEASE.json](CURRENT_RELEASE.json) | Machine-readable authoritative current version and model paths |
-| [ENGINEERING_NOTES_V009.md](ENGINEERING_NOTES_V009.md) | Tapered arm geometry and preserved cable-guide coordinates |
-| [BOM.csv](BOM.csv) / [BOM_V009.csv](BOM_V009.csv) | Current hardware and printable arm parts |
-| [PHYSICAL_FIT_REGISTER_V009.csv](PHYSICAL_FIT_REGISTER_V009.csv) | Physical measurements and structural testing pending |
-| [manifest_v009.json](manifest_v009.json) | Thirty positioned assembly and reference components |
-| [validation_v009.json](validation_v009.json) | Thirteen poses, clearance report and watertight STLs |
-| [VALIDATION_SCOPE.md](VALIDATION_SCOPE.md) | What CAD tests do and do not establish |
-| [RELEASE_INDEX.md](RELEASE_INDEX.md) | Revision lineage |
+[Engineering notes](ENGINEERING_NOTES_V010.md) · [CAD validation](validation_v010.json) · [Assembly manifest](manifest_v010.json) · [Current BOM](BOM.csv) · [V010 BOM snapshot](BOM_V010.csv) · [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Release pointer](CURRENT_RELEASE.json)
 
-**Actual V009 CAD renders:** [Full assembly](../previews/v009_full_assembly.png) · [Cable guide and arms](../previews/v009_cable_guides.png) · [20° wrist](../previews/v009_wrist_20_degrees.png)
+V009 remains available for side-by-side history. V010 includes two new arm models, a new hand knob and a revised camera shell, and **four short alternating cable retainers**. The wrist adapter and rail mount plate remain historical geometry, not yet topology-redesigned.
 
-Build: `python src/build.py build` · Validate: `python src/build.py validate` · Render: `xvfb-run -a python src/build.py render`.
-
-V008 remains the historical reference, but V009 is the current checked assembly. Nothing is physically load-rated or verified against the full printer travel envelope.
+**CAD-only**: physical clip fatigue, cable curvature, print strength and machine motion not qualified.

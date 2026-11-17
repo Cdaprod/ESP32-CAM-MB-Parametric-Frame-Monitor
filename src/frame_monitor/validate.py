@@ -7,13 +7,16 @@ import trimesh
 from .config import CONFIG
 from .assembly import components
 from .geometry import first_arm, second_arm
+from . import parts as cad_parts,wrist
 
 
 def validate(root:Path):
     root=Path(root)
     (root/'stl').mkdir(exist_ok=True,parents=True)
     meshes=[]
-    for name,shape in (('V009_first_arm',first_arm()),('V009_second_arm',second_arm())):
+    for name,shape in (('V010_first_arm',first_arm()),('V010_second_arm',second_arm()),
+                       ('V010_scalloped_thumbwheel',cad_parts.thumbwheel()),
+                       ('V010_relieved_camera_shell',wrist.shell())):
         assert shape.isValid() and len(shape.Solids())==1,(name,'invalid solid')
         path=root/'stl'/f'{name}.stl'
         cq.exporters.export(shape,str(path),tolerance=.08,angularTolerance=.12)
@@ -22,6 +25,11 @@ def validate(root:Path):
         assert abs(mesh.volume/shape.Volume()-1)<.005,(name,'mesh volume mismatch')
         meshes.append({'name':name,'watertight':True,'single_body':True,
                        'mesh_volume_mm3':round(mesh.volume,3)})
+    # Reject dangling clip arms even when ordinary solid-validity tests pass.
+    arm_a,arm_b=first_arm(),second_arm()
+    assert arm_a.BoundingBox().zmin>=7.49 and arm_a.BoundingBox().zmax<=15.01, "First arm cable seats extend outside link thickness"
+    assert arm_b.BoundingBox().zmax<=22.51, "Second arm cable seats extend above link thickness"
+    assert arm_a.BoundingBox().xmin>=-13.3 and arm_b.BoundingBox().xmin>=-13.3, "Remote cable support detected"
     poses=[]
     for angles in CONFIG.sampled_poses:
         parts=components(*angles)
@@ -36,10 +44,13 @@ def validate(root:Path):
         rail_gap=min(section.distance(shapes['4040_horizontal_reference']) for section in sections)
         assert min(wheel_gaps.values())>=CONFIG.cable_to_knob_min_mm,(angles,wheel_gaps)
         assert rail_gap>=CONFIG.cable_to_rail_min_mm,(angles,rail_gap)
-        guides=('V009_first_arm','V009_second_arm')
+        guides=('V010_first_arm','V010_second_arm')
         guide_gaps={name:min(section.distance(shapes[name]) for section in sections) for name in guides}
-        unwanted={name:sum(section.intersect(shapes[name]).Volume() for section in sections)
-                  for name in guides}
+        # First compute exact distances; skip costly Boolean intersections
+        # for surfaces known to have positive separation.
+        unwanted={name:sum(section.intersect(shapes[name]).Volume()
+             for section in sections if section.distance(shapes[name])<1e-6)
+             for name in guides}
         assert max(unwanted.values())<.01,(angles,unwanted)
         # Ensures the route runs inside BOTH 3.8 mm guide bores with 0.30 mm
         # nominal radial clearance, rather than merely passing nearby.
@@ -55,18 +66,22 @@ def validate(root:Path):
     summary={
       'revision':CONFIG.release,'status':'PASS CAD-only',
       'sampled_poses':len(poses),'component_entries':len(parts),
-      'arm_guides_aligned':2,'watertight_new_stls':len(meshes),
+      'arm_guides_aligned':2,'integrated_alternating_open_clips':4,
+      'long_outriggers':0,'watertight_new_stls':len(meshes),
       'min_cable_to_knob_mm':round(min(v for p in poses for v in p['thumbwheel_surface_gap_mm'].values()),3),
       'min_cable_to_rail_mm':round(min(p['cable_to_rail_mm'] for p in poses),3),
       'physical_qualification':'UNVERIFIED'
     }
     report={
       'summary':summary,'printable_meshes':meshes,'poses':poses,
-      'limitations':['13 sampled poses are not an exhaustive four-DOF motion proof',
+      'clip_openings_in_order':['-X','+Z','-X','+Z'],
+      'nominal_cable_diameter_mm':CONFIG.cable_diameter_mm,
+      'nominal_clip_throat_mm':CONFIG.clip_throat_mm,
+      'limitations':['18 sampled poses are not an exhaustive four-DOF motion proof',
        'No minimum dynamic cable bend radius, connector, cable strain or sag validation',
        'Nominal rail, camera board, metal hardware and cable dimensions',
        'Actual printer travel, torque, vibration and thermal clearance unverified']
     }
     (root/'docs').mkdir(parents=True,exist_ok=True)
-    (root/'docs'/'validation_v009.json').write_text(json.dumps(report,indent=2)+'\n')
+    (root/'docs'/'validation_v010.json').write_text(json.dumps(report,indent=2)+'\n')
     return report

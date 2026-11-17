@@ -1,0 +1,10 @@
+name: Archived V009 CAD (manual reference only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-notice:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'V009 outputs preserved in Git history; V010 is canonical. Historical V009 is not rebuilt from the current V010 source.'

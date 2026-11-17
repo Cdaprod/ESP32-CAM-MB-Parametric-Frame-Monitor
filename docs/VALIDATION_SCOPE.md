@@ -1,17 +1,7 @@
-# V009 — CAD-only validation scope
+# V010 CAD-only verification scope
 
-V009 consists of two 35 mm pivot-center tapered structural links (14 mm end width, 18 mm midspan width and 7.5 mm nominal depth), with triangular lightening windows and diagonal webs. This is **topology-inspired**, not an FEA optimization or physical load qualification.
+**18 sampled articulated poses**, not continuous swept four-DOF proof. Two tapered arms with four short alternating open U clips, Ø3.2 nominal cable, Ø3.8 nominal clip seat, 0.30 mm nominal radial clearance, 2.65 mm throat. Four printable STLs must be single-volume watertight shapes. The nominal model reports >=3.909 mm cable-to-knob and >=3.802 mm cable-to-rail separation in sampled poses.
 
-| CAD check | V009 |
-|---|---:|
-| Sampled arm poses | 13/13 pass |
-| Assembly entries | 30 |
-| Watertight printable arms | 2/2 |
-| Nominal cable OD / guide bore | 3.2 / 3.8 mm |
-| Nominal radial clearance | 0.30 mm |
-| Minimum modeled cable-to-knob gap | 7.132 mm |
-| Minimum modeled cable-to-rail gap | 3.802 mm |
+**Not tested:** real cable boot, bending and jacket strain; clip elasticity/fit and repeated insertion; real 4040 profile and fastener engagement; printer travel; print layer strength, fatigue, stiffness or vibration. Topology-inspired styling is not a load optimization or FEA claim.
 
-**Not demonstrated:** continuous collision-free four-joint travel, actual cable bend radius, connector boots or dynamic sag, print layer strength, stiffness or fatigue, real 4040/T-nut engagement, camera dimensions, printer travel, heat and vibration performance.
-
-[Current report](validation_v009.json) · [Engineering notes](ENGINEERING_NOTES_V009.md) · [Physical measurements](PHYSICAL_FIT_REGISTER_V009.csv).
+[Engineering notes](ENGINEERING_NOTES_V010.md) · [Current report](validation_v010.json) · [Physical register](PHYSICAL_FIT_REGISTER_V010.csv)

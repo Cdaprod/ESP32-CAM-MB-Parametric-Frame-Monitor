@@ -1,18 +1,15 @@
-revision,item,quantity,interface_or_nominal_dimension,origin,verification,notes
-V009,4040 horizontal extrusion,1,40x40x180 mm photo-derived section,V002 reference,PROVISIONAL,Verify actual printer chassis profile and side-face access
-V009,Printed captured alignment key,1,11 mm long and 0.65 mm recessed,V004 reuse,CAD VERIFIED,Non-load-bearing locator only
-V009,Metal M5 sliding T-nut,2,Recovered 4040 undercut profile nominal,V004 reuse,PROVISIONAL,Verify real compatible metal T-nut
-V009,M5 socket-head clamping screw,2,M5x8 nominal,V004 reuse,PROVISIONAL,Verify grip stack and metal nut engagement
-V009,Printed rail mounting plate,1,4040 left-side installation,V004 reuse,CAD VERIFIED,Mount face is global +Y
-V009,Printed tapered structural arm A,1,35 mm C-C 14-18 mm tapered triangulated section and 3.8 mm guide bore,V009 NEW,CAD VERIFIED,First cable guide at local X=-27 Y=-32 Z=19 mm
-V009,Printed tapered structural arm B,1,35 mm C-C 14-18 mm tapered triangulated section and 3.8 mm guide bore,V009 NEW,CAD VERIFIED,Second cable guide at local X=-27 Y=-69.2 Z=27 mm
-V009,Printed camera wrist adapter,1,M4 pitch ear plus fourth Z-axis wrist hinge,V006 reuse,CAD VERIFIED,Existing V006 part unchanged
-V009,Printed full-sidewall camera shell,1,Bottom USB exit with wrist hinge leaf,V006 reuse,CAD VERIFIED,Existing V006 part unchanged
-V009,Printed removable camera bezel,1,Optical aperture antenna opening four mounting screws,V004 reuse,CAD VERIFIED,Existing bezel profile retained
-V009,Printed M4 hand thumbwheel,4,23 mm nominal diameter,V004 reused x4,CAD VERIFIED,One each at base elbow pitch and wrist
-V009,M4 metal pivot bolt,4,Nominal shaft lengths vary by joint,V004/V006,PROVISIONAL,Match actual grip length and insert fit
-V009,M4 captive hex nut,4,Nominal AF7.0 and printed AF7.2 pockets,V004/V006,PROVISIONAL,Check real nuts and print shrinkage
-V009,M2.5 camera bezel screw,4,Nominal 7 mm shaft,V004 reuse,PROVISIONAL,Actual head and thread fit unverified
-V009,ESP32-CAM-MB module,1,27x40x17 mm nominal overall envelope,reference,PROVISIONAL,Measure real PCB camera USB and antenna
-V009,USB power cable,1,3.2 mm nominal outer diameter,V006 routing,PROVISIONAL,Verify connector boot bend radius and strain relief
-V009,Integrated cable guides on both arms,2,3.8 mm bore for nominal 3.2 mm cable,V009 NEW,CAD VERIFIED,Modeled 0.30 mm radial clearance actual printed fit unverified
+revision,component,quantity,nominal_spec,status
+V010,First tapered arm with two U cable clips,1,35mm pivot spacing and 3.8mm cable seats,CAD VERIFIED
+V010,Second tapered arm with two U cable clips,1,35mm pivot spacing and 3.8mm cable seats,CAD VERIFIED
+V010,Scalloped M4 printed hand knob,4,23mm 12-sided 7mm thick,CAD VERIFIED
+V010,Relieved captive camera shell,1,V006 interfaces with shallow 0.8mm side pockets,CAD VERIFIED
+V010,Removable camera bezel,1,Reused V004 geometry,HISTORIC REUSED
+V010,Metal M5 T-nut,2,Nominal recovered 4040 profile,UNVERIFIED PHYSICAL
+V010,M5 bolt,2,Nominal x8mm model,UNVERIFIED PHYSICAL
+V010,Printed recessed alignment key,1,Reused V004 0.65mm recess,HISTORIC REUSED
+V010,Printed mounting plate,1,Reused V004 geometry,HISTORIC REUSED
+V010,M4 pivot fastener and captive nut,4,Nominal M4 hardware,UNVERIFIED PHYSICAL
+V010,Wrist adapter,1,Reused V006 geometry,HISTORIC REUSED
+V010,M2.5 bezel screw,4,Nominal model,UNVERIFIED PHYSICAL
+V010,ESP32-CAM-MB camera and programmer module,1,Nominal geometric envelope,UNVERIFIED PHYSICAL
+V010,USB power cable,1,Nominal 3.2mm OD and real bend/boot unknown,UNVERIFIED PHYSICAL

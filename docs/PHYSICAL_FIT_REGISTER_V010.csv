@@ -1,0 +1,13 @@
+feature,nominal_mm,measured_mm,status,acceptance
+Cable jacket OD,3.2,,UNVERIFIED,Verify actual harness fits clips
+Clip nominal inner diameter,3.8,,CAD VERIFIED,Measure printed cable seat
+Clip entry throat,2.65,,UNVERIFIED,Test repeated insert/remove and retention
+First arm pivot spacing,35,,CAD VERIFIED,Caliper and backlash check
+Second arm pivot spacing,35,,CAD VERIFIED,Caliper and backlash check
+4040 key recessed face,0.65,,HISTORIC CAD,Physical T-nut clamping engagement
+Thumbwheel outer diameter,23,,CAD VERIFIED,Measure ergonomic access and torque
+Shell relief depth,0.8,,CAD VERIFIED,Confirm residual 2.2mm wall
+Cable elbow flexural radius,,,UNVERIFIED,Measure actual cable bending requirement
+Full printer motion envelope,,,UNVERIFIED,Unpowered full axis sweep and collision check
+U clip repeated insertion durability,,,UNVERIFIED,Flex cycle and retention check
+Printed arm stress under payload,,,UNVERIFIED,Static deflection and vibration check
