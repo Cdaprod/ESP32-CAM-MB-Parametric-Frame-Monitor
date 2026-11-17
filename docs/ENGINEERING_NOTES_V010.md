@@ -1,27 +1,44 @@
-# V010 engineering notes — integrated cable clips and topology-inspired components
+# V010 engineering notes — direct-to-arm cable channels and topology-inspired components
 
-The V009 long cable outriggers have been removed from both tapered arm links and replaced with **four compact alternating open U-shaped clips**. They are fused directly to the moving link bodies; a flexible cable has NOT been physically simulated.
+**Current: V010 CAD-only prototype.** The rejected early V010 candidate used short outboard rings and feet connected to the arms; those features were **replaced** by sidewall cable passages in the merged V010 release. The current model has **no dangling guide struts**. Historical V009 remains unchanged.
 
-## Dimensional design
-- Arm pivot spacing retained at 35 mm, with the original four tool-free joints and left-side horizontal 4040 rail placement.
-- Cable Ø3.2 mm nominal; U-seat Ø3.8 mm, radial clearance 0.30 mm, width 3.6 mm, outer radius 3.55 mm, throat 2.65 mm.
-- Clip sides follow **−X,+X,−X,+X** in moving arm-local frames (two per arm).
-- First link: (x=−15.5, y=−30 and −40, z=10.25) mm. Second link: (x=−15.5, y=−63.8 and −75, z=17.75) mm.
-- Each clip has a *short side foot* terminating at x=−6.8 mm; there are no tall guide webs hanging beneath either arm.
-- Scalloped M4 hand knobs keep the nominal Ø23 mm envelope and existing M4/captive nut datums. Six weight-relief bores; twelve peripheral grip recesses.
-- Camera shell retains all board, bezel and wrist interfaces; four exterior sidewall pockets remove only 0.8 mm from nominal 3 mm sidewall.
+## Current geometry and mounting invariants
 
-## Verification scope
-- Current local CAD reference passes 18 discrete joint configurations; the workflow regenerates and checks this on GitHub.
-- Four new single-body watertight meshes, 30 assembly/reference entries, cable-arm nominal gap 0.30 mm, cable-to-knob minimum 3.909 mm and cable-to-rail minimum 3.802 mm in the sampled poses.
-- The polyline consists of rigid cylindrical segments and does NOT simulate cable bend, strain, connector boot, sag, fatigue or continuously swept motion.
-- The 2.65-mm snap opening is intentionally narrower than nominal jacket Ø3.2 mm, but the print's elasticity and realistic insertion force are UNVERIFIED. Run clip coupons and repeated insertions before use.
+- Two tapered, triangulated structural links preserve **35 mm pivot-to-pivot spacing**, four independently adjustable joints, and the left-mounted horizontal 4040 extrusion configuration.
+- Cable Ø3.2 mm nominal; U-shaped sidewall seat Ø3.8 mm; radial cable clearance 0.30 mm; clip throat 2.65 mm. These are modeled reference values, not actual measured cable dimensions.
+- **Four** alternating openings (two per articulated arm), with cable routes derived in moving link-local coordinates. The arm sidewalls are locally thickened where necessary, and the seats are formed by cutting the guide geometry into those walls. No separate cable-support arm remains.
+- **Current generator parameters:** first link cable seat axis `x = -9.5 mm, z = 10.25 mm`, with positions `y = -32.5/-37.7 mm`; second link axis `x = -9.5 mm, z = 17.75 mm`, with positions `y = -66.0/-72.0 mm`. Values are from the generated [V010 manifest](manifest_v010.json).
+- **Current opening sequence:** `-X, +Z, -X, +Z` in the link-local reference frames. Earlier initial-candidate coordinates at `x=-15.5 mm`, longer guide feet, and `-X/+X` orientation are **obsolete** and must not be used when rebuilding V010.
+- The hand-operated M4 knob retains its nominal Ø23 mm envelope and captive-nut interface; its scalloped perimeter and relief geometry are CAD styling and ergonomic candidates, not proven fatigue or torque improvements.
+- The camera shell retains the nominal board/optical/bezel/wrist interfaces and introduces four shallow exterior wall-relief pockets (0.8 mm recess into the nominal 3 mm wall, leaving a modeled 2.2 mm residual wall). Physical print tolerances remain unverified.
+- The 4040 mounting plate and wrist adapter remain preserved from earlier versions; topology-inspired revisions are still pending.
 
-## Pending follow-up
-The wrist adapter and 4040 clamp plate still use earlier geometry. A future topology-inspired shape review needs load cases, torque and stress concentration evaluation rather than cosmetic holes. Machine travel, fasteners, printer vibration, temperature and actual cable clearance need a physical acceptance gate.
+## Actual CAD renders
 
-[Actual V010 previews](../README.md) · [Validation record](validation_v010.json) · [Hardware BOM](BOM.csv)
+![V010 complete left-side 4040 assembly](../previews/v010_full_assembly.png)
 
-## Direct-to-arm sidewall routing correction
+![Both corrected sidewall-channel arms](../previews/v010_arm_pair.png)
 
-The long projecting supports from the earlier V010 candidate were rejected by visual inspection. Both arms now contain a 3.8 mm nominal cable passage formed by **subtraction from the link sidewall**, with four locally reinforced U-shaped entrance regions. All clip material stays within the 7.5 mm arm-link thickness; no vertical cable outrigger or separate supporting strut is present. Alternate openings face -X, +Z, -X, +Z. The 18-pose local CAD validation achieved minimum modeled cable-to-knob gap 1.650 mm and cable-to-rail gap 3.802 mm. Real-world flex, retention, print layer bonding and wire bend radius are unverified.
+![Four directly integrated cable seats](../previews/v010_cable_guides.png)
+
+![Current camera shell](../previews/v010_camera_shell.png)
+
+![Current hand knob](../previews/v010_thumbwheel.png)
+
+## Reproducible verification results
+
+The authoritative report is [`validation_v010.json`](validation_v010.json). On the current nominal geometry:
+
+| Geometry/assembly check | Verified CAD result |
+|---|---:|
+| Sampled articulated poses | **18 / 18 pass** |
+| Four integrated cable seats | **4** |
+| Long cable-support outriggers | **0** |
+| New valid, watertight single-body printed models | **4 / 4** |
+| Minimum cable-to-handwheel separation | **1.650 mm** |
+| Minimum cable-to-extrusion separation | **3.802 mm** |
+| Nominal radial gap in a 3.8 mm seat around Ø3.2 mm cable | **0.30 mm** |
+
+The reference cable path is made from faceted cylindrical solids and does not simulate elastic deformation, fatigue, dynamic bend radius, sag, jacket wear, or connector boot strain. The 2.65 mm nominal snap throat is smaller than the modeled cable jacket and has **not** been tested for repeated insertion or removal. Full printer axis travel, real rail fastener engagement, static deflection and vibration also remain unverified.
+
+[Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Current BOM](BOM.csv) · [Complete STEP assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step).

@@ -1,7 +1,30 @@
-# V001–V010 development history
+# Release index — current V010
 
-**Current release: V010.** [Assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step) · [Actual preview images](../README.md)
+**Current: V010 — directly integrated arm-sidewall cable passages.** [Current README](../README.md) · [Full STEP assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step) · [Engineering notes](ENGINEERING_NOTES_V010.md)
 
-V001 initial parametric camera mount → V002 recovered 4040 T-slot → V003 camera captive retainer → V004 recessed key, metal M5 T-nuts, shell and knobs → V005 left-side over-rail mounting → V006 independent wrist → V007 early cable guide candidate → V008 unified Python generator → V009 tapered triangulated arms **with remaining dangling guide webs** → **V010 four integrated open U-clips, revised cable path, scalloped knobs and shallow shell reliefs**.
+| Revision | Engineering milestone |
+|---|---|
+| V001 | Initial camera mount and articulated arm |
+| V002 | Recovered dual-slot 4040 extrusion and captured T-slot |
+| V003 | Bolted retainer prevents upside-down release |
+| V004 | Recessed key, metal M5 T-nuts, handwheel pivots, captive enclosure |
+| V005 | Left-side orientation on horizontal rail, camera facing toward bed |
+| V006 | Independent wrist joint and nominal cable route |
+| V007 | Early dual-guide source candidate, not a complete released build |
+| V008 | Unified Python generator and attempted two-arm guide correction |
+| V009 | Tapered open-web arms, but long guide supports remain |
+| **V010** | **Four cable seats cut directly into the arm sidewalls, two per arm, plus scalloped knobs and relieved camera shell** |
 
-All prior sources and exported parts remain historical. V010 is *not* FEA-optimized or physically tested.
+## V010 source and export paths
+
+[Unified build entry](../src/build.py) · [Parametric config](../src/frame_monitor/config.py) · [Assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step)
+
+[First printable arm](../stl/V010_first_arm.stl) · [Second printable arm](../stl/V010_second_arm.stl) · [Scalloped thumbwheel](../stl/V010_scalloped_thumbwheel.stl) · [Relieved camera shell](../stl/V010_relieved_camera_shell.stl)
+
+![Actual V010 arm-pair geometry](../previews/v010_arm_pair.png)
+
+![Actual V010 assembled geometry](../previews/v010_full_assembly.png)
+
+[Validation report](validation_v010.json) · [Hardware BOM](BOM.csv) · [Physical measurements](PHYSICAL_FIT_REGISTER_V010.csv)
+
+The historical files retain their original version names. The V003 offline viewer is historical, and neither V008 nor V009 is the current arm design. CAD-only verification: 18 sampled poses, 1.650 mm minimum nominal cable-to-knob clearance, 3.802 mm to rail. Physical cable bending, print fatigue and machine clearances are unqualified.

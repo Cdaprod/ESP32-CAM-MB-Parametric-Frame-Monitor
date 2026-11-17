@@ -1,7 +1,30 @@
-# V010 CAD-only verification scope
+# V010 — CAD-only validation scope
 
-**18 sampled articulated poses**, not continuous swept four-DOF proof. Two tapered arms with four short alternating open U clips, Ø3.2 nominal cable, Ø3.8 nominal clip seat, 0.30 mm nominal radial clearance, 2.65 mm throat. Four printable STLs must be single-volume watertight shapes. The nominal model reports >=3.909 mm cable-to-knob and >=3.802 mm cable-to-rail separation in sampled poses.
+The active reference is [`docs/validation_v010.json`](validation_v010.json). **V010 contains four integrated sidewall cable seats and zero long cable outriggers**. These are CAD claims, not physical qualification.
 
-**Not tested:** real cable boot, bending and jacket strain; clip elasticity/fit and repeated insertion; real 4040 profile and fastener engagement; printer travel; print layer strength, fatigue, stiffness or vibration. Topology-inspired styling is not a load optimization or FEA claim.
+| Checked measurement | V010 CAD result |
+|---|---:|
+| Articulated base/elbow/pitch/wrist configurations | **18 / 18 sampled poses pass** |
+| Printable watertight single-volume STL parts | **4 / 4** |
+| Cable clip count | **4** (two per arm) |
+| Long supporting outriggers | **0** |
+| Nominal cable diameter | **3.2 mm** |
+| Nominal cable-seat diameter | **3.8 mm** |
+| Nominal radial clearance | **0.30 mm** |
+| Nominal clip insertion throat | **2.65 mm** |
+| **Minimum modeled cable-to-knob surface clearance** | **1.650 mm** |
+| Minimum modeled cable-to-4040 surface clearance | **3.802 mm** |
 
-[Engineering notes](ENGINEERING_NOTES_V010.md) · [Current report](validation_v010.json) · [Physical register](PHYSICAL_FIT_REGISTER_V010.csv)
+These figures come from the checked-in V010 validation JSON, not the earlier V010 candidate. The earlier **3.909 mm** cable-to-knob claim is obsolete for the corrected direct-to-arm cable channels.
+
+**Not tested:** continuous four-axis motion envelopes; real connector boot shape, cable jacket deformation, bending and strain; clip spring response and fatigue; actual 4040 fit, T-nut engagement, pivot preload, print layer strength; bed and toolhead movement, heat, vibration and fatigue. The proposed topology-inspired arm, knob and shell geometry is **not** claimed to be FEA-optimized or physically load-qualified.
+
+[Current engineering notes](ENGINEERING_NOTES_V010.md) · [Latest CAD report](validation_v010.json) · [Physical measurement register](PHYSICAL_FIT_REGISTER_V010.csv) · [Full assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step).
+
+## Actual V010 geometry previews
+
+![Corrected direct-to-arm cable channels — both arms](../previews/v010_arm_pair.png)
+
+![Isolated first arm](../previews/v010_first_arm_isolated.png)
+
+![Isolated second arm](../previews/v010_second_arm_isolated.png)

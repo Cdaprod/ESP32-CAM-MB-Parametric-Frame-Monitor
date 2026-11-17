@@ -1,9 +1,34 @@
-# Documentation — current V010 release
+# V010 documentation — current release
 
-[Project README with eight actual CAD images](../README.md) · [V010 assembled STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step)
+**Current CAD release: V010** · [Project README](../README.md) · [Full V010 assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step)
 
-[Engineering notes](ENGINEERING_NOTES_V010.md) · [CAD validation](validation_v010.json) · [Assembly manifest](manifest_v010.json) · [Current BOM](BOM.csv) · [V010 BOM snapshot](BOM_V010.csv) · [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Release pointer](CURRENT_RELEASE.json)
+The latest assembly has **four compact cable seats integrated directly into both structural arm sidewalls**, not the old dangling guide supports. Its scalloped knob and shallow camera-shell reliefs are topology-inspired styling candidates. No real-world strength or print-fatigue qualification has been performed.
 
-V009 remains available for side-by-side history. V010 includes two new arm models, a new hand knob and a revised camera shell, and **four short alternating cable retainers**. The wrist adapter and rail mount plate remain historical geometry, not yet topology-redesigned.
+## Current engineering documents
 
-**CAD-only**: physical clip fatigue, cable curvature, print strength and machine motion not qualified.
+| Artifact | Purpose |
+|---|---|
+| [Release JSON](CURRENT_RELEASE.json) | Authoritative current version, model exports and preview paths |
+| [Engineering notes](ENGINEERING_NOTES_V010.md) | Corrected link geometry, clip positions, reference dimensions and actual CAD images |
+| [Validation report](validation_v010.json) | 18 pose results and measured CAD-only surface clearances |
+| [CAD verification scope](VALIDATION_SCOPE.md) | Tests performed and real-world limits |
+| [Assembly manifest](manifest_v010.json) | Thirty positioned assembly/reference components and config values |
+| [Current BOM](BOM.csv) | V010 hardware and printable parts, matching [V010 snapshot](BOM_V010.csv) |
+| [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) | Unverified hardware and cable dimensions |
+| [Release history](RELEASE_INDEX.md) | V001–V010 lineage and historical references |
+
+## Actual V010 geometry-derived previews
+
+![Full 4040 mounted assembly](../previews/v010_full_assembly.png)
+
+![Both corrected arms](../previews/v010_arm_pair.png)
+
+![Direct-to-arm cable routing](../previews/v010_cable_guides.png)
+
+![Scalloped knob](../previews/v010_thumbwheel.png)
+
+![Relieved enclosure](../previews/v010_camera_shell.png)
+
+The remaining three images (isolated primary and secondary arm, and +20° camera wrist) are embedded in the [project README](../README.md).
+
+V009 exports remain historical for visual comparison. The documentation and integrity scripts should use the latest values from [`validation_v010.json`](validation_v010.json), especially **1.650 mm** minimum modeled cable-to-knob clearance, not the obsolete candidate result.
