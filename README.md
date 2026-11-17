@@ -10,9 +10,12 @@ Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real 
 
 ## Why V010 exists
 
+**Visual correction:** The cable seats are now cut into directly reinforced arm sidewalls, inside the original 7.5 mm link thickness. The old suspended rings, long feet and vertical webs have been removed. The connected routing groove runs along each moving link; there is no remote cable-support arm. These are nominal snap-fit candidates, not physically qualified retainers.
+
+
 The V008/V009 cable supports were essentially two long arms carrying the wire far away from the structural links. Those outriggers were never justified by the hardware. I wanted four small, alternating open U-clips following the link surfaces—not a longer version of the same mistake.
 
-V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side mounting plate, metal M5 T-nuts, four hand-operated M4 adjustment joints and captive camera housing. It replaces the outboard ring-and-web guide with **two clips on each articulating link**. The clip entry sides alternate (-X, +X, -X, +X in each link's local geometry). The nominal 3.2 mm USB cable now follows the link bodies, with unconstrained transitions at the articulated joints.
+V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side mounting plate, metal M5 T-nuts, four hand-operated M4 adjustment joints and captive camera housing. It replaces the outboard ring-and-web guide with **two integral sidewall cable seats on each articulating link**. The clip entry sides alternate (-X, +Z, -X, +Z in each link's local geometry). The nominal 3.2 mm USB cable now follows the link bodies, with unconstrained transitions at the articulated joints.
 
 ![Both V010 printed arms from actual CAD](previews/v010_arm_pair.png)
 
@@ -42,7 +45,7 @@ V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side
 | Nominal U-seat internal diameter | 3.8 mm |
 | Nominal radial cable/clip gap | 0.30 mm |
 | Nominal clip entry throat | 2.65 mm |
-| Minimum modeled cable/knob clearance | **3.909 mm** |
+| Minimum modeled cable/knob clearance | **1.650 mm** |
 | Minimum modeled cable/rail clearance | **3.802 mm** |
 | Full continuous joint-envelope proof | **Not performed** |
 | Real printed clip fatigue and cable bend | **Not verified** |

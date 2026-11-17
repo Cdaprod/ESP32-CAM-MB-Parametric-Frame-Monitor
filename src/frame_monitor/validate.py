@@ -25,6 +25,11 @@ def validate(root:Path):
         assert abs(mesh.volume/shape.Volume()-1)<.005,(name,'mesh volume mismatch')
         meshes.append({'name':name,'watertight':True,'single_body':True,
                        'mesh_volume_mm3':round(mesh.volume,3)})
+    # Reject dangling clip arms even when ordinary solid-validity tests pass.
+    arm_a,arm_b=first_arm(),second_arm()
+    assert arm_a.BoundingBox().zmin>=7.49 and arm_a.BoundingBox().zmax<=15.01, "First arm cable seats extend outside link thickness"
+    assert arm_b.BoundingBox().zmax<=22.51, "Second arm cable seats extend above link thickness"
+    assert arm_a.BoundingBox().xmin>=-13.3 and arm_b.BoundingBox().xmin>=-13.3, "Remote cable support detected"
     poses=[]
     for angles in CONFIG.sampled_poses:
         parts=components(*angles)
@@ -69,7 +74,7 @@ def validate(root:Path):
     }
     report={
       'summary':summary,'printable_meshes':meshes,'poses':poses,
-      'clip_openings_in_order':['-X','+X','-X','+X'],
+      'clip_openings_in_order':['-X','+Z','-X','+Z'],
       'nominal_cable_diameter_mm':CONFIG.cable_diameter_mm,
       'nominal_clip_throat_mm':CONFIG.clip_throat_mm,
       'limitations':['18 sampled poses are not an exhaustive four-DOF motion proof',
