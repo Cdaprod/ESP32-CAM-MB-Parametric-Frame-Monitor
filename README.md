@@ -4,9 +4,17 @@
 
 *Built by [Cdaprod](https://github.com/Cdaprod) · Python/CadQuery · FreeCAD-compatible STEP · Open hardware prototype*
 
-**Current CAD development release: V008.** Physically unverified; dimensional assumptions remain provisional.
+**Previous verified reference release: V008.** New V009 build and validation are in progress. Physically unverified; dimensional assumptions remain provisional.
 
 ![V008 complete left-side 4040 camera monitor assembly](previews/v008_full_assembly.png)
+
+## V009 — Tapered structural-link redesign
+
+**Current source revision: V009.** Both articulated arms now have tapered 14–18 mm structural profiles with two triangular lightening cells and a diagonal web, while maintaining the 4040 left-side rail configuration, four joint axes, camera shell, and both V008-aligned USB guide bores. This is a topology-inspired geometry, **not** a load-rated topology optimization. CAD and physical clearance qualification remain required.
+
+Read [V009 engineering notes](docs/ENGINEERING_NOTES_V009.md). Run `xvfb-run -a python src/build.py all` to regenerate the V009 STEP, STL, validation JSON and actual CAD PNGs. V008 imagery and historical references below remain available for comparison.
+
+---
 
 ## Why I'm building this
 
