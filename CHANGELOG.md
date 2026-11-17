@@ -1,3 +1,10 @@
+## V009 — tapered triangulated arm redesign
+
+- Replaced both moving flat plate links with printable tapered open-web structures and diagonal load-path ribs.
+- Preserved original four-joint axes, camera enclosure, left-side 4040 mounting and outboard cable-guide centerlines.
+- Updated the canonical build, 13-pose validation and geometry-derived render outputs to V009.
+- Individual local arm BREP/mesh tests passed; complete assembly and physical checks pending.
+
 # ESP32-CAM-MB Parametric Frame Monitor — design history
 
 ## V008 — Consolidated build and corrected cable guides (current)
