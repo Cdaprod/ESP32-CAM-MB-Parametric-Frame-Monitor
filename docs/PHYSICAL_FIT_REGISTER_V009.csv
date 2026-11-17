@@ -1,0 +1,29 @@
+feature,design_target_mm,measured_mm,status,verification_action
+4040 outside extrusion width,40,,UNVERIFIED,Caliper actual frame rail
+4040 slot mouth,6.20,,UNVERIFIED,Measure available left-side slot
+4040 captured profile inner opening,10.50,,UNVERIFIED,Verify metal T-nut/undercut engagement
+Printed alignment-key recess,0.65,,CAD VERIFIED,Check mounting-plate face contact
+New first-arm guide local X,-27,,CAD VERIFIED,Print and inspect position relative to knob
+New second-arm guide local X,-27,,CAD VERIFIED,Print and inspect position relative to elbow
+New first-arm guide local Y,-32,,CAD VERIFIED,Inspect actual cable route
+New second-arm guide local Y,-69.2,,CAD VERIFIED,Inspect actual cable route
+Guide through-bore diameter,3.8,,CAD VERIFIED,Print coupon and measure bores
+Nominal cable outer diameter,3.2,,UNVERIFIED,Measure actual USB cable
+Guide nominal radial clearance,0.30,,CAD VERIFIED,Real-cable fit and wear test
+Guide outside square-section size,7.6,,CAD VERIFIED,Physical strength and layer fatigue test
+Guide axial length,3.5,,CAD VERIFIED,Retention and print finish test
+Elbow transfer local lateral X offset,4,,CAD VERIFIED,Check dynamic cable loop and bend radius
+Cable to nearest handwheel distance,7.132,,CAD VERIFIED,Sweep actual cable through all joints
+Cable to 4040 rail distance,3.802,,CAD VERIFIED,Sweep machine axes with cable installed
+ESP32-CAM-MB nominal board width,27,,UNVERIFIED,Measure camera PCB stack
+ESP32-CAM-MB nominal board height,40,,UNVERIFIED,Measure camera PCB stack
+ESP32-CAM-MB nominal board depth,17,,UNVERIFIED,Measure USB programmer board and boot
+M5 clamp torque,,,UNVERIFIED,Use appropriate hardware and verify clamping
+Minimum USB bend radius,,,UNVERIFIED,Get manufacturer specification
+Printer full travel,,,UNVERIFIED,Complete powered-off travel sweep
+First tapered link center spacing,35,,CAD VERIFIED,Measure pivot-to-pivot dimension after print
+Second tapered link center spacing,35,,CAD VERIFIED,Measure pivot-to-pivot dimension after print
+Both arm end width,14,,CAD VERIFIED,Check width at pivot interfaces
+Both arm midspan width,18,,CAD VERIFIED,Measure at maximum width
+Structural arm nominal depth,7.5,,CAD VERIFIED,Measure printed section thickness
+V009 vs V008 printed static deflection,,,UNVERIFIED,Test equal loading and print orientation
