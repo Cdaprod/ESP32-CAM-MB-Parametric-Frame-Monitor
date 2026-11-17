@@ -13,7 +13,7 @@ def validate(root:Path):
     root=Path(root)
     (root/'stl').mkdir(exist_ok=True,parents=True)
     meshes=[]
-    for name,shape in (('V008_first_arm',first_arm()),('V008_second_arm',second_arm())):
+    for name,shape in (('V009_first_arm',first_arm()),('V009_second_arm',second_arm())):
         assert shape.isValid() and len(shape.Solids())==1,(name,'invalid solid')
         path=root/'stl'/f'{name}.stl'
         cq.exporters.export(shape,str(path),tolerance=.08,angularTolerance=.12)
@@ -36,7 +36,7 @@ def validate(root:Path):
         rail_gap=min(section.distance(shapes['4040_horizontal_reference']) for section in sections)
         assert min(wheel_gaps.values())>=CONFIG.cable_to_knob_min_mm,(angles,wheel_gaps)
         assert rail_gap>=CONFIG.cable_to_rail_min_mm,(angles,rail_gap)
-        guides=('V008_first_arm','V008_second_arm')
+        guides=('V009_first_arm','V009_second_arm')
         guide_gaps={name:min(section.distance(shapes[name]) for section in sections) for name in guides}
         unwanted={name:sum(section.intersect(shapes[name]).Volume() for section in sections)
                   for name in guides}
@@ -68,5 +68,5 @@ def validate(root:Path):
        'Actual printer travel, torque, vibration and thermal clearance unverified']
     }
     (root/'docs').mkdir(parents=True,exist_ok=True)
-    (root/'docs'/'validation_v008.json').write_text(json.dumps(report,indent=2)+'\n')
+    (root/'docs'/'validation_v009.json').write_text(json.dumps(report,indent=2)+'\n')
     return report
