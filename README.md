@@ -1,58 +1,67 @@
-# ESP32-CAM-MB | Parametric Frame Monitor
+# ESP32-CAM-MB · Parametric Frame Monitor
 
-**A little camera, a horizontal 4040 rail, four hand-adjustable joints, and two redesigned structural arms.**
+**V010 — Four compact alternating cable clips, topology-inspired links, tactile knobs and relieved enclosure.**
 
-*Built by [Cdaprod](https://github.com/Cdaprod) · Python / CadQuery · FreeCAD-compatible STEP · Open hardware prototype*
+Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real STEP/STL models, and actual geometry-derived renders.
 
-**Current CAD development release: V009.** Full assembly and sampled cable/joint poses have passed CAD checks; **actual fit, stiffness, strength, and printer travel have not been qualified.**
+**Current development release: V010 (CAD-only prototype).** Real cable bending, snap-fit fatigue, 4040 rail fit, camera connector geometry, fastener preload, and full printer travel remain physically unverified.
 
-**Visual-review finding:** V009's triangulated links still retain the two downward-protruding cable guide supports visible in the render. They are a known unresolved design limitation—not the intended integrated-channel geometry. [V010 corrective-design issue #3](https://github.com/Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor/issues/3).
+![V010 assembled on left side of the horizontal 4040 extrusion](previews/v010_full_assembly.png)
 
-[Complete V009 STEP](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step) · [New arm STLs](stl/V009_first_arm.stl) · [Engineering notes](docs/ENGINEERING_NOTES_V009.md) · [Validation JSON](docs/validation_v009.json)
+## Why V010 exists
 
-## V009 — See the actual redesigned arms
+The V008/V009 cable supports were essentially two long arms carrying the wire far away from the structural links. Those outriggers were never justified by the hardware. I wanted four small, alternating open U-clips following the link surfaces—not a longer version of the same mistake.
 
-![Actual V009 CAD render of the complete frame-mounted camera assembly](previews/v009_full_assembly.png)
+V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side mounting plate, metal M5 T-nuts, four hand-operated M4 adjustment joints and captive camera housing. It replaces the outboard ring-and-web guide with **two clips on each articulating link**. The clip entry sides alternate (-X, +X, -X, +X in each link's local geometry). The nominal 3.2 mm USB cable now follows the link bodies, with unconstrained transitions at the articulated joints.
 
-I wanted a camera mount that looks and behaves like a real engineered mechanism, rather than a few rectangles bolted together. V009 replaces **both original flat arms** with tapered, triangularly braced open-web links. The CAD is topology-inspired, not automatically optimized for load.
+![Both V010 printed arms from actual CAD](previews/v010_arm_pair.png)
 
-![Actual V009 CAD detail showing both arm links and cable guides](previews/v009_cable_guides.png)
+### Isolated mechanical components
 
-Both arms preserve the **35 mm pivot-to-pivot dimensions**, use a **14 mm end width and 18 mm midspan width**, and have **7.5 mm nominal thickness**. Each has two triangular lightening windows and a diagonal reinforcement web. Original joint centers and both Ø3.8 mm USB cable-guide bores remain aligned to the nominal Ø3.2 mm lead.
+![First structural arm and two alternating U-clips](previews/v010_first_arm_isolated.png)
 
-![Actual V009 CAD render at plus 20 degrees of independent wrist yaw](previews/v009_wrist_20_degrees.png)
+![Second structural arm and two alternating U-clips](previews/v010_second_arm_isolated.png)
 
-### V009 CAD verification
+![Scalloped M4 hand knob, retaining the original hex-nut interface](previews/v010_thumbwheel.png)
 
-| Requirement | Checked result |
+![Camera shell with shallow triangular reliefs](previews/v010_camera_shell.png)
+
+![Assembled V010 cable routing and guides](previews/v010_cable_guides.png)
+
+![Camera with independent wrist yaw at +20 degrees](previews/v010_wrist_20_degrees.png)
+
+### CAD validation results
+
+| Check | V010 CAD result |
 |---|---:|
-| Four hand-adjustable joints (base, elbow, pitch, wrist) | Preserved |
-| Assembly entries including reference solids/hardware | 30 |
-| Sampled joint configurations | **13 / 13 passed** |
-| Newly generated arm STLs | **2 / 2 watertight** |
-| Cable guide centerlines | Both aligned |
-| Nominal cable-to-guide radial clearance | **0.30 mm** |
-| Minimum modeled cable-to-thumbwheel gap | **7.132 mm** |
-| Minimum modeled cable-to-rail gap | **3.802 mm** |
-| FEA, print testing, stiffness and actual mounting fit | **Not performed** |
+| Sampled base/elbow/pitch/wrist poses | **18 / 18 pass** |
+| Distinct U-shaped, short retained clips | 4 |
+| Long cable outrigger webs | 0 |
+| Printable single-volume watertight new parts | **4 / 4 pass** |
+| Nominal cable diameter | 3.2 mm |
+| Nominal U-seat internal diameter | 3.8 mm |
+| Nominal radial cable/clip gap | 0.30 mm |
+| Nominal clip entry throat | 2.65 mm |
+| Minimum modeled cable/knob clearance | **3.909 mm** |
+| Minimum modeled cable/rail clearance | **3.802 mm** |
+| Full continuous joint-envelope proof | **Not performed** |
+| Real printed clip fatigue and cable bend | **Not verified** |
 
-**Important:** passing these checks does not demonstrate fatigue strength, cable bend radius or strain relief, continuous collision-free joint motion, or safe clearance over the printer's full axis travel.
+The 2.65 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed plastic and actual cable jacket can tolerate repeated insertion **has not been established**. Cable paths are faceted cylindrical *reference geometry*, not a strain-controlled flexible cable simulation.
 
-## Download / inspect
+## Download the actual V010 models
 
-| File | Direct link |
-|---|---|
-| Complete assembled rail and monitor | [V009 complete STEP](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step) |
-| Tapered first arm | [STL](stl/V009_first_arm.stl) · [STEP](step/V009_first_arm.step) |
-| Tapered second arm | [STL](stl/V009_second_arm.stl) · [STEP](step/V009_second_arm.step) |
-| Real geometry previews | [Assembly](previews/v009_full_assembly.png) · [Guide detail](previews/v009_cable_guides.png) · [Rotated wrist](previews/v009_wrist_20_degrees.png) |
-| Current source | [One CLI](src/build.py) · [Parametric package](src/frame_monitor/) |
-| Engineering records | [Notes](docs/ENGINEERING_NOTES_V009.md) · [Manifest](docs/manifest_v009.json) · [Validation](docs/validation_v009.json) |
-| V009 current release metadata | [CURRENT_RELEASE.json](docs/CURRENT_RELEASE.json) |
+| Item | STEP | Printable STL |
+|---|---|---|
+| Entire installed assembly | [V010 assembly](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step) | — |
+| First tapered arm | [STEP](step/V010_first_arm.step) | [STL](stl/V010_first_arm.stl) |
+| Second tapered arm | [STEP](step/V010_second_arm.step) | [STL](stl/V010_second_arm.stl) |
+| Scalloped hand knob (print four) | [STEP](step/V010_scalloped_thumbwheel.step) | [STL](stl/V010_scalloped_thumbwheel.stl) |
+| Relieved camera shell | [STEP](step/V010_relieved_camera_shell.step) | [STL](stl/V010_relieved_camera_shell.stl) |
 
-The horizontal **4040 extrusion**, **left-side mounting orientation**, **camera aiming over the rail toward the bed**, T-slot locator, metal M5 T-nuts, four adjustable joints, positive camera retention and bottom USB outlet remain part of the assembly.
+The existing **V004** alignment key, mounting plate and bezel, and **V006** wrist adapter remain compatible; their historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
 
-### One Python build
+## One build command
 
 `/src/build.py`
 
@@ -60,32 +69,21 @@ The horizontal **4040 extrusion**, **left-side mounting orientation**, **camera 
 python -m pip install -r requirements.txt
 python src/build.py build
 python src/build.py validate
-# Requires Xvfb on headless Linux:
 xvfb-run -a python src/build.py render
-# Or run everything:
+# Or all three in one invocation
 xvfb-run -a python src/build.py all
 ```
 
-## V008 versus V009
+- [Parametric dimensions](src/frame_monitor/config.py), [part geometry](src/frame_monitor/geometry.py), [kinematic cable path](src/frame_monitor/cable.py)
+- [Machine-readable validation](docs/validation_v010.json), [assembly manifest](docs/manifest_v010.json), [engineering notes](docs/ENGINEERING_NOTES_V010.md), [BOM](docs/BOM.csv)
+- [Design history](CHANGELOG.md) and [GitHub tracking issue #3](https://github.com/Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor/issues/3)
 
-| | V008 | V009 |
-|---|---|---|
-| Arm shape | Solid plate-style links, supported cable guides | **Tapered braced links, triangular lightening windows** |
-| Cables | Both guides aligned | Same guide centerlines retained |
-| Four-joint camera positioning | Yes | Yes |
-| Validated sampled poses | 13 | 13 |
-| Physical strength / load tested | No | No |
+### Still open for subsequent iterations
 
-![Historical V008 assembly for side-by-side comparison](previews/v008_full_assembly.png)
+This revision also updates the grip surface of the thumbwheel and produces shallow pocket reliefs on the camera housing. However, the **wrist adapter and 4040 mounting plate have not received topology-inspired shape revisions yet**. They remain structurally aligned with previous CAD. The cable still needs a physical strain-relief strategy at the ESP32-CAM-MB connector and proof of minimum cable bend radius around the joints.
 
-[Earlier V008 engineering notes](docs/ENGINEERING_NOTES_V008.md) · [Release history](CHANGELOG.md) · [Recovered original parametric T-slot source](reference/tslot_4040_interface.scad)
+![V009 historical geometry, showing the original dangling guide webs](previews/v009_full_assembly.png)
 
-## What needs real-world verification
+V009 remains archived for comparison; don't mistake its validated guide geometry for V010. **No claims of FEA, topology optimization, stronger links or print-tested cable retention are made.**
 
-The recovered 4040 slot, real ESP32-CAM-MB stack and USB connector, metal fasteners, minimum cable bend radius, printed bearing surfaces, and full printer travel all need measuring and testing. A controlled, identical-loading V008-versus-V009 printed deflection comparison is the right next step to determine whether the redesign really performs better.
-
----
-
-*I build, measure, break assumptions, redesign, and share the Python that made it—because the engineering journey should be reproducible.* — [Cdaprod](https://github.com/Cdaprod)
-
-**#DevOpsDad · #HackThePlanet · #3DPrinting · #OpenHardware**
+*An engineering project by [Cdaprod](https://github.com/Cdaprod): build it, measure it, improve it, and publish the real CAD.*

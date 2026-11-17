@@ -1,88 +1,43 @@
 {
-  "release": "V009",
+  "release": "V010",
   "is_current": true,
+  "status": "CAD-only verified prototype; physical print, cable fatigue and full printer clearance unverified",
   "repository": "Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor",
   "default_branch": "main",
-  "status": "CAD-only validated topology-inspired structural arm redesign; physical fit and mechanical load unverified",
-  "summary": "Unified four-joint left-side 4040 frame monitor with two tapered, triangularly braced V009 arms and aligned outboard USB cable guides",
-  "coordinate_frame": {
-    "rail": "X horizontal",
-    "mount_face": "left/outside +Y",
-    "look_direction": "inward toward bed -Y"
-  },
-  "articulation": {
-    "hand_adjustable_joint_count": 4,
-    "independent_wrist_joint_count": 1,
-    "joints": [
-      "base yaw",
-      "elbow yaw",
-      "camera pitch",
-      "camera wrist yaw"
-    ]
-  },
-  "cad": {
-    "assembly_entries": 30,
-    "sampled_poses": 13,
-    "new_watertight_stl_count": 2,
-    "arm_guides_aligned": 2,
-    "nominal_cable_diameter_mm": 3.2,
-    "guide_bore_diameter_mm": 3.8,
-    "nominal_radial_guide_clearance_mm": 0.3,
-    "min_cable_to_thumbwheel_gap_mm": 7.132,
-    "min_cable_to_rail_gap_mm": 3.802,
-    "physical_fit": "UNVERIFIED",
-    "load_testing": "UNVERIFIED"
-  },
   "source": "src/build.py",
-  "validator": "src/frame_monitor/validate.py",
-  "renderer": "src/frame_monitor/render.py",
-  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step",
-  "new_printed": [
-    "stl/V009_first_arm.stl",
-    "stl/V009_second_arm.stl"
-  ],
-  "reused_printed": [
-    "stl/V004_recessed_alignment_key.stl",
-    "stl/V004_mount_plate.stl",
-    "stl/V004_M4_thumbwheel.stl",
-    "stl/V004_removable_camera_bezel.stl",
-    "stl/V006_camera_shell.stl",
-    "stl/V006_wrist_adapter.stl"
+  "config": "src/frame_monitor/config.py",
+  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step",
+  "new_stls": [
+    "stl/V010_first_arm.stl",
+    "stl/V010_second_arm.stl",
+    "stl/V010_scalloped_thumbwheel.stl",
+    "stl/V010_relieved_camera_shell.stl"
   ],
   "previews": [
-    "previews/v009_full_assembly.png",
-    "previews/v009_cable_guides.png",
-    "previews/v009_wrist_20_degrees.png"
+    "previews/v010_arm_pair.png",
+    "previews/v010_cable_guides.png",
+    "previews/v010_camera_shell.png",
+    "previews/v010_first_arm_isolated.png",
+    "previews/v010_full_assembly.png",
+    "previews/v010_second_arm_isolated.png",
+    "previews/v010_thumbwheel.png",
+    "previews/v010_wrist_20_degrees.png"
   ],
+  "manifest": "docs/manifest_v010.json",
+  "validation": "docs/validation_v010.json",
   "bom": "docs/BOM.csv",
-  "bom_snapshot": "docs/BOM_V009.csv",
-  "fit_register": "docs/PHYSICAL_FIT_REGISTER_V009.csv",
-  "manifest": "docs/manifest_v009.json",
-  "validation": "docs/validation_v009.json",
-  "legacy_viewer": "viewer/OPEN_V003_OFFLINE.html",
-  "history": [
-    "V001",
-    "V002",
-    "V003",
-    "V004",
-    "V005",
-    "V006",
-    "V007",
-    "V008"
-  ],
-  "limitations": [
-    "CAD only: thirteen sampled poses, not continuous four-joint clearance",
-    "Topologically inspired shape, not FEA optimized or load-tested",
-    "Physical printer travel, cable bend/strain, T-nuts, board, vibration, heat and fatigue unqualified"
-  ],
-  "arm_geometry": {
-    "center_to_center_mm": 35,
-    "end_width_mm": 14,
-    "midspan_width_mm": 18,
-    "thickness_mm": 7.5,
-    "lightening_cells_per_link": 2,
-    "reinforcement": "diagonal web",
-    "structural_qualification": "NOT FEA-OPTIMIZED OR LOAD-TESTED"
-  },
-  "notes": "docs/ENGINEERING_NOTES_V009.md"
+  "engineering_notes": "docs/ENGINEERING_NOTES_V010.md",
+  "clip_count": 4,
+  "nominal_cable_diameter_mm": 3.2,
+  "clip_seat_diameter_mm": 3.8,
+  "clip_throat_mm": 2.65,
+  "sampled_poses": 18,
+  "physical_qualification": "UNVERIFIED",
+  "historical_baseline": "V009",
+  "pending_work": [
+    "Physical USB jacket and clip fatigue qualification",
+    "Full printer travel and cable bending",
+    "Topology-inspired wrist adapter redesign",
+    "Topology-inspired 4040 mounting plate"
+  ]
 }
