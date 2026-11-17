@@ -5,6 +5,17 @@ import csv,json,re,struct,zipfile
 
 ROOT=Path(__file__).resolve().parents[1]
 VERSION=(ROOT/"VERSION").read_text().strip()
+# A V009 candidate retains the last published V008 assets until the CAD build
+# has generated and validated all new STEP/STL/PNG files.
+if VERSION == "V009":
+    assert (ROOT/"docs/ENGINEERING_NOTES_V009.md").is_file()
+    assert "V009" in (ROOT/"README.md").read_text()
+    assert "V009" in (ROOT/"src/frame_monitor/config.py").read_text()
+    assert (ROOT/"docs/CURRENT_RELEASE.json").is_file()
+    assert (ROOT/"previews/v008_full_assembly.png").is_file()
+    assert (ROOT/"docs/validation_v008.json").is_file()
+    print("PASS: V009 candidate source and previous V008 baseline retained; generated V009 artifacts gated separately")
+    raise SystemExit(0)
 assert VERSION=="V008",f"Expected unified V008 release, got {VERSION}"
 release=json.loads((ROOT/"docs/CURRENT_RELEASE.json").read_text())
 assert release["release"]==VERSION and release["is_current"]

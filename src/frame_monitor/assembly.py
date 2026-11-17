@@ -20,8 +20,8 @@ def components(base=30,elbow=-30,pitch=12,wrist=0,with_cable=True):
             parts=legacy.components(base,elbow,pitch,wrist)
         for key,value in zip(('yaw_deg','elbow_deg','camera_pitch_deg'),(base,elbow,pitch)):
             object.__setattr__(b4.P,key,value)
-        replacements={'V004_first_arm':('V008_first_arm',first_arm(),b4.pose_one),
-                      'V004_second_arm':('V008_second_arm',second_arm(),b4.pose_two)}
+        replacements={'V004_first_arm':('V009_first_arm',first_arm(),b4.pose_one),
+                      'V004_second_arm':('V009_second_arm',second_arm(),b4.pose_two)}
         result=[]
         for name,shape,color,kind in parts:
             if name=='V006_USB_outboard_cable_reference':
