@@ -15,7 +15,7 @@ The active reference is [`docs/validation_v010.json`](validation_v010.json). **V
 | **Minimum modeled cable-to-knob surface clearance** | **1.650 mm** |
 | Minimum modeled cable-to-4040 surface clearance | **3.802 mm** |
 
-These figures come from the checked-in V010 validation JSON, not the earlier V010 candidate. The earlier **3.909 mm** cable-to-knob claim is obsolete for the corrected direct-to-arm cable channels.
+These figures come from the checked-in V010 validation JSON, not the earlier V010 candidate. The earlier **earlier higher clearance estimate** cable-to-knob claim is obsolete for the corrected direct-to-arm cable channels.
 
 **Not tested:** continuous four-axis motion envelopes; real connector boot shape, cable jacket deformation, bending and strain; clip spring response and fatigue; actual 4040 fit, T-nut engagement, pivot preload, print layer strength; bed and toolhead movement, heat, vibration and fatigue. The proposed topology-inspired arm, knob and shell geometry is **not** claimed to be FEA-optimized or physically load-qualified.
 
