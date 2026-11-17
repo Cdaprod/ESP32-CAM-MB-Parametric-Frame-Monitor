@@ -17,6 +17,7 @@ import json, math
 import cadquery as cq
 from . import rail as b
 from .primitives import Spec, block, cyl_x, cyl_y, cyl_z, v5_key
+from .finish import finish_mount,finish_knob,finish_bezel
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -62,7 +63,7 @@ def base_plate():
     v=b.rail_base(S)
     # M4 captive nut in base under the first pivot, bottom accessible during assembly
     v=v.cut(hex_pocket(7.2,3.2,(0,P.first_pivot_y,-6)))
-    return v.clean()
+    return finish_mount(v.clean())
 
 def alignment_key():
     # No screws in alignment key; it can never bottom against the plate at X=20
@@ -128,7 +129,7 @@ def camera_bezel():
     for x in (-16.25,16.25):
         for z in (4.5,50.5):
             s=s.cut(cyl(1.4,5,(x,-93,z),(0,1,0)))
-    return s.clean()
+    return finish_bezel(s.clean())
 
 def board_envelope():
     # Two physically separate visual references, nominal only: main board and lens.
@@ -149,7 +150,7 @@ def thumbwheel():
         wheel=wheel.cut(cyl_z(1.05,9,7.65*cos(a),7.65*sin(a),-1))
     wheel=wheel.cut(cyl_z(2.15,9,0,0,-1))
     wheel=wheel.cut(hex_pocket(7.2,3.2,(0,0,4)))
-    return wheel.clean()
+    return finish_knob(wheel.clean())
 
 def m4_bolt(length):
     # nominal smooth shank with M4 7mm hex head, shoulder at Z=0, shaft toward -Z

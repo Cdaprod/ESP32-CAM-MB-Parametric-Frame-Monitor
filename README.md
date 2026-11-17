@@ -8,6 +8,8 @@ Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real 
 
 ![V010 assembled on left side of the horizontal 4040 extrusion](previews/v010_full_assembly.png)
 
+**V010 finishing update:** Both structural arms now use R0.70 mm fillets on re-entrant triangular web corners and R1.0 mm exterior taper blends. The handwheel grip rims have 0.80 mm chamfers; the camera shell has R0.90 mm exterior corner fillets. The bezel and 4040 mounting-plate edges receive 0.30 mm chamfers and the wrist bridge R0.70 mm fillets. All pivot bores, captive-nut pockets, T-slot datums and USB clip throats are preserved. The images below are regenerated from actual finished BREP geometry.
+
 ## Why V010 exists
 
 **Visual correction:** The cable seats are now cut into directly reinforced arm sidewalls, inside the original 7.5 mm link thickness. The old suspended rings, long feet and vertical webs have been removed. The connected routing groove runs along each moving link; there is no remote cable-support arm. These are nominal snap-fit candidates, not physically qualified retainers.

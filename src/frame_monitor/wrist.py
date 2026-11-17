@@ -11,6 +11,7 @@ import cadquery as cq
 from . import parts as b4
 
 from .primitives import block, cyl_x, cyl_z
+from .finish import finish_wrist,finish_shell
 
 ROOT=Path(__file__).resolve().parents[2]
 
@@ -42,7 +43,7 @@ def adapter():
     a=a.cut(b4.hex_pocket(7.2,3.5,(8.25,-87,-12),'x'))
     a=a.cut(cyl_z(2.15,7,S.wrist_x_mm,ya,-10.5))
     a=a.cut(b4.hex_pocket(7.2,3.2,(S.wrist_x_mm,ya,-10)))
-    return a.clean()
+    return finish_wrist(a.clean())
 
 def shell():
     """Full-sidewall V004 shell with new wrist leaf instead of original pitch ear."""
@@ -62,7 +63,7 @@ def shell():
                  .polyline([(y0,z0),(y0+10,z0),(y0+5,z0+9)])
                  .close().extrude(.8).val().translate((x,0,0)))
             s=s.cut(pocket)
-    return s.clean()
+    return finish_shell(s.clean())
 
 def pose_cam(s,wrist=0.0):
     return b4.pose_cam(s.rotate((S.wrist_x_mm,S.wrist_y_mm,0),

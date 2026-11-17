@@ -8,6 +8,7 @@ import cadquery as cq
 from . import parts as old
 from .primitives import block, cyl_x, cyl_z, cyl_y
 from .config import CONFIG as C
+from .finish import finish_arm
 
 def _skeletal_link(front, back, bottom, thickness=7.5):
     outline=[(-7,front),(7,front),(9,front-8),(9,back+8),
@@ -53,7 +54,7 @@ def first_arm():
     # Continuous shallow cable passage follows the arm from end to end,
     # removing material from the link itself instead of attaching rings.
     a=a.cut(cyl_y(C.clip_bore_mm/2,24,C.first_cable_x_mm,-45,C.first_cable_z_mm))
-    return a.clean()
+    return finish_arm(a.clean())
 
 def second_arm():
     a=_skeletal_link(-52,-87,15)
@@ -65,4 +66,4 @@ def second_arm():
     for y,side in zip(C.second_clip_y_mm,(-1,1)):
         a=clip(a,yc=y,zc=C.second_cable_z_mm,open_side=side)
     a=a.cut(cyl_y(C.clip_bore_mm/2,27,C.second_cable_x_mm,-84,C.second_cable_z_mm))
-    return a.clean()
+    return finish_arm(a.clean())

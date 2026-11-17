@@ -6,6 +6,7 @@ on:
       - 'src/build.py'
       - 'src/frame_monitor/**'
       - 'tests/test_v010_outputs.py'
+      - 'tests/test_finish_features.py'
       - '.github/workflows/v010-cad.yml'
   workflow_dispatch:
 permissions:
@@ -33,6 +34,8 @@ jobs:
         run: python src/build.py build
       - name: Verify 18 articulated cable poses and single-body watertight meshes
         run: python src/build.py validate
+      - name: Verify finished edges on all seven printable parts
+        run: python tests/test_finish_features.py
       - name: Render eight geometry-derived engineering previews
         run: xvfb-run -a python src/build.py render
       - name: Verify real PNGs, CAD exports, BOM and current-release metadata
@@ -48,6 +51,18 @@ jobs:
           else
             git commit -m 'build(cad): publish verified V010 assembly and real previews [skip ci]'
             git push origin HEAD:design/v010-integrated-cable-clips
+          fi
+      - name: Commit regenerated finished CAD exports and PNGs to main
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png docs/manifest_v010.json docs/validation_v010.json
+          if git diff --cached --quiet; then
+            echo 'Finished exports already match their generator.'
+          else
+            git commit -m 'build(cad): publish finished V010 STEP STL and real preview PNGs [skip ci]'
+            git push origin HEAD:main
           fi
       - name: Archive complete V010 models, previews and validation artifacts
         uses: actions/upload-artifact@v4
