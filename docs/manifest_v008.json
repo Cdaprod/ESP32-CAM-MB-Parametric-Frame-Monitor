@@ -1,0 +1,226 @@
+{
+  "revision": "V008",
+  "generator": "src/build.py",
+  "parameters": {
+    "release": "V008",
+    "cable_diameter_mm": 3.2,
+    "cable_outboard_x_mm": -27.0,
+    "guide_bore_diameter_mm": 3.8,
+    "guide_first_y_mm": -32.0,
+    "guide_first_z_mm": 19.0,
+    "guide_second_y_mm": -69.2,
+    "guide_second_z_mm": 27.0,
+    "guide_axial_length_mm": 3.5,
+    "cable_to_knob_min_mm": 2.0,
+    "cable_to_rail_min_mm": 1.5,
+    "guide_centerline_tolerance_mm": 0.15,
+    "sampled_poses": [
+      [
+        30,
+        -30,
+        12,
+        0
+      ],
+      [
+        20,
+        -30,
+        12,
+        -20
+      ],
+      [
+        20,
+        -30,
+        12,
+        20
+      ],
+      [
+        40,
+        -30,
+        12,
+        -20
+      ],
+      [
+        40,
+        -30,
+        12,
+        20
+      ],
+      [
+        30,
+        -40,
+        12,
+        -20
+      ],
+      [
+        30,
+        -40,
+        12,
+        20
+      ],
+      [
+        30,
+        -20,
+        12,
+        -20
+      ],
+      [
+        30,
+        -20,
+        12,
+        20
+      ],
+      [
+        30,
+        -30,
+        0,
+        -20
+      ],
+      [
+        30,
+        -30,
+        0,
+        20
+      ],
+      [
+        30,
+        -30,
+        25,
+        -20
+      ],
+      [
+        30,
+        -30,
+        25,
+        20
+      ]
+    ]
+  },
+  "component_count": 30,
+  "components": [
+    {
+      "name": "4040_horizontal_reference",
+      "kind": "reference"
+    },
+    {
+      "name": "V004_recessed_alignment_key",
+      "kind": "printed"
+    },
+    {
+      "name": "M5_metal_tnut_left",
+      "kind": "hardware"
+    },
+    {
+      "name": "M5_metal_tnut_right",
+      "kind": "hardware"
+    },
+    {
+      "name": "V004_mount_plate",
+      "kind": "printed"
+    },
+    {
+      "name": "V008_first_arm",
+      "kind": "printed"
+    },
+    {
+      "name": "V008_second_arm",
+      "kind": "printed"
+    },
+    {
+      "name": "M5x8_fastener_1",
+      "kind": "hardware"
+    },
+    {
+      "name": "M5x8_fastener_2",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_base_roll",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_base_roll",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_elbow_swing",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_elbow_swing",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_camera_tilt",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_camera_tilt",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_base_roll",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_elbow_swing",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_camera_tilt",
+      "kind": "hardware"
+    },
+    {
+      "name": "V006_wrist_adapter",
+      "kind": "printed"
+    },
+    {
+      "name": "V006_camera_shell",
+      "kind": "printed"
+    },
+    {
+      "name": "V006_camera_bezel",
+      "kind": "printed"
+    },
+    {
+      "name": "ESP32_CAM_MB_provisional_envelope",
+      "kind": "reference"
+    },
+    {
+      "name": "M4_thumbwheel_wrist",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_wrist",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_wrist",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_1",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_2",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_3",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_4",
+      "kind": "hardware"
+    },
+    {
+      "name": "V006_USB_outboard_cable_reference",
+      "kind": "reference_cable"
+    }
+  ],
+  "new_printable": [
+    "V008_first_arm",
+    "V008_second_arm"
+  ],
+  "base": "V006 four-joint articulated wrist; historical versioned scripts not imported"
+}

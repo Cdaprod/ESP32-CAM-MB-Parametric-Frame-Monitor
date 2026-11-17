@@ -1,0 +1,334 @@
+{
+  "summary": {
+    "revision": "V008",
+    "status": "PASS CAD-only",
+    "sampled_poses": 13,
+    "component_entries": 30,
+    "arm_guides_aligned": 2,
+    "watertight_new_stls": 2,
+    "min_cable_to_knob_mm": 7.132,
+    "min_cable_to_rail_mm": 3.802,
+    "physical_qualification": "UNVERIFIED"
+  },
+  "printable_meshes": [
+    {
+      "name": "V008_first_arm",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 4137.52
+    },
+    {
+      "name": "V008_second_arm",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 7896.935
+    }
+  ],
+  "poses": [
+    {
+      "pose_degrees": [
+        30,
+        -30,
+        12,
+        0
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 9.816,
+        "M4_thumbwheel_wrist": 7.132
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        20,
+        -30,
+        12,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 12.73,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        20,
+        -30,
+        12,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 12.73,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        40,
+        -30,
+        12,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 10.546,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        40,
+        -30,
+        12,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 10.546,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -40,
+        12,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.609,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -40,
+        12,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.609,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -20,
+        12,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -20,
+        12,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -30,
+        0,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 10.331,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -30,
+        0,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 11.013,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -30,
+        25,
+        -20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 10.37,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    },
+    {
+      "pose_degrees": [
+        30,
+        -30,
+        25,
+        20
+      ],
+      "thumbwheel_surface_gap_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 10.721,
+        "M4_thumbwheel_camera_tilt": 11.024,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "cable_to_rail_mm": 3.802,
+      "cable_to_guide_mm": {
+        "V008_first_arm": 0.3,
+        "V008_second_arm": 0.3
+      },
+      "unintended_cable_guide_overlap_mm3": {
+        "V008_first_arm": 0.0,
+        "V008_second_arm": 0.0
+      }
+    }
+  ],
+  "limitations": [
+    "13 sampled poses are not an exhaustive four-DOF motion proof",
+    "No minimum dynamic cable bend radius, connector, cable strain or sag validation",
+    "Nominal rail, camera board, metal hardware and cable dimensions",
+    "Actual printer travel, torque, vibration and thermal clearance unverified"
+  ]
+}
