@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class MonitorConfig:
-    release: str = "V008"
+    release: str = "V009"
     cable_diameter_mm: float = 3.2
     cable_outboard_x_mm: float = -27.0
     guide_bore_diameter_mm: float = 3.8
