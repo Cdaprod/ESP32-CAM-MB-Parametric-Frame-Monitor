@@ -1,10 +1,10 @@
 {
-  "release": "V006",
+  "release": "V008",
   "is_current": true,
   "repository": "Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor",
   "default_branch": "main",
   "status": "CAD-only validated prototype; physical fit unverified",
-  "summary": "Horizontal 4040 left/outside-face monitor; four hand-adjustable joints including independent wrist yaw; outboard nominal USB routing",
+  "summary": "Single-source Python/CadQuery build on horizontal 4040 left-side frame; corrected cable guides on both arms, V006 four-joint wrist preserved",
   "coordinate_frame": {
     "rail": "X horizontal",
     "mount_face": "left/outside +Y",
@@ -24,47 +24,53 @@
     "assembly_entries": 30,
     "sampled_poses": 13,
     "new_watertight_stl_count": 2,
+    "arm_guides_aligned": 2,
     "nominal_cable_diameter_mm": 3.2,
+    "guide_bore_diameter_mm": 3.8,
+    "nominal_radial_guide_clearance_mm": 0.3,
     "min_cable_to_thumbwheel_gap_mm": 7.132,
-    "min_cable_to_rail_gap_mm": 3.802
+    "min_cable_to_rail_gap_mm": 3.802,
+    "physical_fit": "UNVERIFIED"
   },
-  "source": "src/build_v006.py",
-  "validator": "src/validate_v006.py",
-  "renderer": "src/render_v006.py",
-  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V006.step",
+  "source": "src/build.py",
+  "validator": "src/frame_monitor/validate.py",
+  "renderer": "src/frame_monitor/render.py",
+  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V008.step",
   "new_printed": [
-    "stl/V006_wrist_adapter.stl",
-    "stl/V006_camera_shell.stl"
+    "stl/V008_first_arm.stl",
+    "stl/V008_second_arm.stl"
   ],
   "reused_printed": [
     "stl/V004_recessed_alignment_key.stl",
     "stl/V004_mount_plate.stl",
-    "stl/V004_first_arm.stl",
-    "stl/V004_second_arm.stl",
+    "stl/V004_M4_thumbwheel.stl",
     "stl/V004_removable_camera_bezel.stl",
-    "stl/V004_M4_thumbwheel.stl"
+    "stl/V006_camera_shell.stl",
+    "stl/V006_wrist_adapter.stl"
   ],
   "previews": [
-    "previews/v006_wrist_full_assembly.png",
-    "previews/v006_wrist_and_cable_detail.png",
-    "previews/v006_wrist_rotated_20deg.png"
+    "previews/v008_full_assembly.png",
+    "previews/v008_cable_guides.png",
+    "previews/v008_wrist_20_degrees.png"
   ],
   "bom": "docs/BOM.csv",
-  "bom_snapshot": "docs/BOM_V006.csv",
-  "fit_register": "docs/PHYSICAL_FIT_REGISTER_V006.csv",
-  "manifest": "docs/manifest_v006.json",
-  "validation": "docs/validation_v006.json",
+  "bom_snapshot": "docs/BOM_V008.csv",
+  "fit_register": "docs/PHYSICAL_FIT_REGISTER_V008.csv",
+  "manifest": "docs/manifest_v008.json",
+  "validation": "docs/validation_v008.json",
   "legacy_viewer": "viewer/OPEN_V003_OFFLINE.html",
   "history": [
     "V001",
     "V002",
     "V003",
     "V004",
-    "V005"
+    "V005",
+    "V006",
+    "V007"
   ],
   "limitations": [
-    "Only 13 sampled poses; not continuous joint-space clearance",
-    "Actual cable, connector boot and bend radius not measured",
-    "No actual machine travel or thermal/vibration/torque qualification"
+    "Thirteen discrete poses, not continuous motion proof",
+    "Cable boot, bend radius, strain relief and 3D-print strength unverified",
+    "Actual 4040 and ESP32-CAM-MB dimensions, printer travel, torque, vibration and heat unverified"
   ]
 }

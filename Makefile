@@ -1,11 +1,11 @@
 PYTHON ?= python
 .PHONY: build validate render all docs test check
 build:
-	$(PYTHON) src/build_v006.py
+	$(PYTHON) src/build.py build
 validate: build
-	$(PYTHON) src/validate_v006.py
+	$(PYTHON) src/build.py validate
 render: validate
-	$(PYTHON) src/render_v006.py
+	$(PYTHON) src/build.py render
 docs:
 	$(PYTHON) tests/test_repo_assets.py
 test: docs

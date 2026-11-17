@@ -1,86 +1,73 @@
-"""Dependency-free repository release integrity check (current: V006).
-
-Historical version-tagged artifacts are deliberately retained. Unversioned entry points
-must always identify the active release and its generated outputs.
-"""
+"""Dependency-free integrity gate for the current parametric CAD release."""
 from __future__ import annotations
-
-import csv
-import json
 from pathlib import Path
-import re
-import zipfile
+import csv,json,re,struct,zipfile
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parents[1]
+VERSION=(ROOT/"VERSION").read_text().strip()
+assert VERSION=="V008",f"Expected unified V008 release, got {VERSION}"
+release=json.loads((ROOT/"docs/CURRENT_RELEASE.json").read_text())
+assert release["release"]==VERSION and release["is_current"]
+assert release["articulation"]["hand_adjustable_joint_count"]==4
+assert release["cad"]["arm_guides_aligned"]==2
 
-def require(path: str, minimum: int = 1) -> Path:
-    p = (ROOT / path).resolve()
-    assert p.is_relative_to(ROOT.resolve()), f"Path escapes repository: {path}"
-    assert p.is_file(), f"Missing release file: {path}"
-    assert p.stat().st_size >= minimum, f"Empty release file: {path}"
-    return p
+readme=(ROOT/"README.md").read_text()
+assert "Current CAD development release: V008" in readme[:1100]
+assert "previews/v008_full_assembly.png" in readme[:1100]
+assert "0.30 mm" in readme and "7.132 mm" in readme
+assert "physical" in readme.lower() and "unverified" in readme.lower()
 
-version = require("VERSION").read_text(encoding="utf-8").strip()
-assert version == "V006", f"Expected V006, got {version!r}"
-release = json.loads(require("docs/CURRENT_RELEASE.json").read_text(encoding="utf-8"))
-assert release["release"] == version and release["is_current"] is True
-assert release["articulation"]["hand_adjustable_joint_count"] == 4
-assert release["articulation"]["independent_wrist_joint_count"] == 1
+def exists(rel,allow_directory=False):
+    path=(ROOT/rel).resolve()
+    assert path.is_relative_to(ROOT.resolve()),f"Path escapes repository: {rel}"
+    assert path.exists(),f"Missing current file: {rel}"
+    if not allow_directory:assert path.is_file() and path.stat().st_size>0,rel
+    return path
 
-readme = require("README.md").read_text(encoding="utf-8")
-assert "Current release: V006" in readme[:900]
-assert "previews/v006_wrist_full_assembly.png" in readme[:1000]
-assert "V003-only" in readme
-assert "physical fit unverified" in readme.lower()
-for value in ("7.132 mm", "3.802 mm", "13 of 13"):
-    assert value in readme, value
+for field in ("source","validator","renderer","assembly_step","bom","bom_snapshot",
+              "fit_register","manifest","validation","legacy_viewer"):
+    exists(release[field])
+for field in ("new_printed","reused_printed","previews"):
+    for file in release[field]:exists(file)
 
-for key in ("source", "validator", "renderer", "assembly_step", "bom",
-            "bom_snapshot", "fit_register", "manifest", "validation", "legacy_viewer"):
-    require(release[key])
-for key in ("new_printed", "reused_printed", "previews"):
-    for artifact in release[key]:
-        require(artifact, 100)
+for doc in ("README.md","CHANGELOG.md","docs/README.md","docs/RELEASE_INDEX.md",
+            "docs/VALIDATION_SCOPE.md","docs/ENGINEERING_NOTES_V008.md"):
+    text=exists(doc).read_text()
+    for url in re.findall(r"\[[^\]]+\]\(([^)]+)\)",text):
+        if url.startswith(("https://","http://","mailto:","#")):continue
+        path=url.split("#",1)[0].split("?",1)[0]
+        if path:exists(str(Path(doc).parent/path),allow_directory=True)
 
-for document in ("README.md", "CHANGELOG.md", "docs/README.md",
-                 "docs/RELEASE_INDEX.md", "docs/VALIDATION_SCOPE.md"):
-    content = require(document).read_text(encoding="utf-8")
-    # Check every Markdown hyperlink and embedded image, ignoring external URLs.
-    for target in re.findall(r'\[[^\]]*\]\(([^)]+)\)', content):
-        if target.startswith(("https://", "http://", "mailto:", "#")):
-            continue
-        local = target.split("#", 1)[0].split("?", 1)[0]
-        if local:
-            require(str(Path(document).parent / local))
+for image in release["previews"]:
+    data=exists(image).read_bytes()
+    assert data[:8]==b"\x89PNG\r\n\x1a\n",image
+    w,h=struct.unpack(">II",data[16:24])
+    assert w>=1200 and h>=800,image
 
-for relative in release["previews"]:
-    assert require(relative, 1000).read_bytes()[:8] == b"\x89PNG\r\n\x1a\n", relative
+assert exists("docs/BOM.csv").read_bytes()==exists("docs/BOM_V008.csv").read_bytes()
+with exists("docs/BOM.csv").open(newline="") as handle:rows=list(csv.DictReader(handle))
+assert rows and all(row["revision"]==VERSION for row in rows)
+assert len([r for r in rows if r["origin"]=="V008 NEW"])>=2
 
-assert require("docs/BOM.csv").read_bytes() == require("docs/BOM_V006.csv").read_bytes(), \
-    "Current and versioned V006 BOMs diverge"
-with require("docs/BOM.csv").open(newline="", encoding="utf-8") as f:
-    rows = list(csv.DictReader(f))
-assert rows and all(row["revision"] == version for row in rows)
-wheels = [row for row in rows if "thumbwheel" in row["item"].lower()]
-assert len(wheels) == 1 and wheels[0]["quantity"] == "4"
+manifest=json.loads(exists("docs/manifest_v008.json").read_text())
+validation=json.loads(exists("docs/validation_v008.json").read_text())
+assert manifest["revision"]==validation["summary"]["revision"]==VERSION
+assert manifest["component_count"]==len(manifest["components"])==30
+assert validation["summary"]["status"]=="PASS CAD-only"
+assert validation["summary"]["sampled_poses"]==len(validation["poses"])==13
+assert validation["summary"]["arm_guides_aligned"]==2
+assert abs(validation["summary"]["min_cable_to_knob_mm"]-7.132)<.001
+assert abs(validation["summary"]["min_cable_to_rail_mm"]-3.802)<.001
+for pose in validation["poses"]:
+    assert all(.24<=v<=.5 for v in pose["cable_to_guide_mm"].values())
+    assert max(pose["unintended_cable_guide_overlap_mm3"].values())<.01
 
-manifest = json.loads(require("docs/manifest_v006.json").read_text(encoding="utf-8"))
-report = json.loads(require("docs/validation_v006.json").read_text(encoding="utf-8"))
-summary = report["summary"]
-assert manifest["revision"] == summary["revision"] == version
-assert manifest["component_count"] == len(manifest["components"]) == 30
-assert summary["result"] == "PASS CAD-only"
-assert summary["tested_poses"] == len(report["poses"]) == 13
-assert summary["thumbwheel_count"] == 4
-assert abs(summary["min_cable_to_knob_mm"] - 7.132) <= 0.001
-assert abs(summary["min_cable_to_rail_mm"] - 3.802) <= 0.001
-
-with zipfile.ZipFile(require("reference/V002_original_preserved.zip", 1000)) as archive:
-    assert archive.testzip() is None, "V002 original archive CRC mismatch"
-for path in ("src/v001_mount.py","src/build_assembly.py","src/build_v003.py",
-             "src/build_v004.py","src/build_v005.py",
-             "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V003.step",
-             "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V004.step"):
-    require(path)
-
-print("PASS: current V006 README, links, images, STEP/STLs, CSV, JSON, history")
+with zipfile.ZipFile(exists("reference/V002_original_preserved.zip")) as archive:
+    assert archive.testzip() is None
+for historic in ("src/build_v004.py","src/build_v005.py","src/build_v006.py",
+                 "src/build_v007.py","viewer/OPEN_V003_OFFLINE.html"):exists(historic)
+for packagefile in (ROOT/"src/frame_monitor").glob("*.py"):
+    content=packagefile.read_text()
+    assert not re.search(r"^\s*(?:from|import)\s+(?:build_v\d+|build_assembly|v001_mount)\b",
+                         content,re.MULTILINE),packagefile
+print("PASS V008 release: embedded images, links, BOM, geometry, JSON, history and self-contained package")

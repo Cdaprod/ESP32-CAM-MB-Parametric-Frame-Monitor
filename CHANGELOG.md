@@ -1,5 +1,17 @@
 # ESP32-CAM-MB Parametric Frame Monitor — design history
 
+## V008 — Consolidated build and corrected cable guides (current)
+
+- Consolidated the active CAD generator into `src/build.py` and self-contained `src/frame_monitor/` modules; historical scripts remain available without runtime imports.
+- Rebuilt **both** arm links with supported Ø3.8 mm guides aligned to the same nominal Ø3.2 mm USB cable path.
+- Relocated the first guide to local (-27,-32,19) mm, second to (-27,-69.2,27) mm; a +4 mm elbow cable handoff avoids the second support in sampled extreme poses.
+- Passed 13 sampled poses, 0.30 mm modeled cable/guide radial clearance, 7.132 mm minimum cable/knob and 3.802 mm minimum cable/rail separation.
+- Published two new watertight printable arm STLs, two individual STEPs, complete assembly STEP, three geometry-derived PNGs and V008 validation JSON.
+- **Not physically qualified:** actual cable, dynamic bend/sag, guide fatigue, printer travel, hardware torque and thermal/vibration conditions.
+
+[Current README](README.md) · [Current BOM](docs/BOM.csv) · [V008 notes](docs/ENGINEERING_NOTES_V008.md)
+
+
 **Current development release: V006.** Historical revision files remain intact.
 
 ## V006 — Additional wrist pivot and outboard USB path
