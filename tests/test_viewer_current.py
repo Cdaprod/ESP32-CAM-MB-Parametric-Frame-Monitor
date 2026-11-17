@@ -20,7 +20,8 @@ assert meta["plotly_mesh_policy"]=="all_faces", "Viewer must not drop triangles"
 assert len(meta["plotly_face_counts"])==30
 assert set(meta["plotly_face_counts"])==set(meta["component_names"])
 assert all(n>0 for n in meta["plotly_face_counts"].values())
-assert meta["reference_cable_default_hidden"] is True
+assert meta["reference_cable_default_hidden"] is False
+assert meta["reference_cable_route"]["arc_count"]>=8
 source=(ROOT/"src/frame_monitor/viewer.py").read_text()
 assert "f[::stride]" not in source, "Face-stride sampling visually corrupts solid surfaces"
 assert html_path.stat().st_size>3000000

@@ -11,6 +11,7 @@ import plotly.io as pio
 import trimesh
 from .assembly import components
 from .config import CONFIG
+from .cable import route_metrics
 
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -53,9 +54,8 @@ def build_viewer(root):
             i=f[:,0],j=f[:,1],k=f[:,2],
             name=group,legendgroup=group,showlegend=group not in groups_seen,
             hovertemplate=name+"<extra></extra>",color=rgb,
-            # The current cable reference is a chain of rigid straight cylinders
-            # with outdated outboard waypoints; hide until the user opts in.
-            visible="legendonly" if kind=="reference_cable" else True,
+            # Nominal articulated cable with circular tangent bends.
+            visible=True,
             opacity=.68 if name=="ESP32_CAM_MB_provisional_envelope" else 1,
             lighting=dict(ambient=.62,diffuse=.76,specular=.17,roughness=.60)))
         groups_seen.add(group)
@@ -107,7 +107,8 @@ header p{{font-size:12px;margin:0;color:#c9d7e3}}
           "fully_offline":True,"standalone_html":True,
           "plotly_mesh_policy":"all_faces",
           "plotly_face_counts":full_face_counts,
-          "reference_cable_default_hidden":True,
+          "reference_cable_default_hidden":False,
+          "reference_cable_route":route_metrics(),
           "previews_sha256":{p:sha(root/p) for p in previews},
           "assembly_step":release["assembly_step"],
           "assembly_step_sha256":sha(step),

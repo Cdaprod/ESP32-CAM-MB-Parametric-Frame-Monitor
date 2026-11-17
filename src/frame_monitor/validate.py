@@ -6,6 +6,7 @@ import cadquery as cq
 import trimesh
 from .config import CONFIG
 from .assembly import components
+from .cable import route_metrics
 from .geometry import first_arm, second_arm
 from . import parts as cad_parts,wrist
 
@@ -57,6 +58,7 @@ def validate(root:Path):
         assert all(.24<=gap<=.5 for gap in guide_gaps.values()),(angles,guide_gaps)
         poses.append({
             'pose_degrees':list(angles),
+            'cable_route':route_metrics(angles[3]),
             'thumbwheel_surface_gap_mm':{name:round(gap,3) for name,gap in wheel_gaps.items()},
             'cable_to_rail_mm':round(rail_gap,3),
             'cable_to_guide_mm':{name:round(gap,3) for name,gap in guide_gaps.items()},
@@ -70,7 +72,9 @@ def validate(root:Path):
       'long_outriggers':0,'watertight_new_stls':len(meshes),
       'min_cable_to_knob_mm':round(min(v for p in poses for v in p['thumbwheel_surface_gap_mm'].values()),3),
       'min_cable_to_rail_mm':round(min(p['cable_to_rail_mm'] for p in poses),3),
-      'physical_qualification':'UNVERIFIED'
+      'physical_qualification':'UNVERIFIED',
+      'cable_geometry':'continuous tangent arcs, reference-only',
+      'minimum_drawn_bend_radius_mm':min(p['cable_route']['minimum_drawn_radius_mm'] for p in poses)
     }
     report={
       'summary':summary,'printable_meshes':meshes,'poses':poses,
