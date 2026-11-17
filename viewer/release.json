@@ -73,9 +73,9 @@
   },
   "reference_cable_default_hidden": false,
   "reference_cable_route": {
-    "length_mm": 284.012,
+    "length_mm": 286.707,
     "arc_count": 19,
-    "minimum_drawn_radius_mm": 2.9723,
+    "minimum_drawn_radius_mm": 2.511,
     "requested_drawn_radius_mm": 6.0,
     "physical_cable_qualification": "UNVERIFIED"
   },
@@ -90,7 +90,7 @@
     "previews/v010_wrist_20_degrees.png": "e1040acb3f2da606cd9043c54d9fc8bfbbf27fa11b33910644ccaf0678c97dcd"
   },
   "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step",
-  "assembly_step_sha256": "f1fb162c58214f679530e51854550852ab2f53c5aa006ee76ef2bfd9de543dbc",
+  "assembly_step_sha256": "0c6a910697957cac99cb270e69192579d543e7951ec0c012ec2394f6b59a52e1",
   "html_sha256": "578fb1c7c2838669a78fe4aa932a7e344bb99ced3c18b317b8f29b9b33f2be73",
   "glb_sha256": "bb413655ef1f73e898f1ad10260e445be5451069dec9edd6ad2bda4281ae7538",
   "status": "CAD reference only; physical load and fit unverified"

@@ -12,7 +12,7 @@
     "min_cable_to_rail_mm": 4.147,
     "physical_qualification": "UNVERIFIED",
     "cable_geometry": "continuous tangent arcs, reference-only",
-    "minimum_drawn_bend_radius_mm": 2.9723
+    "minimum_drawn_bend_radius_mm": 2.0134
   },
   "printable_meshes": [
     {
@@ -49,9 +49,9 @@
         0
       ],
       "cable_route": {
-        "length_mm": 284.012,
+        "length_mm": 286.707,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -79,9 +79,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 286.329,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -109,9 +109,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 285.665,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -139,9 +139,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 292.043,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -169,9 +169,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 291.378,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -199,9 +199,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 289.121,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.5036,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -229,9 +229,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 288.456,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.5036,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -259,9 +259,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 289.733,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.688,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -289,9 +289,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 289.068,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.688,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -319,9 +319,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 290.183,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -349,9 +349,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 289.518,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.511,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -379,9 +379,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 288.885,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.0134,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -409,9 +409,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 288.22,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.0134,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -439,9 +439,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 287.687,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.688,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -469,9 +469,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 290.825,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.0134,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -499,9 +499,9 @@
         -20
       ],
       "cable_route": {
-        "length_mm": 286.585,
+        "length_mm": 285.776,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.0134,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -529,9 +529,9 @@
         20
       ],
       "cable_route": {
-        "length_mm": 285.92,
+        "length_mm": 292.736,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.688,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
@@ -559,9 +559,9 @@
         0
       ],
       "cable_route": {
-        "length_mm": 284.012,
+        "length_mm": 286.766,
         "arc_count": 19,
-        "minimum_drawn_radius_mm": 2.9723,
+        "minimum_drawn_radius_mm": 2.0134,
         "requested_drawn_radius_mm": 6.0,
         "physical_cable_qualification": "UNVERIFIED"
       },
