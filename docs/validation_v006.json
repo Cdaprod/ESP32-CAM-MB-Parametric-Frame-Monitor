@@ -1,0 +1,255 @@
+{
+  "summary": {
+    "revision": "V006",
+    "result": "PASS CAD-only",
+    "tested_poses": 13,
+    "assembly_components": 30,
+    "thumbwheel_count": 4,
+    "printable_new_STLs_watertight": 2,
+    "min_cable_to_knob_mm": 7.132,
+    "min_cable_to_rail_mm": 3.802,
+    "physical_fit": "UNVERIFIED",
+    "limitations": [
+      "Actual USB cable bend radius and connector boot unmeasured",
+      "No dynamic cable sag, strain relief or full-motion continuous sweep",
+      "Rail and ESP32-CAM-MB geometry provisional",
+      "No torque, heat, fatigue, printer travel or vibration qualification"
+    ]
+  },
+  "poses": [
+    {
+      "base_deg": 30,
+      "elbow_deg": -30,
+      "pitch_deg": 12,
+      "wrist_deg": 0,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 9.816,
+        "M4_thumbwheel_wrist": 7.132
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 7.018,
+        "second_arm": 11.139
+      }
+    },
+    {
+      "base_deg": 20,
+      "elbow_deg": -30,
+      "pitch_deg": 12,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 12.73,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 20,
+      "elbow_deg": -30,
+      "pitch_deg": 12,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 12.73,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    },
+    {
+      "base_deg": 40,
+      "elbow_deg": -30,
+      "pitch_deg": 12,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 10.546,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 40,
+      "elbow_deg": -30,
+      "pitch_deg": 12,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 10.546,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -40,
+      "pitch_deg": 12,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 13.814,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -40,
+      "pitch_deg": 12,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 13.814,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -20,
+      "pitch_deg": 12,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.413,
+        "M4_thumbwheel_camera_tilt": 10.556,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -20,
+      "pitch_deg": 12,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.413,
+        "M4_thumbwheel_camera_tilt": 11.3,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -30,
+      "pitch_deg": 0,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 10.331,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -30,
+      "pitch_deg": 0,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 11.013,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -30,
+      "pitch_deg": 25,
+      "wrist_deg": -20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 10.37,
+        "M4_thumbwheel_wrist": 7.249
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 2.9,
+        "second_arm": 11.73
+      }
+    },
+    {
+      "base_deg": 30,
+      "elbow_deg": -30,
+      "pitch_deg": 25,
+      "wrist_deg": 20,
+      "thumbwheel_clearance_mm": {
+        "M4_thumbwheel_base_roll": 11.921,
+        "M4_thumbwheel_elbow_swing": 14.407,
+        "M4_thumbwheel_camera_tilt": 11.024,
+        "M4_thumbwheel_wrist": 7.373
+      },
+      "other_cable_clearance_mm": {
+        "4040_rail": 3.802,
+        "camera_shell": 1.9,
+        "wrist_adapter": 9.516,
+        "second_arm": 15.586
+      }
+    }
+  ]
+}

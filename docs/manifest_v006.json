@@ -1,0 +1,138 @@
+{
+  "revision": "V006",
+  "spec": {
+    "base_yaw_deg": 30.0,
+    "elbow_deg": -30.0,
+    "pitch_deg": 12.0,
+    "wrist_yaw_deg": 0.0,
+    "wrist_x_mm": 7.5,
+    "wrist_y_mm": -136.0,
+    "cable_d_mm": 3.2,
+    "min_knob_gap_mm": 2.0,
+    "min_rigid_gap_mm": 1.5
+  },
+  "component_count": 30,
+  "components": [
+    {
+      "name": "4040_horizontal_reference",
+      "kind": "reference"
+    },
+    {
+      "name": "V004_recessed_alignment_key",
+      "kind": "printed"
+    },
+    {
+      "name": "M5_metal_tnut_left",
+      "kind": "hardware"
+    },
+    {
+      "name": "M5_metal_tnut_right",
+      "kind": "hardware"
+    },
+    {
+      "name": "V004_mount_plate",
+      "kind": "printed"
+    },
+    {
+      "name": "V004_first_arm",
+      "kind": "printed"
+    },
+    {
+      "name": "V004_second_arm",
+      "kind": "printed"
+    },
+    {
+      "name": "M5x8_fastener_1",
+      "kind": "hardware"
+    },
+    {
+      "name": "M5x8_fastener_2",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_base_roll",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_base_roll",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_elbow_swing",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_elbow_swing",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_thumbwheel_camera_tilt",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_camera_tilt",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_base_roll",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_elbow_swing",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_camera_tilt",
+      "kind": "hardware"
+    },
+    {
+      "name": "V006_wrist_adapter",
+      "kind": "printed"
+    },
+    {
+      "name": "V006_camera_shell",
+      "kind": "printed"
+    },
+    {
+      "name": "V006_camera_bezel",
+      "kind": "printed"
+    },
+    {
+      "name": "ESP32_CAM_MB_provisional_envelope",
+      "kind": "reference"
+    },
+    {
+      "name": "M4_thumbwheel_wrist",
+      "kind": "printed"
+    },
+    {
+      "name": "M4_bolt_wrist",
+      "kind": "hardware"
+    },
+    {
+      "name": "M4_captive_hex_nut_wrist",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_1",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_2",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_3",
+      "kind": "hardware"
+    },
+    {
+      "name": "M2p5_bezel_screw_4",
+      "kind": "hardware"
+    },
+    {
+      "name": "V006_USB_outboard_cable_reference",
+      "kind": "reference_cable"
+    }
+  ],
+  "qualification": "CAD-only; real printer fit, cable bend and torque unverified"
+}
