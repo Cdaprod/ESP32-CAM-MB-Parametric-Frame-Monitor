@@ -12,8 +12,9 @@ The active reference is [`docs/validation_v010.json`](validation_v010.json). **V
 | Nominal cable-seat diameter | **3.8 mm** |
 | Nominal radial clearance | **0.30 mm** |
 | Nominal clip insertion throat | **2.65 mm** |
-| **Minimum modeled cable-to-knob surface clearance** | **1.650 mm** |
-| Minimum modeled cable-to-4040 surface clearance | **3.802 mm** |
+| **Minimum modeled cable-to-knob surface clearance** | **1.887 mm** |
+| Minimum modeled cable-to-4040 surface clearance | **4.147 mm** |
+| Requested circular bend radius | **6.0 mm** (actual achieved may be smaller; recorded per pose) |
 
 These figures come from the checked-in V010 validation JSON, not the earlier V010 candidate. The earlier **earlier higher clearance estimate** cable-to-knob claim is obsolete for the corrected direct-to-arm cable channels.
 
@@ -28,3 +29,5 @@ These figures come from the checked-in V010 validation JSON, not the earlier V01
 ![Isolated first arm](../previews/v010_first_arm_isolated.png)
 
 ![Isolated second arm](../previews/v010_second_arm_isolated.png)
+
+**Tangent-arc routing correction:** The cable reference is one continuous swept BREP, with rigid-body-local anchors and exactly tangent circular arcs. The reported `cable_route` length and minimum drawn radius are now recomputed for each pose's *base, elbow, pitch and wrist* angles, not from a reset/default pose. Drawn radii remain unqualified for any real cable. [Routing geometry notes](PARAMETRIC_CABLE_ROUTING_V010.md).

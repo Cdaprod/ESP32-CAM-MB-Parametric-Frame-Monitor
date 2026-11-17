@@ -35,10 +35,10 @@ The authoritative report is [`validation_v010.json`](validation_v010.json). On t
 | Four integrated cable seats | **4** |
 | Long cable-support outriggers | **0** |
 | New valid, watertight single-body printed models | **4 / 4** |
-| Minimum cable-to-handwheel separation | **1.650 mm** |
-| Minimum cable-to-extrusion separation | **3.802 mm** |
+| Minimum cable-to-handwheel separation | **1.887 mm** |
+| Minimum cable-to-extrusion separation | **4.147 mm** |
 | Nominal radial gap in a 3.8 mm seat around Ø3.2 mm cable | **0.30 mm** |
 
-The reference cable path is made from faceted cylindrical solids and does not simulate elastic deformation, fatigue, dynamic bend radius, sag, jacket wear, or connector boot strain. The 2.65 mm nominal snap throat is smaller than the modeled cable jacket and has **not** been tested for repeated insertion or removal. Full printer axis travel, real rail fastener engagement, static deflection and vibration also remain unverified.
+The V010 cable reference is a single round swept solid following pose-dependent tangent circular arcs, rather than separate faceted cylinders. Its effective geometrically drawn radii are recorded per pose. It does not simulate elastic deformation, fatigue, required dynamic bend radius, sag, jacket wear, or connector boot strain. The 2.65 mm nominal snap throat is smaller than the modeled cable jacket and has **not** been tested for repeated insertion or removal. Full printer axis travel, real rail fastener engagement, static deflection and vibration also remain unverified.
 
 [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Current BOM](BOM.csv) · [Complete STEP assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step).

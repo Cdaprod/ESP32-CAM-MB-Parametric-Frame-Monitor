@@ -108,7 +108,7 @@ header p{{font-size:12px;margin:0;color:#c9d7e3}}
           "plotly_mesh_policy":"all_faces",
           "plotly_face_counts":full_face_counts,
           "reference_cable_default_hidden":False,
-          "reference_cable_route":route_metrics(),
+          "reference_cable_route":route_metrics(base=30,elbow=-30,pitch=12),
           "previews_sha256":{p:sha(root/p) for p in previews},
           "assembly_step":release["assembly_step"],
           "assembly_step_sha256":sha(step),

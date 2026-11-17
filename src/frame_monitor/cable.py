@@ -103,12 +103,27 @@ def rounded_centerline(points):
     return wire,bends
 
 
-def route_metrics(wrist_angle=0):
-    wire,arcs=rounded_centerline(path_points(wrist_angle))
-    return {"length_mm":round(wire.Length(),3),"arc_count":len(arcs),
-            "minimum_drawn_radius_mm":min((a["radius_mm"] for a in arcs),default=None),
-            "requested_drawn_radius_mm":C.cable_bend_radius_mm,
-            "physical_cable_qualification":"UNVERIFIED"}
+def route_metrics(wrist_angle=0, *, base=None, elbow=None, pitch=None):
+    """Measure the **same kinematic pose** used to construct cable geometry.
+
+    The legacy transform functions use mutable b4.P. All overrides are
+    temporary, so this function is safe to call after assembly.components()
+    resets its own pose context.
+    """
+    names=("yaw_deg","elbow_deg","camera_pitch_deg")
+    old=tuple(getattr(b4.P,key) for key in names)
+    try:
+        for key,value in zip(names,(base,elbow,pitch)):
+            if value is not None:
+                object.__setattr__(b4.P,key,value)
+        wire,arcs=rounded_centerline(path_points(wrist_angle))
+        return {"length_mm":round(wire.Length(),3),"arc_count":len(arcs),
+                "minimum_drawn_radius_mm":min((a["radius_mm"] for a in arcs),default=None),
+                "requested_drawn_radius_mm":C.cable_bend_radius_mm,
+                "physical_cable_qualification":"UNVERIFIED"}
+    finally:
+        for key,value in zip(names,old):
+            object.__setattr__(b4.P,key,value)
 
 
 def cable_reference(wrist_angle=0):

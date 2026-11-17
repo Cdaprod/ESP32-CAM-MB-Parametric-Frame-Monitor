@@ -56,12 +56,13 @@ V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side
 | Nominal U-seat internal diameter | 3.8 mm |
 | Nominal radial cable/clip gap | 0.30 mm |
 | Nominal clip entry throat | 2.65 mm |
-| Minimum modeled cable/knob clearance | **1.650 mm** |
-| Minimum modeled cable/rail clearance | **3.802 mm** |
+| Minimum modeled cable/knob clearance | **1.887 mm** |
+| Minimum modeled cable/rail clearance | **4.147 mm** |
+| Requested cable-reference bend radius | **6.0 mm** (locally reduced as required) |
 | Full continuous joint-envelope proof | **Not performed** |
 | Real printed clip fatigue and cable bend | **Not verified** |
 
-The 2.65 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed plastic and actual cable jacket can tolerate repeated insertion **has not been established**. Cable paths are faceted cylindrical *reference geometry*, not a strain-controlled flexible cable simulation.
+The 2.65 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed plastic and actual cable jacket can tolerate repeated insertion **has not been established**. Cable routing uses one continuous round sweep over exact tangent arcs, but is still *reference geometry*, not a strain-controlled flexible cable simulation. Modeled bends can be tighter than the requested 6 mm; inspect the achieved radius in the validation JSON.
 
 ## Download the actual V010 models
 

@@ -58,7 +58,7 @@ def validate(root:Path):
         assert all(.24<=gap<=.5 for gap in guide_gaps.values()),(angles,guide_gaps)
         poses.append({
             'pose_degrees':list(angles),
-            'cable_route':route_metrics(angles[3]),
+            'cable_route':route_metrics(angles[3],base=angles[0],elbow=angles[1],pitch=angles[2]),
             'thumbwheel_surface_gap_mm':{name:round(gap,3) for name,gap in wheel_gaps.items()},
             'cable_to_rail_mm':round(rail_gap,3),
             'cable_to_guide_mm':{name:round(gap,3) for name,gap in guide_gaps.items()},
