@@ -13,6 +13,9 @@ for image in r['previews']:
     assert path.read_bytes()[:8]==b'\x89PNG\r\n\x1a\n'
     assert f']({image})' in readme
 assert (ROOT/'docs/BOM.csv').read_bytes()==(ROOT/'docs/BOM_V010.csv').read_bytes()
+for stl in r['new_stls']:
+    assert (ROOT/stl).is_file(),stl
+    assert (ROOT/stl.replace('stl/','step/').replace('.stl','.step')).is_file(),stl
 assert (ROOT/'step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step').is_file()
 assert (ROOT/'previews/v009_full_assembly.png').is_file()
 print('PASS V010 canonical release and eight embedded CAD renders')
