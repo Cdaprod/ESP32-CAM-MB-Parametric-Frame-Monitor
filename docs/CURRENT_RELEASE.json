@@ -55,8 +55,8 @@
     "previews/v009_wrist_20_degrees.png"
   ],
   "bom": "docs/BOM.csv",
-  "bom_snapshot": "docs/BOM_V008.csv",
-  "fit_register": "docs/PHYSICAL_FIT_REGISTER_V008.csv",
+  "bom_snapshot": "docs/BOM_V009.csv",
+  "fit_register": "docs/PHYSICAL_FIT_REGISTER_V009.csv",
   "manifest": "docs/manifest_v009.json",
   "validation": "docs/validation_v009.json",
   "legacy_viewer": "viewer/OPEN_V003_OFFLINE.html",
@@ -71,9 +71,9 @@
     "V008"
   ],
   "limitations": [
-    "Thirteen discrete poses, not continuous motion proof",
-    "Cable boot, bend radius, strain relief and 3D-print strength unverified",
-    "Actual 4040 and ESP32-CAM-MB dimensions, printer travel, torque, vibration and heat unverified"
+    "CAD only: thirteen sampled poses, not continuous four-joint clearance",
+    "Topologically inspired shape, not FEA optimized or load-tested",
+    "Physical printer travel, cable bend/strain, T-nuts, board, vibration, heat and fatigue unqualified"
   ],
   "arm_geometry": {
     "center_to_center_mm": 35,
