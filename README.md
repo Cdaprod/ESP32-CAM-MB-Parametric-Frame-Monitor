@@ -6,7 +6,14 @@ Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real 
 
 **Current development release: V010 (CAD-only prototype).** Real cable bending, snap-fit fatigue, 4040 rail fit, camera connector geometry, fastener preload, and full printer travel remain physically unverified.
 
-![V010 assembled on left side of the horizontal 4040 extrusion](previews/v010_full_assembly.png)
+## Explore the latest assembly in 3D
+
+[![Open the current interactive 3D assembly viewer](previews/v010_full_assembly.png)](viewer/index.html)
+
+**[Open/download the current interactive offline HTML viewer](viewer/index.html)** · [Complete color-coded GLB](viewer/COMPLETE_ASSEMBLY.glb) · [Viewer version and checksums](viewer/release.json)
+
+Orbit, zoom and toggle individual component groups in the standalone viewer. Its HTML bundles the JavaScript, so after downloading you can open it on your phone or computer without an internet connection. GitHub README pages cannot execute embedded HTML or iframes; this linked preview opens the viewer file, which can be downloaded locally. The same viewer can also be hosted online through GitHub Pages when Pages is enabled.
+
 
 **V010 finishing update:** Both structural arms now use R0.70 mm fillets on re-entrant triangular web corners and R1.0 mm exterior taper blends. The handwheel grip rims have 0.80 mm chamfers; the camera shell has R0.90 mm exterior corner fillets. The bezel and 4040 mounting-plate edges receive 0.30 mm chamfers and the wrist bridge R0.70 mm fillets. All pivot bores, captive-nut pockets, T-slot datums and USB clip throats are preserved. The images below are regenerated from actual finished BREP geometry.
 
@@ -74,7 +81,8 @@ The existing **V004** alignment key, mounting plate and bezel, and **V006** wris
 python -m pip install -r requirements.txt
 python src/build.py build
 python src/build.py validate
-xvfb-run -a python src/build.py render
+xvfb-run -a python src/build.py render  # also refreshes viewer/index.html and GLB
+python src/build.py viewer               # refresh viewer only, from current models
 # Or all three in one invocation
 xvfb-run -a python src/build.py all
 ```

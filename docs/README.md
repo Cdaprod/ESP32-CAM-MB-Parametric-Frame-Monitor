@@ -17,6 +17,10 @@ The latest assembly has **four compact cable seats integrated directly into both
 | [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) | Unverified hardware and cable dimensions |
 | [Release history](RELEASE_INDEX.md) | V001–V010 lineage and historical references |
 
+## Current interactive assembly viewer
+
+[Offline 3D viewer](../viewer/index.html) · [Full color-coded GLB](../viewer/COMPLETE_ASSEMBLY.glb) · [Viewer integrity manifest](../viewer/release.json). The viewer is regenerated with every set of CAD previews; it never imports the historical V003 model. Download the standalone HTML file and open it locally to interact with the assembly.
+
 ## Actual V010 geometry-derived previews
 
 ![Full 4040 mounted assembly](../previews/v010_full_assembly.png)

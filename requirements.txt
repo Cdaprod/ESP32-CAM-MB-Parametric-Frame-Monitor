@@ -6,3 +6,4 @@ trimesh>=4,<5
 matplotlib>=3.8,<4
 vtk>=9.2,<10
 pillow>=10,<13
+plotly>=6,<7  # fully bundled into the standalone offline HTML viewer

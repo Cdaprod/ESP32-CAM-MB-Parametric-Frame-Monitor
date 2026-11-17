@@ -15,6 +15,10 @@
 | V009 | Tapered open-web arms, but long guide supports remain |
 | **V010** | **Four cable seats cut directly into the arm sidewalls, two per arm, plus scalloped knobs and relieved camera shell** |
 
+## Current interactive 3D viewer
+
+[Standalone offline HTML viewer](../viewer/index.html) · [Current GLB](../viewer/COMPLETE_ASSEMBLY.glb) · [Integrity metadata](../viewer/release.json). Stable URLs are updated whenever the CAD preview pipeline runs. The V003 viewer is a preserved historical artifact.
+
 ## V010 source and export paths
 
 [Unified build entry](../src/build.py) · [Parametric config](../src/frame_monitor/config.py) · [Assembly STEP](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step)

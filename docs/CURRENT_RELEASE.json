@@ -39,5 +39,9 @@
     "Full printer travel and cable bending",
     "Topology-inspired wrist adapter redesign",
     "Topology-inspired 4040 mounting plate"
-  ]
+  ],
+  "viewer": "viewer/index.html",
+  "viewer_glb": "viewer/COMPLETE_ASSEMBLY.glb",
+  "viewer_manifest": "viewer/release.json",
+  "viewer_generation": "Automatically rebuilt from current assembly and PNG previews on every CAD render"
 }

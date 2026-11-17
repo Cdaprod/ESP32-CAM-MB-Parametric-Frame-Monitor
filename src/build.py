@@ -9,18 +9,22 @@ from pathlib import Path
 from frame_monitor.export import build
 from frame_monitor.validate import validate
 from frame_monitor.render import render
+from frame_monitor.viewer import build_viewer
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
     parser=argparse.ArgumentParser(description='ESP32-CAM-MB parametric build')
-    parser.add_argument('task',choices=('build','validate','render','all'),
+    parser.add_argument('task',choices=('build','validate','render','viewer','all'),
                         default='all',nargs='?')
     task=parser.parse_args().task
     if task in ('build','all'):build(ROOT)
     if task in ('validate','all'):validate(ROOT)
-    if task in ('render','all'):render(ROOT)
+    if task in ('render','all'):
+        render(ROOT)
+        build_viewer(ROOT)
+    if task == 'viewer':build_viewer(ROOT)
     print('V010 task complete:',task)
 
 
