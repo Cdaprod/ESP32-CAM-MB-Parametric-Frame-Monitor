@@ -1,22 +1,17 @@
-# V008 verification scope
+# V009 — CAD-only validation scope
 
-**CAD-only prototype, not a physically qualified printer-mounted device.**
+V009 consists of two 35 mm pivot-center tapered structural links (14 mm end width, 18 mm midspan width and 7.5 mm nominal depth), with triangular lightening windows and diagonal webs. This is **topology-inspired**, not an FEA optimization or physical load qualification.
 
-The new unified build generates a 30-entry assembly, two corrected watertight arm STLs, and three geometry-derived PNG renders. The validation checks 13 *selected* poses of four manually adjustable joints (base, elbow, pitch and wrist), not the entire four-dimensional joint space.
-
-| CAD observation | V008 result |
+| CAD check | V009 |
 |---|---:|
-| Selected articulated poses | 13 / 13 pass |
-| Both arm cable guides align with the nominal lead | 2 / 2 |
-| Nominal cable outside diameter | 3.2 mm |
-| Guide through-bore diameter | 3.8 mm |
-| Nominal radial clearance through either guide | 0.30 mm |
-| Minimum cable-to-knob distance | 7.132 mm |
-| Minimum cable-to-4040 distance | 3.802 mm |
-| New watertight print parts | 2 / 2 |
+| Sampled arm poses | 13/13 pass |
+| Assembly entries | 30 |
+| Watertight printable arms | 2/2 |
+| Nominal cable OD / guide bore | 3.2 / 3.8 mm |
+| Nominal radial clearance | 0.30 mm |
+| Minimum modeled cable-to-knob gap | 7.132 mm |
+| Minimum modeled cable-to-rail gap | 3.802 mm |
 
-**Not yet demonstrated:** continuous 4-DOF collision-free operation; cable connector boot and bend radius; dynamic sag, torsion and strain relief; printed guide/web stiffness or fatigue; real 4040 slot and M5 T-nut engagement; actual camera stack; the printer's full movement envelope; heat, torque, UV and vibration safety.
+**Not demonstrated:** continuous collision-free four-joint travel, actual cable bend radius, connector boots or dynamic sag, print layer strength, stiffness or fatigue, real 4040/T-nut engagement, camera dimensions, printer travel, heat and vibration performance.
 
-Physical acceptance requires actual dimensions in the [V008 fit register](PHYSICAL_FIT_REGISTER_V008.csv), a printed cable-guide coupon, and a powered-off complete machine-travel and harness clearance test before any operational installation.
-
-[Latest CAD report](validation_v008.json) · [Engineering notes](ENGINEERING_NOTES_V008.md).
+[Current report](validation_v009.json) · [Engineering notes](ENGINEERING_NOTES_V009.md) · [Physical measurements](PHYSICAL_FIT_REGISTER_V009.csv).
