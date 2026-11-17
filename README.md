@@ -6,6 +6,8 @@
 
 **Current CAD development release: V009.** Full assembly and sampled cable/joint poses have passed CAD checks; **actual fit, stiffness, strength, and printer travel have not been qualified.**
 
+**Visual-review finding:** V009's triangulated links still retain the two downward-protruding cable guide supports visible in the render. They are a known unresolved design limitation—not the intended integrated-channel geometry. [V010 corrective-design issue #3](https://github.com/Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor/issues/3).
+
 [Complete V009 STEP](step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step) · [New arm STLs](stl/V009_first_arm.stl) · [Engineering notes](docs/ENGINEERING_NOTES_V009.md) · [Validation JSON](docs/validation_v009.json)
 
 ## V009 — See the actual redesigned arms
