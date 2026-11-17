@@ -1,0 +1,16 @@
+feature,design_target_mm,measured_mm,status,verification_action
+4040 outside face dimension,40,,UNVERIFIED,Measure actual left/front chassis rail cross-section
+4040 slot mouth,6.20,,UNVERIFIED,Measure the exact mounting face slot
+4040 slot inner opening,10.50,,UNVERIFIED,Check undercut geometry for true metal T-nut engagement
+Printed key recess,0.65,,CAD VERIFIED,Check physical plate clamp face contact after fastening
+Lateral key sliding clearance,0.18,,CAD VERIFIED,Print coupon and slide test on real rail
+M5 plate screw clamp torque,,,UNVERIFIED,Select metal T-nut and torque specification
+ESP32-CAM-MB nominal board width,27,,UNVERIFIED,Measure actual PCB stack
+ESP32-CAM-MB nominal board height,40,,UNVERIFIED,Measure overall module and boot
+ESP32-CAM-MB nominal depth,17,,UNVERIFIED,Measure USB programmer and headers
+USB cable nominal outer diameter,3.2,,UNVERIFIED,Measure actual cable and boot
+Cable to closest thumbwheel,7.132,,CAD VERIFIED,Physical full joint sweep with USB lead
+Cable to 4040 extrusion,3.802,,CAD VERIFIED,Validate full motion and cable sag
+Wrist journal clearance,0.50,,CAD VERIFIED,Fit and torque physical printed wrist
+Maximum tested wrist yaw magnitude,20,,CAD VERIFIED,Test beyond sampled +/-20 angles before expanding range
+Camera line of sight above rail,,,UNVERIFIED,Check actual printer bed view across whole travel

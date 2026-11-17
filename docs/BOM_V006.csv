@@ -1,0 +1,18 @@
+revision,item,quantity,interface_or_nominal_dimension,origin,verification,notes
+V006,4040 horizontal extrusion,1,40x40x180 mm photo-derived section,V002 reference,PROVISIONAL,Verify actual printer chassis profile and side-face access
+V006,Printed captured alignment key,1,11 mm long and 0.65 mm recessed,V004 reuse,CAD VERIFIED,Non-load-bearing locator only
+V006,Metal M5 sliding T-nut,2,Recovered 4040 undercut profile nominal,V004 reuse,PROVISIONAL,Verify real compatible metal T-nut
+V006,M5 socket-head clamping screw,2,M5x8 nominal,V004 reuse,PROVISIONAL,Verify grip stack and metal nut engagement
+V006,Printed rail mounting plate,1,4040 left-side installation,V004 reuse,CAD VERIFIED,Mount face is global +Y
+V006,Printed arm link A,1,35 mm nominal,V004 reuse,CAD VERIFIED,Base to elbow
+V006,Printed arm link B,1,35 mm nominal,V004 reuse,CAD VERIFIED,Elbow to pitch
+V006,Printed camera wrist adapter,1,M4 pitch ear plus fourth Z-axis wrist hinge,V006 NEW,CAD VERIFIED,New watertight STL
+V006,Printed full-sidewall camera shell,1,Bottom USB exit with wrist hinge leaf,V006 NEW,CAD VERIFIED,New watertight STL
+V006,Printed removable camera bezel,1,Optical aperture antenna opening four mounting screws,V004 reuse,CAD VERIFIED,Existing bezel profile retained
+V006,Printed M4 hand thumbwheel,4,23 mm nominal diameter,V004 reused x4,CAD VERIFIED,One each at base elbow pitch and wrist
+V006,M4 metal pivot bolt,4,Nominal shaft lengths vary by joint,V004/V006,PROVISIONAL,Match actual grip length and insert fit
+V006,M4 captive hex nut,4,Nominal AF7.0 and printed AF7.2 pockets,V004/V006,PROVISIONAL,Check real nuts and print shrinkage
+V006,M2.5 camera bezel screw,4,Nominal 7 mm shaft,V004 reuse,PROVISIONAL,Actual head and thread fit unverified
+V006,ESP32-CAM-MB module,1,27x40x17 mm nominal overall envelope,reference,PROVISIONAL,Measure real PCB camera USB and antenna
+V006,USB power cable,1,3.2 mm nominal outer diameter,V006 routing,PROVISIONAL,Verify connector boot bend radius and strain relief
+V006,USB cable saddles/retainers,as needed,Outside thumbwheel sweep,V004 reuse,PROVISIONAL,Route is modeled not a printed dynamic clamp qualification
