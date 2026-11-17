@@ -1,10 +1,10 @@
 {
-  "release": "V008",
+  "release": "V009",
   "is_current": true,
   "repository": "Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor",
   "default_branch": "main",
-  "status": "CAD-only validated prototype; physical fit unverified",
-  "summary": "Single-source Python/CadQuery build on horizontal 4040 left-side frame; corrected cable guides on both arms, V006 four-joint wrist preserved",
+  "status": "CAD-only validated topology-inspired structural arm redesign; physical fit and mechanical load unverified",
+  "summary": "Unified four-joint left-side 4040 frame monitor with two tapered, triangularly braced V009 arms and aligned outboard USB cable guides",
   "coordinate_frame": {
     "rail": "X horizontal",
     "mount_face": "left/outside +Y",
@@ -30,15 +30,16 @@
     "nominal_radial_guide_clearance_mm": 0.3,
     "min_cable_to_thumbwheel_gap_mm": 7.132,
     "min_cable_to_rail_gap_mm": 3.802,
-    "physical_fit": "UNVERIFIED"
+    "physical_fit": "UNVERIFIED",
+    "load_testing": "UNVERIFIED"
   },
   "source": "src/build.py",
   "validator": "src/frame_monitor/validate.py",
   "renderer": "src/frame_monitor/render.py",
-  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V008.step",
+  "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V009.step",
   "new_printed": [
-    "stl/V008_first_arm.stl",
-    "stl/V008_second_arm.stl"
+    "stl/V009_first_arm.stl",
+    "stl/V009_second_arm.stl"
   ],
   "reused_printed": [
     "stl/V004_recessed_alignment_key.stl",
@@ -49,15 +50,15 @@
     "stl/V006_wrist_adapter.stl"
   ],
   "previews": [
-    "previews/v008_full_assembly.png",
-    "previews/v008_cable_guides.png",
-    "previews/v008_wrist_20_degrees.png"
+    "previews/v009_full_assembly.png",
+    "previews/v009_cable_guides.png",
+    "previews/v009_wrist_20_degrees.png"
   ],
   "bom": "docs/BOM.csv",
   "bom_snapshot": "docs/BOM_V008.csv",
   "fit_register": "docs/PHYSICAL_FIT_REGISTER_V008.csv",
-  "manifest": "docs/manifest_v008.json",
-  "validation": "docs/validation_v008.json",
+  "manifest": "docs/manifest_v009.json",
+  "validation": "docs/validation_v009.json",
   "legacy_viewer": "viewer/OPEN_V003_OFFLINE.html",
   "history": [
     "V001",
@@ -66,11 +67,22 @@
     "V004",
     "V005",
     "V006",
-    "V007"
+    "V007",
+    "V008"
   ],
   "limitations": [
     "Thirteen discrete poses, not continuous motion proof",
     "Cable boot, bend radius, strain relief and 3D-print strength unverified",
     "Actual 4040 and ESP32-CAM-MB dimensions, printer travel, torque, vibration and heat unverified"
-  ]
+  ],
+  "arm_geometry": {
+    "center_to_center_mm": 35,
+    "end_width_mm": 14,
+    "midspan_width_mm": 18,
+    "thickness_mm": 7.5,
+    "lightening_cells_per_link": 2,
+    "reinforcement": "diagonal web",
+    "structural_qualification": "NOT FEA-OPTIMIZED OR LOAD-TESTED"
+  },
+  "notes": "docs/ENGINEERING_NOTES_V009.md"
 }
