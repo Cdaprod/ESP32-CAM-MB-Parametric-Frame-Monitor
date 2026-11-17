@@ -20,6 +20,21 @@
       -66.0,
       -72.0
     ],
+    "cable_exit_xyz_mm": [
+      0.0,
+      -104.0,
+      1.0
+    ],
+    "cable_exit_drop_mm": 10.0,
+    "cable_camera_outboard_x_mm": -22.0,
+    "cable_joint_outboard_x_mm": -20.0,
+    "cable_wrist_loop_outboard_x_mm": -30.0,
+    "cable_wrist_loop_reach_mm": 10.0,
+    "cable_pitch_transition_z_mm": -24.0,
+    "cable_riser_lower_z_mm": -20.0,
+    "cable_bend_radius_mm": 6.0,
+    "cable_bend_cutback_fraction": 0.42,
+    "cable_reference_min_radius_mm": 1.6,
     "cable_to_knob_min_mm": 1.0,
     "cable_to_rail_min_mm": 1.2,
     "sampled_poses": [
