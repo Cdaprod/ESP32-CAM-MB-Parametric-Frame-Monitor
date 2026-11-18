@@ -1,0 +1,14 @@
+feature,2020_nominal_mm,4040_nominal_mm,measured_mm,status,acceptance
+Extrusion face width,20,40,,UNVERIFIED,Measure each actual rail
+Parallel slot center distance,N/A,20,,CAD REFERENCE,Caliper check actual rail
+V5 slot mouth width,6.20,6.20,,2020 ASSUMED / 4040 PHOTO-DERIVED,Measure
+V5 internal head width,10.50,10.50,,2020 ASSUMED / 4040 PHOTO-DERIVED,Fit coupon
+V5 slot lip depth,1.50,1.50,,UNVERIFIED,Measure
+Mouth locating tongue width,5.84,5.84,,CAD,Print then measure
+Mouth tongue protrusion,1.00,1.00,,CAD,No interference or plate lift
+Plate thickness,6.00,6.00,,CAD,Check fastener grip
+M5 screw hole,5.40,5.40,,CAD,Fit actual M5 hardware
+M5 counterbore diameter,9.00,9.00,,CAD,Check head OD and embed
+Nominal T-nut length,9.00,9.00,,UNVERIFIED,Measure metal T-nuts
+M4 pivot distance from rail face,-17.00,-17.00,,CAD,Check legacy arm coupling
+Moving printer clearance,N/A,N/A,,UNVERIFIED,Full unpowered toolhead and bed sweep
