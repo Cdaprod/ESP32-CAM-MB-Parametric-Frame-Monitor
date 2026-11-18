@@ -8,6 +8,28 @@ Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real 
 
 **Print-readiness audit:** [12 prioritized, source-verified defects and acceptance gates](docs/PRINT_READINESS_AUDIT_V010.md) · [GitHub issue #5](https://github.com/Cdaprod/ESP32-CAM-MB-Parametric-Frame-Monitor/issues/5). **Do not install V010 on a moving printer** based only on CAD watertightness or screenshot appearance.
 
+## Parametric 2020 / 4040 extrusion mounting brackets
+
+**New feature — CAD engineering candidate, not an integrated V010 replacement.** The same one-piece gusseted bracket generator scales from one centered 2020 slot to two parallel 4040 slots at 20 mm pitch. M5 metal T-nuts provide clamp force; integral indexing tongues sit **between** screw stations, eliminating interference with the separate historical V5 key. An M4 camera-arm pivot retains the `Y = -17 mm` datum.
+
+[**Open the offline interactive mounting-interface model selector**](viewer/mount_interface.html) · [Dimensional constraints, construction and installation](docs/MOUNTING_INTERFACE.md) · [Parametric CadQuery source](src/frame_monitor/mount_interface.py) · [Physical fit register](docs/MOUNTING_FIT_REGISTER.csv).
+
+| Preset | Parallel slots | M5 screws | One-piece plate |
+|---|---:|---:|---|
+| 2020 single | 1 | 2 | 18 × 54 × 6 mm |
+| 4040 dual | 2 | 4 | 38 × 54 × 6 mm |
+| 4040 extended | 2 | 8 | 38 × 114 × 6 mm |
+
+![Parametric 2020 bracket, two screws](previews/mount_2020_single_2xM5.png)
+
+![Parametric 4040 bracket, dual slots and four screws](previews/mount_4040_dual_4xM5.png)
+
+![Parametric extended 4040 bracket, eight screws](previews/mount_4040_dual_8xM5.png)
+
+![Actual CAD rear face showing integral locating tongues](previews/mount_4040_tongue_detail.png)
+
+Print-ready bracket exports are *not claimed*: physical slot fit, fastener preload, build orientation, bending strength and full printer motion still require validation. Actual STEP/STL variants are published in `step/MOUNT_*.step` and `stl/MOUNT_*.stl`. The `V010` assembly is preserved as-is until physical integration can be proved.
+
 ## Explore the latest assembly in 3D
 
 [![Open the current interactive 3D assembly viewer](previews/v010_full_assembly.png)](viewer/index.html)
@@ -86,7 +108,8 @@ python src/build.py build
 python src/build.py validate
 xvfb-run -a python src/build.py render  # also refreshes viewer/index.html and GLB
 python src/build.py viewer               # refresh viewer only, from current models
-# Or all three in one invocation
+python src/build.py mounts  # regenerate parametric 2020 and 4040 bracket family
+# Rebuild V010 and mount interface from their current sources
 xvfb-run -a python src/build.py all
 ```
 

@@ -10,13 +10,14 @@ from frame_monitor.export import build
 from frame_monitor.validate import validate
 from frame_monitor.render import render
 from frame_monitor.viewer import build_viewer
+from build_mount_interface import build_suite
 
 ROOT=Path(__file__).resolve().parents[1]
 
 
 def main():
     parser=argparse.ArgumentParser(description='ESP32-CAM-MB parametric build')
-    parser.add_argument('task',choices=('build','validate','render','viewer','all'),
+    parser.add_argument('task',choices=('build','validate','render','viewer','mounts','all'),
                         default='all',nargs='?')
     task=parser.parse_args().task
     if task in ('build','all'):build(ROOT)
@@ -25,6 +26,7 @@ def main():
         render(ROOT)
         build_viewer(ROOT)
     if task == 'viewer':build_viewer(ROOT)
+    if task in ('mounts','all'):build_suite(ROOT)
     print('V010 task complete:',task)
 
 

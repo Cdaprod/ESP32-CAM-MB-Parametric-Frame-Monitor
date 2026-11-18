@@ -7,6 +7,8 @@ on:
       - 'src/frame_monitor/**'
       - 'tests/test_v010_outputs.py'
       - 'tests/test_cable_arcs.py'
+      - 'src/build_mount_interface.py'
+      - 'tests/test_mount_interface.py'
       - 'tests/test_finish_features.py'
       - 'tests/test_viewer_current.py'
       - 'requirements.txt'
@@ -43,6 +45,10 @@ jobs:
         run: python tests/test_finish_features.py
       - name: Render eight geometry-derived engineering previews
         run: xvfb-run -a python src/build.py render
+      - name: Generate 2020 and 4040 parametric mounting-interface artifacts
+        run: xvfb-run -a python src/build.py mounts
+      - name: Verify mount family geometry, real PNGs, STEP and STL
+        run: python tests/test_mount_interface.py
       - name: Verify current viewer, GLB and previews belong to the same release
         run: python tests/test_viewer_current.py
       - name: Verify real PNGs, CAD exports, BOM and current-release metadata
@@ -52,7 +58,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png viewer/index.html viewer/COMPLETE_ASSEMBLY.glb viewer/release.json docs/manifest_v010.json docs/validation_v010.json
+          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png viewer/index.html viewer/COMPLETE_ASSEMBLY.glb viewer/release.json docs/manifest_v010.json docs/validation_v010.json step/MOUNT_*.step stl/MOUNT_*.stl previews/mount_*.png viewer/mount_interface.html viewer/mount_interface_release.json docs/mount_interface_manifest.json
           if git diff --cached --quiet; then
             echo 'All generated models already match the committed sources.'
           else
@@ -64,7 +70,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png viewer/index.html viewer/COMPLETE_ASSEMBLY.glb viewer/release.json docs/manifest_v010.json docs/validation_v010.json
+          git add step/*V010.step step/V010_*.step stl/V010_*.stl previews/v010_*.png viewer/index.html viewer/COMPLETE_ASSEMBLY.glb viewer/release.json docs/manifest_v010.json docs/validation_v010.json step/MOUNT_*.step stl/MOUNT_*.stl previews/mount_*.png viewer/mount_interface.html viewer/mount_interface_release.json docs/mount_interface_manifest.json
           if git diff --cached --quiet; then
             echo 'Finished exports already match their generator.'
           else
@@ -87,3 +93,11 @@ jobs:
             docs/validation_v010.json
             docs/BOM_V010.csv
             docs/ENGINEERING_NOTES_V010.md
+            step/MOUNT_*.step
+            stl/MOUNT_*.stl
+            previews/mount_*.png
+            viewer/mount_interface.html
+            viewer/mount_interface_release.json
+            docs/mount_interface_manifest.json
+            docs/MOUNTING_INTERFACE.md
+            docs/MOUNTING_FIT_REGISTER.csv
