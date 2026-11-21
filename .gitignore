@@ -5,3 +5,4 @@ __pycache__/
 .pytest_cache/
 .cache/
 *.FCStd1
+*/localStorage.json
