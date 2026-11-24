@@ -16,7 +16,7 @@ def printable_parts():
             ('V010_relieved_camera_shell',wrist.shell()),
             ('V010_wrist_adapter',wrist.adapter()),
             ('V004_removable_camera_bezel',cad_parts.camera_bezel()),
-            ('V004_mount_plate',cad_parts.base_plate()),
+            ('V010_mount_plate',cad_parts.reinforced_base_plate()),
             ('V004_recessed_alignment_key',cad_parts.alignment_key())]
 
 
@@ -39,7 +39,7 @@ def build(root:Path):
       'revision':CONFIG.release,'generator':'src/build.py',
       'parameters':asdict(CONFIG),'component_count':len(parts),
       'components':[{'name':name,'kind':kind} for name,shape,color,kind in parts],
-      'new_printable':['V010_first_arm','V010_second_arm','V010_scalloped_thumbwheel','V010_relieved_camera_shell','V010_wrist_adapter'],
+      'new_printable':['V010_first_arm','V010_second_arm','V010_scalloped_thumbwheel','V010_relieved_camera_shell','V010_wrist_adapter','V010_mount_plate'],
       'base':'V006 four-joint articulated wrist; historical versioned scripts not imported'
     }
     (root/'docs'/'manifest_v010.json').write_text(json.dumps(manifest,indent=2)+'\n')

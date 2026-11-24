@@ -7,6 +7,7 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 from pathlib import Path
 import json
+from functools import lru_cache
 import cadquery as cq
 from . import parts as b4
 
@@ -33,22 +34,33 @@ class Spec:
 
 S=Spec()
 
+@lru_cache(maxsize=1)
 def adapter():
     """New M4 pitch ear coupled to 49mm wrist link and bottom Z-journal."""
     ya=S.wrist_y_mm
-    a=cyl_x(7.5,4.2,7.4,-87,-12)
+    a=cyl_x(9.5,6.3,7.4,-87,-12)
     a=a.fuse(block(7.35,ya,-14,6.35,-87-ya,8))
-    # Widen away from the mating pitch ear; retain both journal datums.
-    rib=(cq.Workplane('YZ').polyline([(-94,-13),(-125,-13),(-94,-18)])
+    # A broad wrist-end spine tapers back to the pitch mating plane.
+    web=(cq.Workplane('XY').polyline([(3,-136),(13.7,-136),
+         (13.7,-87),(7.35,-87),(7.35,-99),(3,-108)])
+         .close().extrude(8).val().translate((0,0,-14)))
+    a=a.fuse(web)
+    # Continuous underside rib reaches BOTH journals, rather than ending
+    # short of the small pitch-ear/beam junction.
+    rib=(cq.Workplane('YZ').polyline([(-136,-9),(-87,-9),
+         (-87,-18),(-94,-20),(-124,-16),(-136,-10)])
          .close().extrude(6.35).val().translate((7.35,0,0)))
     a=a.fuse(rib)
     a=a.fuse(cyl_z(7,6,S.wrist_x_mm,ya,-10))
-    a=a.cut(cyl_x(2.15,5.2,7,-87,-12))
-    a=a.cut(b4.hex_pocket(7.2,3.5,(8.25,-87,-12),'x'))
+    a=a.cut(cyl_x(2.15,8,7,-87,-12))
+    a=a.cut(b4.hex_pocket(7.2,3.75,(10.25,-87,-12),'x'))
     a=a.cut(cyl_z(2.15,7,S.wrist_x_mm,ya,-10.5))
-    a=a.cut(b4.hex_pocket(7.2,3.2,(S.wrist_x_mm,ya,-10)))
+    # Open the nut insertion passage through the deeper rib; the nut seat
+    # and metal nut datum remain at their original height.
+    a=a.cut(b4.hex_pocket(7.2,8.2,(S.wrist_x_mm,ya,-15)))
     return finish_wrist(a.clean())
 
+@lru_cache(maxsize=1)
 def shell():
     """Full-sidewall V004 shell with new wrist leaf instead of original pitch ear."""
     s=block(-18,-116,2,36,24,51)
@@ -57,7 +69,15 @@ def shell():
     for x in (-16.25,16.25):
         for z in (4.5,50.5):
             s=s.cut(b4.cyl(1.07,7,(x,-91,z),(0,-1,0)))
-    s=s.fuse(block(5,S.wrist_y_mm,-3.5,5,-113-S.wrist_y_mm,6.3))
+    # Full-width leaf, with a deep rear-wall root instead of the previous
+    # 5 mm tab attached to the floor by only 0.8 mm of overlap.
+    s=s.fuse(block(.5,S.wrist_y_mm,-3.5,14,-113-S.wrist_y_mm,5.8))
+    # Begin the rising buttress outside the rotating handwheel's R11.5
+    # envelope. Its 12 x 14 mm rear-wall attachment avoids the USB opening.
+    root=(cq.Workplane('YZ').polyline([(-123,1.8),(-116,16),
+          (-113,16),(-113,2),(-116,1.8)])
+          .close().extrude(12).val().translate((1.5,0,0)))
+    s=s.fuse(root)
     s=s.fuse(cyl_z(7,5.8,S.wrist_x_mm,S.wrist_y_mm,-3.5))
     s=s.cut(cyl_z(2.15,7,S.wrist_x_mm,S.wrist_y_mm,-4))
     # Nominal 3mm sidewalls: 0.8mm triangular outer reliefs leave >=2.2mm.
@@ -67,6 +87,12 @@ def shell():
                  .polyline([(y0,z0),(y0+10,z0),(y0+5,z0+9)])
                  .close().extrude(.8).val().translate((x,0,0)))
             s=s.cut(pocket)
+    s=s.clean()
+    # R1.5 concave root blend spreads the transition into the rear wall.
+    edges=[e for e in s.Edges() if abs(e.Center().y+116)<.001
+           and abs(e.Center().z-16)<.001 and abs(e.Length()-12)<.001]
+    if len(edges)!=1: raise ValueError('Shell root edge selection changed')
+    s=s.fillet(1.5,edges)
     return finish_shell(s.clean())
 
 def pose_cam(s,wrist=0.0):

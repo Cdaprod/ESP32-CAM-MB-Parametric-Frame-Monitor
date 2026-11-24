@@ -13,8 +13,8 @@ class MonitorConfig:
     first_cable_z_mm: float = 10.25
     second_cable_x_mm: float = -9.5
     second_cable_z_mm: float = 17.75
-    first_clip_y_mm: tuple = (-32.5,-37.7)
-    second_clip_y_mm: tuple = (-66.0,-72.0)
+    first_clip_y_mm: tuple = (-28.0,-41.0)
+    second_clip_y_mm: tuple = (-63.0,-77.0)
     # All cable-routing dimensions are nominal, not measured jacket properties.
     cable_exit_xyz_mm: tuple = (0.0, -104.0, 1.0)
     cable_exit_drop_mm: float = 10.0

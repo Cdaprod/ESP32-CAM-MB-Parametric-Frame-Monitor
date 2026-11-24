@@ -27,11 +27,11 @@ def render(root:Path):
     default=components()
     renderer.camera_scene(default,target/'v010_full_assembly.png',
         'V010 | UNIFIED FRAME-MONITOR ASSEMBLY',
-        'Rounded arm slots, reinforced wrist and reduced clip interference',
+        'Broad enclosure root, continuous wrist heel and gusseted pitch upright',
         (245,215,170),(22,65,19))
     renderer.camera_scene(default,target/'v010_cable_guides.png',
         'V010 | FOUR COMPACT OPEN U-CLIPS',
-        'Two U retainers per arm; alternate insertion direction',
+        'Alternating cable seats spaced 13 and 14 mm center-to-center',
         (162,230,124),(18,120,12),opacity={'4040_horizontal_reference':0})
     renderer.camera_scene(components(wrist=20),target/'v010_wrist_20_degrees.png',
         'V010 | INDEPENDENT WRIST YAW +20 DEGREES',
@@ -63,10 +63,26 @@ def render(root:Path):
       (45,-55,46),(0,0,3.5))
     renderer.camera_scene([('V010_relieved_camera_shell',current_wrist.shell(),(.13,.49,.61),'printed')],
       target/'v010_camera_shell.png','V010 | RELIEVED CAMERA SHELL',
-      'Shallow triangular exterior reliefs; retained camera enclosure',
+      '14 mm leaf, deep rear-wall buttress and R1.5 root blend',
       (85,-190,90),(0,-105,25))
     renderer.camera_scene([('arm_1',arm1,(.95,.49,.19),'printed'),
       ('arm_2',arm2.translate((45,36,0)),(.91,.55,.24),'printed')],
       target/'v010_arm_pair.png','V010 | BOTH REVISED ARMS',
       'Rounded slots, continuous spine and four compact U-clips',
       (100,-115,80),(22,-48,13))
+
+    # One inspection sheet follows the entire load path, with actual solids.
+    import tempfile
+    with tempfile.TemporaryDirectory() as temporary:
+        panels=[('HOUSING ROOT',current_wrist.shell(),(85,-190,85),(4,-119,25)),
+                ('WRIST HEEL',current_wrist.adapter(),(80,-170,55),(7,-111,-10)),
+                ('PITCH UPRIGHT',arm2,(78,-115,78),(-4,-72,5)),
+                ('EXTRUSION ROOT',cad_parts.reinforced_base_plate(),(65,-85,55),(0,-10,0))]
+        sheet=Image.new('RGB',(1760,1180),'white')
+        for i,(title,shape,eye,look) in enumerate(panels):
+            path=Path(temporary)/f'{i}.png'
+            renderer.camera_scene([(title,shape,(.91,.49,.2),'printed')],path,
+                'V010 | '+title,'Solid load-path reinforcement; physical load testing required',eye,look)
+            with Image.open(path) as panel:
+                sheet.paste(panel.resize((880,590)),((i%2)*880,(i//2)*590))
+        sheet.save(target/'v010_load_path.png')

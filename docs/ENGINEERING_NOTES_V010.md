@@ -1,63 +1,42 @@
-# V010 engineering notes — direct-to-arm cable channels and topology-inspired components
+# V010 engineering notes — structural revision
 
-**Current: V010 CAD-only prototype.** The rejected early V010 candidate used short outboard rings and feet connected to the arms; those features were **replaced** by sidewall cable passages in the merged V010 release. The current model has **no dangling guide struts**. Historical V009 remains unchanged.
+## Structural load-path and clip-access revision
 
-## Current geometry and mounting invariants
+Current active CadQuery geometry, STEP/STL exports and Orca project. Historical V004/V006 files are preserved.
 
-- Two tapered, triangulated structural links preserve **35 mm pivot-to-pivot spacing**, four independently adjustable joints, and the left-mounted horizontal 4040 extrusion configuration.
-- Cable Ø3.2 mm nominal; U-shaped sidewall seat Ø3.8 mm; radial cable clearance 0.30 mm; clip throat 2.65 mm. These are modeled reference values, not actual measured cable dimensions.
-- **Four** alternating openings (two per articulated arm), with cable routes derived in moving link-local coordinates. The arm sidewalls are locally thickened where necessary, and the seats are formed by cutting the guide geometry into those walls. No separate cable-support arm remains.
-- **Current generator parameters:** first link cable seat axis `x = -9.5 mm, z = 10.25 mm`, with positions `y = -32.5/-37.7 mm`; second link axis `x = -9.5 mm, z = 17.75 mm`, with positions `y = -66.0/-72.0 mm`. Values are from the generated [V010 manifest](manifest_v010.json).
-- **Current opening sequence:** `-X, +Z, -X, +Z` in the link-local reference frames. Earlier initial-candidate coordinates at `x=-15.5 mm`, longer guide feet, and `-X/+X` orientation are **obsolete** and must not be used when rebuilding V010.
-- The hand-operated M4 knob retains its nominal Ø23 mm envelope and captive-nut interface; its scalloped perimeter and relief geometry are CAD styling and ergonomic candidates, not proven fatigue or torque improvements.
-- The camera shell retains the nominal board/optical/bezel/wrist interfaces and introduces four shallow exterior wall-relief pockets (0.8 mm recess into the nominal 3 mm wall, leaving a modeled 2.2 mm residual wall). Physical print tolerances remain unverified.
-- The 4040 mounting plate and wrist adapter remain preserved from earlier versions; topology-inspired revisions are still pending.
+Starting at the camera and proceeding toward the rail:
 
-## Actual CAD renders
+1. Enclosure: replace the 5 × 6.3 mm tab (31.5 mm² nominal section, only 0.8 mm floor overlap) with a 14 × 5.8 mm leaf (81.2 mm²) and a 12 mm-wide rear-wall buttress rising to Z=16, with R1.5 concave root blending. This adds a second, higher attachment into the wall without filling the board cavity or USB aperture. The rising buttress starts outside the wrist wheel envelope.
+2. Wrist: widen the wrist-end spine to 10.7 mm, taper to the pitch mating side, enlarge the pitch ear from R7.5 to R9.5, and continue the underside heel into both journal regions. Extend bore and nut-insertion cuts through the added material while preserving pivot axes and the wrist nut seat. The pitch ear grows to 6.3 mm thickness; its nut seat moves outward by 2 mm, increasing the bearing floor from 0.85 to 2.85 mm and using an M4×25 pitch bolt.
+3. Pitch arm: a 12 mm-wide triangular heel reaches 19 mm into the arm and ties the upright to the link, rather than concentrating load through its short rectangular toe. Existing pivot centers, bores and clamping faces remain.
+4. First arm: retain its continuous center spine and rounded slot ends, with groove length revised for cable entry. Its 35 mm pivot spacing and 7.5 mm thickness remain.
+5. Extrusion: add paired 3 mm heel ribs outside the M5 counterbores; retain the rail-bearing face and separate metal T-nut clamping. A local front-face wheel relief prevents rubbing. Publish the revised mount as V010; preserve V004 exports.
 
-![V010 complete left-side 4040 assembly](../previews/v010_full_assembly.png)
+The base and elbow wheels formerly intersected the printed arms by 1.5 mm. They now have 0.5 mm nominal face clearance. Their modeled bolt lengths change to M4×30 and M4×25 respectively, with metal nut datums preserved; verify actual bolt engagement/protrusion on hardware.
 
-![Both corrected sidewall-channel arms](../previews/v010_arm_pair.png)
+Cable clips: first-arm center spacing 13 mm, second-arm spacing 14 mm. With 4.5 mm pad widths, clear gaps are 8.5 and 9.5 mm, versus 0.7 and 1.5 mm previously. Entry/exit anchors and both grooves are adjusted to keep the curved cable reference off the reinforced pads. The cable is seated into the alternating open mouths; physical insertion force, bending and retention remain untested.
 
-![Four directly integrated cable seats](../previews/v010_cable_guides.png)
+Verification now includes seven solid-volume witnesses along these roots, board/USB and pivot-bore exclusion checks, and printed-body intersection checks at all 18 sampled poses. These checks establish modeled material continuity and sampled clearance, not fatigue life or a load rating.
 
-![Current camera shell](../previews/v010_camera_shell.png)
-
-![Current hand knob](../previews/v010_thumbwheel.png)
-
-## Reproducible verification results
-
-The authoritative report is [`validation_v010.json`](validation_v010.json). On the current nominal geometry:
-
-| Geometry/assembly check | Verified CAD result |
-|---|---:|
-| Sampled articulated poses | **18 / 18 pass** |
-| Four integrated cable seats | **4** |
-| Long cable-support outriggers | **0** |
-| New valid, watertight single-body printed models | **4 / 4** |
-| Minimum cable-to-handwheel separation | **1.887 mm** |
-| Minimum cable-to-extrusion separation | **4.147 mm** |
-| Nominal radial gap in a 3.8 mm seat around Ø3.2 mm cable | **0.30 mm** |
-
-The V010 cable reference is a single round swept solid following pose-dependent tangent circular arcs, rather than separate faceted cylinders. Its effective geometrically drawn radii are recorded per pose. It does not simulate elastic deformation, fatigue, required dynamic bend radius, sag, jacket wear, or connector boot strain. The 2.65 mm nominal snap throat is smaller than the modeled cable jacket and has **not** been tested for repeated insertion or removal. Full printer axis travel, real rail fastener engagement, static deflection and vibration also remain unverified.
-
-[Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Current BOM](BOM.csv) · [Complete STEP assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step).
+The Orca project uses explicit side orientations for the enclosure and pitch/wrist parts, rather than largest-convex-face orientation. The mounting plate rests on its rail-bearing face; the first link, knobs and bezel lie flat. Automatic supports remain enabled for unavoidable suspended features. Settings increase to five walls and 40% infill. The installed PLA profile is retained as a prototype setting; temperature, creep, layer adhesion and support removal must be assessed with the actual material. Physical clip coupons, joint torque tests, camera-mass load tests and unpowered printer-travel inspection remain required before claiming break resistance.
 
 
-## Engineering polish — 2026-11-24
+## Current CAD acceptance
 
-Patched in the active CadQuery source, without conversion to another CAD system.
+- Eight unique printed designs: valid single BREP solids, watertight positive-volume STL meshes, CAD/mesh volume agreement within 0.5%.
+- Seven solid-volume root witnesses pass; board cavity, USB aperture and six pivot-bore probes are clear.
+- Eighteen sampled poses: printed bodies do not interpenetrate; the cable has 0.30 mm minimum modeled arm-channel clearance, 3.650 mm minimum wheel clearance and 4.147 mm rail clearance.
+- The pitch upright uses a single conservative convex clearance silhouette over 15 camera-box poses, rather than notched cuts for each pose. The lower boss and broad front heel carry the load around that clearance.
+- All four pivot centers are preserved. The first two arm pivot spacings remain 35 mm. Metal clamp faces and T-slot datums are retained.
+- The saved native 3MF contains 11 separate, grounded objects, with 12 mm minimum projected-hull spacing and checked orientation heights. Six current V010 designs and two inherited designs make up the eight unique printed parts.
 
-- Replace acute triangular arm cutouts with two 13 × 3 mm rounded slots. Within the slotted region, the nominal 18 mm body retains a 5 mm center spine, 3.5 mm outer rails, and R1.5 slot ends. This trades some material for continuous sections and removes acute web corners; no topology optimization or strength claim is made.
-- Widen the wrist bridge outward from 4.35 to 6.35 mm and add a 31 mm tapered underside rib, up to 4 mm deeper than the original bridge. Preserve pitch/wrist bores, nut seats and journal datums. Check this additional envelope against the actual printer.
-- Increase nominal clip throat from 2.65 to 3.0 mm: diametral interference decreases from 0.55 to 0.20 mm for the assumed 3.2 mm cable. Retention, insertion force and material compliance require measured coupons; do not infer fatigue performance.
-- Validate all eight unique printed designs, including inherited key, mount, bezel and updated wrist. Preserve historical wrist exports and publish the active wrist as V010.
-- Give the standalone offline viewer a separate legend area and reset-view control. Use portable annotation fonts for macOS/Linux builds. Run CAD CI on pull requests before merge.
+The cable route is a reference, not a flexible-body simulation; minimum drawn radius remains about 2 mm in some transitions. Clip spacing improves insertion access but does not establish cable-jacket strain, insertion force, retention or fatigue life. The 18 poses and conservative local keepout are not an exhaustive continuous four-axis proof. No structural FEA or physical load rating is claimed.
 
-Acceptance still requires measured camera/USB boot dimensions, cable bend and strain relief, material and orientation selection, slicing, clip coupons, clamp/load tests and unpowered full-travel clearance checks. The existing 18 sampled poses establish neither a continuous collision-free envelope nor a structural load rating. No physical printer operation is included.
 
-### Verified results
+## Offline slicing evidence
 
-All eight printed-design meshes pass single-body, watertight, positive-volume and BREP/STL volume agreement checks. All 18 sampled cable poses pass; minimum cable/knob gap remains 1.887 mm. Finished-solid and center-spine section witnesses pass. Eight geometry-derived previews, STEP, STL, GLB and offline HTML were regenerated; release checksums pass. Chrome was inspected at 390 × 844: all four wrapping visibility controls are visible and frame visibility toggles correctly.
+OrcaSlicer 2.5.0-rc successfully sliced the complete updated 11-piece plate with the installed Neptune 2 0.4 mm / Panchroma PLA Matte settings, five walls, 40% infill and automatic normal supports. Estimated total: **7h 29m 10s, 74.51 g**. Maximum part height: 36 mm. Support and support-interface toolpaths are present. Independent support/interface layers can differ from the nominal 0.20 mm object-layer setting. G-code remains temporary analysis output; no printer was contacted or operated.
 
-Offline OrcaSlicer 2.5.0-rc first-arm feasibility slice: installed Elegoo Neptune 2 0.4 mm nozzle / Balanced 0.20 mm process / Panchroma PLA Matte settings, 4 walls, 30% infill. Result: 37 layers, estimated 30m47s and 4.86 g. The CLI initially failed resolving inherited presets; temporary flattened copies of installed system/user profiles succeeded. No installed profile was changed. G-code remains temporary local analysis output, not a qualified printing recommendation. No printer was contacted. Other parts have not been slice-qualified.
+Verified project SHA-256: `19fb47ab22bd86dc924b51bfbb1c50c592a30434bf69292e7bfe04e610478364`.
+
+Project verification also compares each saved object mesh volume with its current STL and checks the eight-design BOM multiplicities, so CI rejects a project that silently retains older meshes or drops/duplicates a part.

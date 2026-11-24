@@ -45,4 +45,4 @@ def finish_wrist(s):
     e=[x for x in s.Edges() if x.geomType()=='LINE'
        and x.BoundingBox().ylen>30 and x.BoundingBox().xlen<.001
        and x.BoundingBox().zlen<.001 and -6.01<x.Center().z<-5.99]
-    return _blend(s,'wrist bridge upper edges',e,'fillet',.70,2)
+    return _blend(s,'wrist bridge outer upper edge',e,'fillet',.70,1)

@@ -12,7 +12,7 @@ The active reference is [`docs/validation_v010.json`](validation_v010.json). **V
 | Nominal cable-seat diameter | **3.8 mm** |
 | Nominal radial clearance | **0.30 mm** |
 | Nominal clip insertion throat | **2.65 mm** |
-| **Minimum modeled cable-to-knob surface clearance** | **1.887 mm** |
+| **Minimum modeled cable-to-knob surface clearance** | **3.650 mm** |
 | Minimum modeled cable-to-4040 surface clearance | **4.147 mm** |
 | Requested circular bend radius | **6.0 mm** (actual achieved may be smaller; recorded per pose) |
 

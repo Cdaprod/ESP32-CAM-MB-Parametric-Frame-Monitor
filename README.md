@@ -39,9 +39,13 @@ Print-ready bracket exports are *not claimed*: physical slot fit, fastener prelo
 Orbit, zoom and toggle individual component groups in the standalone viewer. The viewer now retains the complete CAD tessellation rather than omitting triangles, and the cable reference is now a continuous, parameter-driven, pose-dependent tube with exact circular tangent arcs (physical cable bending remains unverified). Its HTML bundles the JavaScript, so after downloading you can open it on your phone or computer without an internet connection. GitHub README pages cannot execute embedded HTML or iframes; this linked preview opens the viewer file, which can be downloaded locally. The same viewer can also be hosted online through GitHub Pages when Pages is enabled.
 
 
-**V010 engineering polish:** The arms now use two Ø3 × 13 mm rounded lightening slots, retaining a continuous 5 mm center spine and at least 3 mm outer rails in the slotted region. The wrist bridge grows from 4.35 to 6.35 mm wide away from its mating ear and receives a tapered underside rib; pivot centers remain unchanged. The cable throat increases from 2.65 to 3.0 mm to reduce nominal insertion interference. These are design improvements, not measured strength or fatigue results. All eight unique printed designs now receive mesh validation. The mobile viewer includes a reset-view control and a separate legend area.
+**V010 structural revision:** The enclosure now uses a 14 mm-wide leaf and a rear-wall buttress with an R1.5 root blend, replacing a 5 mm tab with only 0.8 mm of housing overlap. The wrist has a broad spine, enlarged pitch ear and continuous underside heel; the pitch-arm upright has a full-width triangular heel. Paired ribs carry the extrusion bracket root, with clearance for the base wheel. Base and elbow wheel positions now clear the printed arms; their modeled bolts are M4×30 and M4×25 respectively. The reinforced pitch ear also uses M4×25, with a 2.85 mm nut-bearing floor.
 
-The updated wrist export is [STEP](step/V010_wrist_adapter.step) / [STL](stl/V010_wrist_adapter.stl); historical V006 exports are preserved. See [engineering details and remaining acceptance gates](docs/ENGINEERING_NOTES_V010.md).
+**Cable insertion access:** Alternating clip centers are now 13 mm apart on the first arm and 14 mm on the second, leaving **8.5 mm and 9.5 mm clear between reinforced pads**. The routing groove and entry/exit anchors are revised to match. The nominal 3.0 mm throat still needs a physical cable-retention coupon.
+
+![Reinforced housing, wrist, pitch upright and extrusion root from actual CAD](previews/v010_load_path.png)
+
+Use the current [wrist STEP](step/V010_wrist_adapter.step) / [STL](stl/V010_wrist_adapter.stl) and [mount STEP](step/V010_mount_plate.step) / [STL](stl/V010_mount_plate.stl). Historical V004/V006 exports remain preserved. See [structural dimensions, checks and remaining acceptance gates](docs/ENGINEERING_NOTES_V010.md).
 
 ## Why V010 exists
 
@@ -80,7 +84,7 @@ V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side
 | Nominal U-seat internal diameter | 3.8 mm |
 | Nominal radial cable/clip gap | 0.30 mm |
 | Nominal clip entry throat | 3.0 mm |
-| Minimum modeled cable/knob clearance | **1.887 mm** |
+| Minimum modeled cable/knob clearance | **3.650 mm** |
 | Minimum modeled cable/rail clearance | **4.147 mm** |
 | Requested cable-reference bend radius | **6.0 mm** (locally reduced as required) |
 | Full continuous joint-envelope proof | **Not performed** |
@@ -98,13 +102,13 @@ The 3.0 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed
 | Scalloped hand knob (print four) | [STEP](step/V010_scalloped_thumbwheel.step) | [STL](stl/V010_scalloped_thumbwheel.stl) |
 | Relieved camera shell | [STEP](step/V010_relieved_camera_shell.step) | [STL](stl/V010_relieved_camera_shell.stl) |
 
-The existing **V004** alignment key, mounting plate and bezel remain compatible. Use the updated **V010 wrist adapter**; historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
+Use the existing **V004** alignment key and bezel, with the updated **V010 wrist adapter and mount plate**; historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
 
 ## OrcaSlicer project
 
-[Download/open V010 printed parts in OrcaSlicer](orca/V010_printed_parts.3mf). The native project contains **11 independent objects**: one of each of the eight printed designs and four hand knobs total. Metal hardware, rail, board and cable references are excluded. Orca automatically lays objects on their largest convex-hull face, grounds and arranges them on one Neptune 2 plate. The saved placement was checked for bed margins, grounding and at least 12 mm projected-hull spacing.
+[Download/open V010 printed parts in OrcaSlicer](orca/V010_printed_parts.3mf). The native project contains **11 independent objects**: one of each of the eight printed designs and four hand knobs total. Metal hardware, rail, board and cable references are excluded. Explicit part orientations place the enclosure and pitch/wrist load paths in the print plane; Orca grounds and arranges them on one Neptune 2 plate. The saved placement was checked for bed margins, grounding and nonoverlapping projected hulls with checked spacing.
 
-Embedded settings: Neptune 2 0.4 mm nozzle, Panchroma PLA Matte, 0.20 mm layers, four walls, 30% infill, automatic normal supports, no brim. These are editable starting settings, not physical print qualification. Auto-orientation does not establish optimal layer strength or support removability; inspect supports and mating surfaces before printing.
+Embedded settings: Neptune 2 0.4 mm nozzle, Panchroma PLA Matte, 0.20 mm layers, five walls, 40% infill, automatic normal supports, no brim. These are editable starting settings, not physical print qualification. The selected orientations do not establish tested layer strength or support removability; inspect supports and mating surfaces before printing.
 
 Regenerate with `.venv/bin/python src/build_orca_project.py` using the installed OrcaSlicer and matching installed profiles. The script resolves inherited presets into temporary copies, preserves separate objects and BOM quantities, and checks the saved 3MF. No upload or printer operation occurs.
 
@@ -129,7 +133,7 @@ xvfb-run -a python src/build.py all
 
 ### Still open for subsequent iterations
 
-This revision also updates the grip surface of the thumbwheel and produces shallow pocket reliefs on the camera housing. The wrist bridge now has a wider section and underside rib. The 4040 mounting plate retains its prior geometry. The cable still needs a physical strain-relief strategy at the ESP32-CAM-MB connector and proof of minimum cable bend radius around the joints.
+This revision also updates the grip surface of the thumbwheel and produces shallow pocket reliefs on the camera housing. The wrist, enclosure, pitch upright and extrusion mount now have continuous gusseted load paths. The cable still needs a physical strain-relief strategy at the ESP32-CAM-MB connector and proof of minimum cable bend radius around the joints.
 
 ![V009 historical geometry, showing the original dangling guide webs](previews/v009_full_assembly.png)
 

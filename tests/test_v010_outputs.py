@@ -19,7 +19,7 @@ assert manifest['revision']==s['revision']=='V010'
 assert manifest['component_count']==len(manifest['components'])==30
 assert s['status']=='PASS CAD-only' and s['sampled_poses']==len(report['poses'])==18
 assert s['integrated_alternating_open_clips']==4 and s['long_outriggers']==0
-assert s['watertight_new_stls']==5
+assert s['watertight_new_stls']==6
 assert s['watertight_print_designs']==len(report['printable_meshes'])==8
 assert s['min_cable_to_knob_mm']>=1.0, 'Cable clearance regressed under new embedded-channel routing'
 assert s['min_cable_to_knob_mm']>=1.0 and s['min_cable_to_rail_mm']>3.0
@@ -41,4 +41,4 @@ assert required('docs/BOM.csv').read_bytes()==required('docs/BOM_V010.csv').read
 with required('docs/BOM.csv').open(newline='') as f:rows=list(csv.DictReader(f))
 assert rows and all(row['revision']=='V010' for row in rows)
 required('previews/v009_full_assembly.png')
-print('PASS V010: four watertight STLs, 18 pose checks, eight embedded real PNGs, STEP, BOM')
+print('PASS V010: six current watertight STLs, 18 pose checks, eight embedded real PNGs, STEP, BOM')

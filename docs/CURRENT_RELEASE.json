@@ -12,7 +12,8 @@
     "stl/V010_second_arm.stl",
     "stl/V010_scalloped_thumbwheel.stl",
     "stl/V010_relieved_camera_shell.stl",
-    "stl/V010_wrist_adapter.stl"
+    "stl/V010_wrist_adapter.stl",
+    "stl/V010_mount_plate.stl"
   ],
   "previews": [
     "previews/v010_arm_pair.png",
@@ -38,10 +39,14 @@
   "pending_work": [
     "Physical USB jacket and clip fatigue qualification",
     "Full printer travel and cable bending",
-    "Topology-inspired 4040 mounting plate"
+    "Physical joint load and material qualification"
   ],
   "viewer": "viewer/index.html",
   "viewer_glb": "viewer/COMPLETE_ASSEMBLY.glb",
   "viewer_manifest": "viewer/release.json",
-  "viewer_generation": "Automatically rebuilt from current assembly and PNG previews on every CAD render"
+  "viewer_generation": "Automatically rebuilt from current assembly and PNG previews on every CAD render",
+  "clip_clear_pad_gaps_mm": [
+    8.5,
+    9.5
+  ]
 }

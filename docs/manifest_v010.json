@@ -13,12 +13,12 @@
     "second_cable_x_mm": -9.5,
     "second_cable_z_mm": 17.75,
     "first_clip_y_mm": [
-      -32.5,
-      -37.7
+      -28.0,
+      -41.0
     ],
     "second_clip_y_mm": [
-      -66.0,
-      -72.0
+      -63.0,
+      -77.0
     ],
     "cable_exit_xyz_mm": [
       0.0,
@@ -167,7 +167,7 @@
       "kind": "hardware"
     },
     {
-      "name": "V004_mount_plate",
+      "name": "V010_mount_plate",
       "kind": "printed"
     },
     {
@@ -276,7 +276,8 @@
     "V010_second_arm",
     "V010_scalloped_thumbwheel",
     "V010_relieved_camera_shell",
-    "V010_wrist_adapter"
+    "V010_wrist_adapter",
+    "V010_mount_plate"
   ],
   "base": "V006 four-joint articulated wrist; historical versioned scripts not imported"
 }

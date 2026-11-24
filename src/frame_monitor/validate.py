@@ -7,7 +7,7 @@ import trimesh
 from .config import CONFIG
 from .assembly import components
 from .cable import route_metrics
-from .geometry import first_arm, second_arm
+from .geometry import first_arm, second_arm, structural_checks
 from . import parts as cad_parts,wrist
 from .export import printable_parts
 
@@ -31,6 +31,7 @@ def validate(root:Path):
     assert arm_a.BoundingBox().zmin>=7.49 and arm_a.BoundingBox().zmax<=15.01, "First arm cable seats extend outside link thickness"
     assert arm_b.BoundingBox().zmax<=22.51, "Second arm cable seats extend above link thickness"
     assert arm_a.BoundingBox().xmin>=-13.3 and arm_b.BoundingBox().xmin>=-13.3, "Remote cable support detected"
+    structure=structural_checks()
     poses=[]
     for angles in CONFIG.sampled_poses:
         parts=components(*angles)
@@ -56,7 +57,17 @@ def validate(root:Path):
         # Ensures the route runs inside BOTH 3.8 mm guide bores with 0.30 mm
         # nominal radial clearance, rather than merely passing nearby.
         assert all(.24<=gap<=.5 for gap in guide_gaps.values()),(angles,guide_gaps)
+        # Adjacent joints may touch, but printed bodies must not interpenetrate.
+        printed=[name for name,_,_,kind in parts if kind=='printed']
+        overlaps={}
+        for i,name in enumerate(printed):
+            for other in printed[i+1:]:
+                if shapes[name].distance(shapes[other])<1e-6:
+                    volume=shapes[name].intersect(shapes[other]).Volume()
+                    assert volume<.01,(angles,'printed-body interference',name,other,volume)
+                    overlaps[name+' / '+other]=round(volume,6)
         poses.append({
+            'printed_body_intersections_mm3':overlaps,
             'pose_degrees':list(angles),
             'cable_route':route_metrics(angles[3],base=angles[0],elbow=angles[1],pitch=angles[2]),
             'thumbwheel_surface_gap_mm':{name:round(gap,3) for name,gap in wheel_gaps.items()},
@@ -78,6 +89,7 @@ def validate(root:Path):
     }
     report={
       'summary':summary,'printable_meshes':meshes,'poses':poses,
+      'structural_sections':structure,
       'clip_openings_in_order':['-X','+Z','-X','+Z'],
       'nominal_cable_diameter_mm':CONFIG.cable_diameter_mm,
       'nominal_clip_throat_mm':CONFIG.clip_throat_mm,

@@ -14,6 +14,7 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict, replace
 from pathlib import Path
 import json, math
+from functools import lru_cache
 import cadquery as cq
 from . import rail as b
 from .primitives import Spec, block, cyl_x, cyl_y, cyl_z, v5_key
@@ -64,6 +65,20 @@ def base_plate():
     # M4 captive nut in base under the first pivot, bottom accessible during assembly
     v=v.cut(hex_pocket(7.2,3.2,(0,P.first_pivot_y,-6)))
     return finish_mount(v.clean())
+
+@lru_cache(maxsize=1)
+def reinforced_base_plate():
+    """Active V010 mount: paired heel ribs, unchanged metal clamp datums."""
+    v=base_plate()
+    for x in (-8.5,5.5):
+        rib=(cq.Workplane('YZ').polyline([(-22,-5),(-6,-12),
+             (-5,-12),(-5,-5)]).close().extrude(3).val().translate((x,0,0)))
+        v=v.fuse(rib)
+    # Local finger-wheel relief on the OUTER plate face only; retain the
+    # rail-bearing face and the residual M5 counterbore clamp thickness.
+    v=v.cut(cyl_z(12,10,0,-17,14.5))
+    return v.clean()
+
 
 def alignment_key():
     # No screws in alignment key; it can never bottom against the plate at X=20
@@ -138,6 +153,7 @@ def board_envelope():
     lens=cyl_y(3.0,2,0,-95,29)
     return body.fuse(lens).clean()
 
+@lru_cache(maxsize=1)
 def thumbwheel():
     """V010 topology-inspired tactile knob; preserves M4/hex and 23mm envelope."""
     from math import pi,sin,cos
@@ -186,9 +202,9 @@ def add_hardware(parts):
     # Three proper metal bolts with printable, manually adjustable thumb wheels.
     # Nested shell bolt holes are simplified nominal M4 clearance models.
     for name,xyz,orientation,length in [
-        ('base_roll',(0,-17,17.5),'z',25),
-        ('elbow_swing',(0,-52,25.0),'z',19),
-        ('camera_tilt',(-11.1,-87,-12),'x',23)]:
+        ('base_roll',(0,-17,19.5),'z',30),
+        ('elbow_swing',(0,-52,27.0),'z',25),
+        ('camera_tilt',(-11.1,-87,-12),'x',25)]:
         wheel=thumbwheel()
         shaft=m4_bolt(length)
         if orientation=='x':
@@ -207,7 +223,7 @@ def add_hardware(parts):
     for name,position,pose,orient in [
         ('base_roll',(0,-17,-6),lambda s:s,'z'),
         ('elbow_swing',(0,-52,7.45),pose_one,'z'),
-        ('camera_tilt',(8.25,-87,-12),pose_cam,'x')]:
+        ('camera_tilt',(10.25,-87,-12),pose_cam,'x')]:
         nut=m4_nut()
         if orient=='x':nut=nut.rotate((0,0,0),(0,1,0),90)
         add(f'M4_captive_hex_nut_{name}',b.install(pose(nut.translate(position))),(.78,.8,.81))

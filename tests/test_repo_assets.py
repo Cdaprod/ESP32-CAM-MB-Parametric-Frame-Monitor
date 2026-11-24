@@ -27,9 +27,9 @@ assert summary["status"] == "PASS CAD-only"
 assert summary["sampled_poses"] == len(report["poses"]) == 18
 assert summary["integrated_alternating_open_clips"] == 4
 assert summary["long_outriggers"] == 0
-assert summary["watertight_new_stls"] == len(release["new_stls"]) == 5
+assert summary["watertight_new_stls"] == len(release["new_stls"]) == 6
 assert manifest["component_count"] == len(manifest["components"]) == 30
-assert abs(summary["min_cable_to_knob_mm"] - 1.887) < 0.001
+assert abs(summary["min_cable_to_knob_mm"] - 3.650) < 0.001
 assert abs(summary["min_cable_to_rail_mm"] - 4.147) < 0.001
 
 for name in ("source", "config", "assembly_step", "manifest", "validation",
@@ -41,7 +41,7 @@ for name in release["new_stls"]:
 
 readme = must_exist("README.md").read_text()
 assert "**Current development release: V010" in readme
-assert "1.887 mm" in readme and "4.147 mm" in readme
+assert "3.650 mm" in readme and "4.147 mm" in readme
 
 DOCS = [
     "README.md", "docs/README.md", "docs/RELEASE_INDEX.md",
@@ -75,7 +75,7 @@ assert bom and all(row["revision"] == "V010" for row in bom)
 # These engineering pages must use the exact current minimums, not stale candidate values.
 for doc in ("docs/README.md", "docs/VALIDATION_SCOPE.md", "docs/ENGINEERING_NOTES_V010.md"):
     text = must_exist(doc).read_text()
-    assert "1.887 mm" in text and "4.147 mm" in text, doc
+    assert "3.650 mm" in text and "4.147 mm" in text, doc
     assert "3.909 mm" not in text, doc
 assert must_exist("previews/v009_full_assembly.png").is_file()
 print("PASS: V010 README/docs image links, canonical JSON, actual PNGs, STEP/STLs and metrics")

@@ -53,6 +53,8 @@ jobs:
         run: python tests/test_mount_interface.py
       - name: Verify current viewer, GLB and previews belong to the same release
         run: python tests/test_viewer_current.py
+      - name: Verify Orca part quantities, source meshes, orientations and spacing
+        run: python -c "import sys; sys.path.insert(0, 'src'); from build_orca_project import verify_project, OUTPUT; verify_project(OUTPUT)"
       - name: Verify real PNGs, CAD exports, BOM and current-release metadata
         run: python tests/test_v010_outputs.py
       - name: Commit verified CAD outputs to V010 design branch

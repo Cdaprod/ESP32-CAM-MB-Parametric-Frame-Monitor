@@ -31,3 +31,7 @@ Positive camera retention, recovered 4040 T-slot profile, and initial parametric
 ## V010 engineering polish — 2026-11-24
 
 Rounded-slot arm webs, wider ribbed wrist, reduced nominal cable insertion interference, all-eight-design mesh validation, portable rendering, mobile reset and legend layout, and pull-request CAD checks. Historical wrist exports retained; updated wrist published as V010. Physical qualification remains open.
+
+### V010 continuous load-path revision
+
+Replaced shallow camera tab with a broad, buttressed rear-wall root; continued wrist heel into both journals; gusseted pitch upright and extrusion root. Corrected base/elbow knob interference and modeled bolt lengths. Spread alternating clip pads to 8.5/9.5 mm clear gaps, revised cable transitions, and replaced Orca auto-orientation with explicit load-path orientations. Added solid-section, bore and sampled printed-body interference checks.

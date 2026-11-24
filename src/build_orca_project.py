@@ -4,6 +4,7 @@ Uses installed profiles without modifying them. Never uploads or starts a print.
 Run with the repository Python environment; OrcaSlicer must be installed.
 """
 import json
+from collections import Counter
 import os
 from pathlib import Path
 import subprocess
@@ -16,7 +17,7 @@ PARTS = [
     ('V010_first_arm', 1), ('V010_second_arm', 1),
     ('V010_scalloped_thumbwheel', 4), ('V010_relieved_camera_shell', 1),
     ('V010_wrist_adapter', 1), ('V004_removable_camera_bezel', 1),
-    ('V004_mount_plate', 1), ('V004_recessed_alignment_key', 1),
+    ('V010_mount_plate', 1), ('V004_recessed_alignment_key', 1),
 ]
 OUTPUT = ROOT / 'orca' / 'V010_printed_parts.3mf'
 
@@ -57,12 +58,20 @@ def verify_project(path):
         assert 'Metadata/project_settings.config' in archive.namelist()
         model = ET.fromstring(archive.read('3D/3dmodel.model'))
         ns = {'m': 'http://schemas.microsoft.com/3dmanufacturing/core/2015/02'}
+        volume_names={}
+        for filename in archive.namelist():
+            if filename.startswith('3D/Objects/') and filename.endswith('.model'):
+                part_name=Path(filename).name.split('.stl')[0]
+                external=ET.fromstring(archive.read(filename))
+                for obj in external.findall('m:resources/m:object',ns):
+                    volume_names[obj.get('id')]=part_name
         items = model.findall('m:build/m:item', ns)
         assert len(items) == sum(qty for _, qty in PARTS), len(items)
     scene = trimesh.load(path, force='scene')
     from shapely.geometry import MultiPoint
     bounds = []
     footprints = []
+    names=[]
     for node in scene.graph.nodes_geometry:
         transform, geometry = scene.graph[node]
         mesh = scene.geometry[geometry].copy()
@@ -70,12 +79,21 @@ def verify_project(path):
         mesh.process(validate=True)
         mesh.apply_transform(transform)
         assert mesh.is_watertight and mesh.is_volume, node
+        name=volume_names[str(node).split('_')[0]]
+        source=trimesh.load(ROOT / 'stl' / f'{name}.stl',force='mesh')
+        assert abs(mesh.volume/source.volume-1)<.0005,(name,'Stale project mesh')
+        names.append(name)
         low, high = mesh.bounds
         assert abs(low[2]) < .02, (node, 'not grounded', low)
         assert np.all(low[:2] >= 5) and np.all(high[:2] <= 230), (node, 'outside bed margin')
         bounds.append((low, high))
         footprints.append(MultiPoint(mesh.vertices[:, :2]).convex_hull)
+    assert Counter(names)==Counter(dict(PARTS)),names
     assert len(bounds) == 11, len(bounds)
+    heights=sorted(round(float(high[2]-low[2]),2) for low,high in bounds)
+    expected=sorted([36,22.2,14,26,7.5,3,5.97,7,7,7,7])
+    assert np.allclose(heights,expected,atol=.03),('Print orientation changed',heights)
+
     minimum = min(a.distance(b) for i,a in enumerate(footprints) for b in footprints[i+1:])
     assert minimum >= 5.9, ('Insufficient part spacing', minimum)
     print(f'Verified {len(bounds)} independent grounded objects; minimum projected-hull gap {minimum:.2f} mm')
@@ -94,7 +112,7 @@ def build():
                            ('filament', 'Panchroma PLA Matte - Neptune 2')]:
             data = resolve(name)
             if kind == 'process':
-                data.update(wall_loops='4', sparse_infill_density='30%',
+                data.update(wall_loops='5', sparse_infill_density='40%',
                             enable_support='1', support_type='normal(auto)',
                             support_on_build_plate_only='0', brim_type='no_brim',
                             duplicate_distance='8')
@@ -104,10 +122,31 @@ def build():
         command = [executable, '--load-settings', ';'.join(settings[:2]),
                    '--load-filaments', settings[2], '--load-defaultfila',
                    '--clone-objects', ','.join(str(qty) for _, qty in PARTS),
-                   '--ground-largest-face', '--orient', '0', '--arrange', '1',
+                   '--orient', '0', '--arrange', '1',
                    '--allow-rotations', '--ensure-on-bed',
                    '--export-3mf', str(OUTPUT)]
-        command.extend(str(ROOT / 'stl' / f'{name}.stl') for name, _ in PARTS)
+        # Explicit axes, rather than convex-hull auto-orientation: put the
+        # shell and pitch/wrist ears on a side so their load paths lie in XY.
+        import trimesh
+        import numpy as np
+        oriented=[]
+        rotations={
+            'V010_relieved_camera_shell':(0,-90,0),
+            'V010_second_arm':(0,90,0),
+            'V010_wrist_adapter':(0,90,0),
+            'V010_mount_plate':(-90,0,0),
+            'V004_removable_camera_bezel':(90,0,0),
+            'V004_recessed_alignment_key':(0,-90,0),
+        }
+        for name,_ in PARTS:
+            mesh=trimesh.load(ROOT / 'stl' / f'{name}.stl',force='mesh')
+            angles=np.radians(rotations.get(name,(0,0,0)))
+            mesh.apply_transform(trimesh.transformations.euler_matrix(*angles))
+            mesh.apply_translation(-mesh.bounds[0])
+            path=temporary / f'{name}.stl'
+            mesh.export(path)
+            oriented.append(str(path))
+        command.extend(oriented)
         subprocess.run(command, check=True, timeout=180)
     verify_project(OUTPUT)
     print(OUTPUT)
