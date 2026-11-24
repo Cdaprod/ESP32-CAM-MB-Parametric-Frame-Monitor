@@ -100,6 +100,14 @@ The 3.0 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed
 
 The existing **V004** alignment key, mounting plate and bezel remain compatible. Use the updated **V010 wrist adapter**; historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
 
+## OrcaSlicer project
+
+[Download/open V010 printed parts in OrcaSlicer](orca/V010_printed_parts.3mf). The native project contains **11 independent objects**: one of each of the eight printed designs and four hand knobs total. Metal hardware, rail, board and cable references are excluded. Orca automatically lays objects on their largest convex-hull face, grounds and arranges them on one Neptune 2 plate. The saved placement was checked for bed margins, grounding and at least 12 mm projected-hull spacing.
+
+Embedded settings: Neptune 2 0.4 mm nozzle, Panchroma PLA Matte, 0.20 mm layers, four walls, 30% infill, automatic normal supports, no brim. These are editable starting settings, not physical print qualification. Auto-orientation does not establish optimal layer strength or support removability; inspect supports and mating surfaces before printing.
+
+Regenerate with `.venv/bin/python src/build_orca_project.py` using the installed OrcaSlicer and matching installed profiles. The script resolves inherited presets into temporary copies, preserves separate objects and BOM quantities, and checks the saved 3MF. No upload or printer operation occurs.
+
 ## One build command
 
 `/src/build.py`
