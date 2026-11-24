@@ -56,6 +56,14 @@ def verify_project(path):
     import trimesh
     with zipfile.ZipFile(path) as archive:
         assert 'Metadata/project_settings.config' in archive.namelist()
+        settings = json.loads(archive.read('Metadata/project_settings.config'))
+        # Guard against accidentally reintroducing a profile's aggressive
+        # travel acceleration.  Orca expects these values in mm/s².
+        def scalar(key):
+            value = settings[key]
+            return float(value[0] if isinstance(value, list) else value)
+        assert scalar('travel_acceleration') <= scalar('machine_max_acceleration_travel')
+        assert scalar('default_acceleration') <= scalar('machine_max_acceleration_extruding')
         model = ET.fromstring(archive.read('3D/3dmodel.model'))
         ns = {'m': 'http://schemas.microsoft.com/3dmanufacturing/core/2015/02'}
         volume_names={}
@@ -115,7 +123,28 @@ def build():
                 data.update(wall_loops='5', sparse_infill_density='40%',
                             enable_support='1', support_type='normal(auto)',
                             support_on_build_plate_only='0', brim_type='no_brim',
-                            duplicate_distance='8')
+                            duplicate_distance='8',
+                            # Keep every generated motion command within the
+                            # Neptune 2's 1000 mm/s² machine limit.  The
+                            # inherited profile used 10000 for travel, which
+                            # makes Orca warn about excessive acceleration.
+                            default_acceleration=['500'],
+                            initial_layer_acceleration=['300'],
+                            initial_layer_travel_acceleration=['500'],
+                            outer_wall_acceleration=['300'],
+                            inner_wall_acceleration=['500'],
+                            sparse_infill_acceleration=['500'],
+                            internal_solid_infill_acceleration=['500'],
+                            top_surface_acceleration=['300'],
+                            bridge_acceleration=['300'],
+                            travel_acceleration=['800'],
+                            machine_max_acceleration_e=['1000', '1000'],
+                            machine_max_acceleration_extruding=['1000', '1000'],
+                            machine_max_acceleration_retracting=['1000', '1000'],
+                            machine_max_acceleration_travel=['1000', '1000'],
+                            machine_max_acceleration_x=['1000', '1000'],
+                            machine_max_acceleration_y=['1000', '1000'],
+                            machine_max_acceleration_z=['1000', '1000'])
             path = temporary / f'{kind}.json'
             path.write_text(json.dumps(data))
             settings.append(str(path))
