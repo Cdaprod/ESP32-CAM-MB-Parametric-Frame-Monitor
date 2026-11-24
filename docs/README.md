@@ -35,4 +35,4 @@ The latest assembly has **four compact cable seats integrated directly into both
 
 The remaining three images (isolated primary and secondary arm, and +20° camera wrist) are embedded in the [project README](../README.md).
 
-V009 exports remain historical for visual comparison. The documentation and integrity scripts should use the latest values from [`validation_v010.json`](validation_v010.json), especially **1.650 mm** minimum modeled cable-to-knob clearance and **3.802 mm** minimum modeled cable-to-rail clearance, not the obsolete candidate results.
+V009 exports remain historical for visual comparison. The documentation and integrity scripts should use the latest values from [`validation_v010.json`](validation_v010.json), especially **1.887 mm** minimum modeled cable-to-knob clearance and **4.147 mm** minimum modeled cable-to-rail clearance, not the obsolete candidate results.

@@ -69,7 +69,7 @@ def validate(root:Path):
       'revision':CONFIG.release,'status':'PASS CAD-only',
       'sampled_poses':len(poses),'component_entries':len(parts),
       'arm_guides_aligned':2,'integrated_alternating_open_clips':4,
-      'long_outriggers':0,'watertight_new_stls':4,'watertight_print_designs':len(meshes),
+      'long_outriggers':0,'watertight_new_stls':sum(m['name'].startswith('V010_') for m in meshes),'watertight_print_designs':len(meshes),
       'min_cable_to_knob_mm':round(min(v for p in poses for v in p['thumbwheel_surface_gap_mm'].values()),3),
       'min_cable_to_rail_mm':round(min(p['cable_to_rail_mm'] for p in poses),3),
       'physical_qualification':'UNVERIFIED',
