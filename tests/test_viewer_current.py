@@ -40,3 +40,7 @@ assert readme.index("## Explore the latest assembly in 3D")<readme.index("## Why
 for p in ("viewer/index.html","viewer/COMPLETE_ASSEMBLY.glb","viewer/release.json"):
     assert f"]({p})" in readme
 print(f"PASS current {version} offline viewer, GLB, 30 components, STEP and 8 preview images")
+
+assert 'aria-label="Component visibility"' in html
+assert html.count('class="group-toggle"')==4
+assert 'id="reset-view"' in html

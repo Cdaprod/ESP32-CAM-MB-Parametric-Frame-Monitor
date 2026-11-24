@@ -28,3 +28,6 @@ Metal M5 T-nuts, recessed key, full-sided camera capture and removable bezel.
 
 ## V003 / V002 / V001
 Positive camera retention, recovered 4040 T-slot profile, and initial parametric frame mount.
+## V010 engineering polish — 2026-11-24
+
+Rounded-slot arm webs, wider ribbed wrist, reduced nominal cable insertion interference, all-eight-design mesh validation, portable rendering, mobile reset and legend layout, and pull-request CAD checks. Historical wrist exports retained; updated wrist published as V010. Physical qualification remains open.

@@ -37,7 +37,11 @@ def adapter():
     """New M4 pitch ear coupled to 49mm wrist link and bottom Z-journal."""
     ya=S.wrist_y_mm
     a=cyl_x(7.5,4.2,7.4,-87,-12)
-    a=a.fuse(block(7.35,ya,-14,4.35,-87-ya,8))
+    a=a.fuse(block(7.35,ya,-14,6.35,-87-ya,8))
+    # Widen away from the mating pitch ear; retain both journal datums.
+    rib=(cq.Workplane('YZ').polyline([(-94,-13),(-125,-13),(-94,-18)])
+         .close().extrude(6.35).val().translate((7.35,0,0)))
+    a=a.fuse(rib)
     a=a.fuse(cyl_z(7,6,S.wrist_x_mm,ya,-10))
     a=a.cut(cyl_x(2.15,5.2,7,-87,-12))
     a=a.cut(b4.hex_pocket(7.2,3.5,(8.25,-87,-12),'x'))

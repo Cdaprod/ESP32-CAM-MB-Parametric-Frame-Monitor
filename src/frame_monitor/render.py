@@ -8,8 +8,8 @@ from .assembly import components
 def annotate(path,title,subtitle):
     im=Image.open(path).convert('RGB')
     draw=ImageDraw.Draw(im)
-    font='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
-    bold='/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'
+    font=renderer.font_path(False)
+    bold=renderer.font_path(True)
     draw.rounded_rectangle((26,22,1720,143),radius=15,fill='#112838')
     draw.text((55,41),title,font=ImageFont.truetype(bold,28),fill='white')
     draw.text((55,103),subtitle,font=ImageFont.truetype(font,16),fill='#e2e9f0')
@@ -27,7 +27,7 @@ def render(root:Path):
     default=components()
     renderer.camera_scene(default,target/'v010_full_assembly.png',
         'V010 | UNIFIED FRAME-MONITOR ASSEMBLY',
-        'Four compact alternating U-clips replace long cable outriggers',
+        'Rounded arm slots, reinforced wrist and reduced clip interference',
         (245,215,170),(22,65,19))
     renderer.camera_scene(default,target/'v010_cable_guides.png',
         'V010 | FOUR COMPACT OPEN U-CLIPS',
@@ -68,5 +68,5 @@ def render(root:Path):
     renderer.camera_scene([('arm_1',arm1,(.95,.49,.19),'printed'),
       ('arm_2',arm2.translate((45,36,0)),(.91,.55,.24),'printed')],
       target/'v010_arm_pair.png','V010 | BOTH REVISED ARMS',
-      'Tapered triangular structure and four compact U-clips',
+      'Rounded slots, continuous spine and four compact U-clips',
       (100,-115,80),(22,-48,13))

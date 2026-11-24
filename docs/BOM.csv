@@ -9,7 +9,7 @@ V010,M5 bolt,2,Nominal x8mm model,UNVERIFIED PHYSICAL
 V010,Printed recessed alignment key,1,Reused V004 0.65mm recess,HISTORIC REUSED
 V010,Printed mounting plate,1,Reused V004 geometry,HISTORIC REUSED
 V010,M4 pivot fastener and captive nut,4,Nominal M4 hardware,UNVERIFIED PHYSICAL
-V010,Wrist adapter,1,Reused V006 geometry,HISTORIC REUSED
+V010,Wrist adapter,1,6.35mm bridge with tapered underside rib,CAD PROTOTYPE
 V010,M2.5 bezel screw,4,Nominal model,UNVERIFIED PHYSICAL
 V010,ESP32-CAM-MB camera and programmer module,1,Nominal geometric envelope,UNVERIFIED PHYSICAL
 V010,USB power cable,1,Nominal 3.2mm OD and real bend/boot unknown,UNVERIFIED PHYSICAL

@@ -15,3 +15,10 @@ assert first_arm().Volume()>4476,'first arm internal rounds missing'
 assert second_arm().Volume()>8108,'second arm internal rounds missing'
 assert thumbwheel().Volume()<2250,'knob bevels missing'
 assert shell().Volume()<17420,'shell exterior fillets missing'
+
+# Section witnesses reject cosmetic-only changes or accidental slot enlargement.
+from frame_monitor.primitives import block
+for arm,z,y in [(first_arm(),7.5,-34.5),(second_arm(),15,-69.5)]:
+    witness=block(-2.5,y-5,z,5,10,7.5)
+    assert abs(arm.intersect(witness).Volume()-witness.Volume())<1e-4
+assert adapter().BoundingBox().xmax>=13.69

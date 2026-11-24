@@ -9,18 +9,18 @@ from .assembly import components
 from .cable import route_metrics
 from .geometry import first_arm, second_arm
 from . import parts as cad_parts,wrist
+from .export import printable_parts
 
 
 def validate(root:Path):
     root=Path(root)
     (root/'stl').mkdir(exist_ok=True,parents=True)
     meshes=[]
-    for name,shape in (('V010_first_arm',first_arm()),('V010_second_arm',second_arm()),
-                       ('V010_scalloped_thumbwheel',cad_parts.thumbwheel()),
-                       ('V010_relieved_camera_shell',wrist.shell())):
+    for name,shape in printable_parts():
         assert shape.isValid() and len(shape.Solids())==1,(name,'invalid solid')
         path=root/'stl'/f'{name}.stl'
-        cq.exporters.export(shape,str(path),tolerance=.08,angularTolerance=.12)
+        if name.startswith('V010_'):
+            cq.exporters.export(shape,str(path),tolerance=.08,angularTolerance=.12)
         mesh=trimesh.load(path,force='mesh')
         assert mesh.is_watertight and mesh.is_volume and mesh.body_count==1,(name,'non-manifold')
         assert abs(mesh.volume/shape.Volume()-1)<.005,(name,'mesh volume mismatch')
@@ -69,7 +69,7 @@ def validate(root:Path):
       'revision':CONFIG.release,'status':'PASS CAD-only',
       'sampled_poses':len(poses),'component_entries':len(parts),
       'arm_guides_aligned':2,'integrated_alternating_open_clips':4,
-      'long_outriggers':0,'watertight_new_stls':len(meshes),
+      'long_outriggers':0,'watertight_new_stls':4,'watertight_print_designs':len(meshes),
       'min_cable_to_knob_mm':round(min(v for p in poses for v in p['thumbwheel_surface_gap_mm'].values()),3),
       'min_cable_to_rail_mm':round(min(p['cable_to_rail_mm'] for p in poses),3),
       'physical_qualification':'UNVERIFIED',

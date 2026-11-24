@@ -23,7 +23,7 @@
     "M4_captive_hex_nut_base_roll",
     "M4_captive_hex_nut_elbow_swing",
     "M4_captive_hex_nut_camera_tilt",
-    "V006_wrist_adapter",
+    "V010_wrist_adapter",
     "V010_relieved_camera_shell",
     "V006_camera_bezel",
     "ESP32_CAM_MB_provisional_envelope",
@@ -45,8 +45,8 @@
     "M5_metal_tnut_left": 340,
     "M5_metal_tnut_right": 340,
     "V004_mount_plate": 1648,
-    "V010_first_arm": 1938,
-    "V010_second_arm": 2012,
+    "V010_first_arm": 1930,
+    "V010_second_arm": 1992,
     "M5x8_fastener_1": 580,
     "M5x8_fastener_2": 580,
     "M4_thumbwheel_base_roll": 3376,
@@ -58,8 +58,8 @@
     "M4_captive_hex_nut_base_roll": 304,
     "M4_captive_hex_nut_elbow_swing": 304,
     "M4_captive_hex_nut_camera_tilt": 304,
-    "V006_wrist_adapter": 1408,
-    "V010_relieved_camera_shell": 2644,
+    "V010_wrist_adapter": 1540,
+    "V010_relieved_camera_shell": 2638,
     "V006_camera_bezel": 1460,
     "ESP32_CAM_MB_provisional_envelope": 292,
     "M4_thumbwheel_wrist": 3376,
@@ -69,7 +69,7 @@
     "M2p5_bezel_screw_2": 556,
     "M2p5_bezel_screw_3": 556,
     "M2p5_bezel_screw_4": 556,
-    "V006_USB_outboard_cable_reference": 35274
+    "V006_USB_outboard_cable_reference": 35192
   },
   "reference_cable_default_hidden": false,
   "reference_cable_route": {
@@ -80,18 +80,18 @@
     "physical_cable_qualification": "UNVERIFIED"
   },
   "previews_sha256": {
-    "previews/v010_arm_pair.png": "8b0bc6896f6fde19c76392aa1b49800e422bb05fec24aa006094525eb238cf25",
-    "previews/v010_cable_guides.png": "7a8f5af0754de2142810d9485c3d4d80042033c0bcb7355fcbade785c6c1486b",
-    "previews/v010_camera_shell.png": "d3ea17c2b2afee4ba700e56845a75740f5c4409f949c423f6a840a82d7044442",
-    "previews/v010_first_arm_isolated.png": "a2b3ef3202bf118eae9c359b9f15db10977ef920e04d9845d5910324aa1e0883",
-    "previews/v010_full_assembly.png": "4f88c57bf36ea1edc0bfd5de91a96d59ac829e27c4a80790935124bd2fcfcd24",
-    "previews/v010_second_arm_isolated.png": "40e69d9e3aca7d45423091cbbc6777e391e07ec001b221ffd56d8b0fc0094260",
-    "previews/v010_thumbwheel.png": "c6b1b0e58df953b26c20b52dd653b39b46a7f37ca4b7ae8deca51797487efb8f",
-    "previews/v010_wrist_20_degrees.png": "e1040acb3f2da606cd9043c54d9fc8bfbbf27fa11b33910644ccaf0678c97dcd"
+    "previews/v010_arm_pair.png": "0f37f05d263cefb2f6254c1e3d4884f2287f291ac210bed933c48bc99eeb9358",
+    "previews/v010_cable_guides.png": "fe90c8eaf50056c75ef01b0d3f60739ef9fdb65bfe5172a60f0369b12e9e7f23",
+    "previews/v010_camera_shell.png": "3f7d3357588ac0249b911e4012d86d683911bd8b50d8d8ca9281cf8b84c09162",
+    "previews/v010_first_arm_isolated.png": "92b6e12f8c81e32813c1285a4b89697ee23814c5f4ccc4a5022e18f979efeba3",
+    "previews/v010_full_assembly.png": "51b8154e46a74ccf54f48ed05198d1563f7c3c67dfdd4285fd7df8616ff4e188",
+    "previews/v010_second_arm_isolated.png": "665b0e58a165f75141d74151a35c6ecf3e4d50d2a2b1e7a92b6d9ed7438ed872",
+    "previews/v010_thumbwheel.png": "b38f17aec6cce1fc67ebac9ee92a7edf085e8c71794c8d4a3c9b94c6bcb77f76",
+    "previews/v010_wrist_20_degrees.png": "f861996f61902032a6dfabf2bcc6f416daee7877fbb37d633c57fdf122b34839"
   },
   "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step",
-  "assembly_step_sha256": "213aa43d07fbf0728e78337d06c8b363510def16241bab8e21e91680413a86d6",
-  "html_sha256": "578fb1c7c2838669a78fe4aa932a7e344bb99ced3c18b317b8f29b9b33f2be73",
-  "glb_sha256": "bb413655ef1f73e898f1ad10260e445be5451069dec9edd6ad2bda4281ae7538",
+  "assembly_step_sha256": "c864e0f68b981e849b1294f04ef24d416c43a96db8a5154d3ad506d0459048c3",
+  "html_sha256": "d3de9f1835ffa33475f9df7de56e6ab7bb7c271fd6e8d99ac3168ed250e39e57",
+  "glb_sha256": "508968bd28804697b1ddffe28f3617a854be69d4ff421d7b53cd8159f2e57794",
   "status": "CAD reference only; physical load and fit unverified"
 }

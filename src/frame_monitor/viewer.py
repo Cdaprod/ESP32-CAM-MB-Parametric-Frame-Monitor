@@ -62,36 +62,58 @@ def build_viewer(root):
     glb=out/"COMPLETE_ASSEMBLY.glb"
     glb.write_bytes(scene.export(file_type="glb"))
     fig=go.Figure(data=traces)
-    fig.update_layout(margin=dict(l=0,r=0,t=5,b=0),paper_bgcolor="#f0f3f6",
+    fig.update_layout(showlegend=False,margin=dict(l=0,r=0,t=8,b=0),paper_bgcolor="#f0f3f6",
         scene=dict(aspectmode="data",dragmode="orbit",
-                   camera=dict(eye=dict(x=1.65,y=-1.6,z=1.05)),
+                   camera=dict(eye=dict(x=2.1,y=-2.0,z=1.35)),
                    xaxis=dict(title="X (mm)"),yaxis=dict(title="Y (mm)"),
                    zaxis=dict(title="Z (mm)")),
         legend=dict(title="Tap a group to toggle",groupclick="togglegroup",
-                    orientation="h",x=.02,y=.99,xanchor="left",yanchor="top"))
+                    orientation="h",font=dict(size=11),x=.02,y=1.17,xanchor="left",yanchor="top"))
     html=pio.to_html(fig,include_plotlyjs=True,full_html=True,
         div_id="current-frame-monitor-viewer",default_width="100%",
-        default_height="calc(100vh - 145px)",
+        default_height="calc(100dvh - 245px)",
         config={"responsive":True,"displaylogo":False,"scrollZoom":True})
     header=f'''<meta name="frame-monitor-release" content="{version}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{version} | ESP32-CAM-MB Interactive 3D Viewer</title>
 <style>
 html,body{{margin:0;padding:0;font-family:system-ui,sans-serif;background:#edf2f7}}
-header{{padding:14px 20px;background:#122b3e;color:white}}
+header{{padding:14px 16px;background:#122b3e;color:white}}
 header h1{{font-size:clamp(16px,3vw,23px);margin:0 0 5px}}
 header p{{font-size:12px;margin:0;color:#c9d7e3}}
-.note{{padding:10px 20px;font-size:12px;background:#fff;border-top:1px solid #d5e0e8}}
+.note{{padding:10px 16px;font-size:12px;background:#fff;border-top:1px solid #d5e0e8}}
+button{{border:1px solid #45677d;background:#203f54;color:white;padding:7px 12px;border-radius:6px;cursor:pointer;margin-top:8px}}
+nav{{display:flex;flex-wrap:wrap;gap:6px;padding:8px 16px;background:white;border-bottom:1px solid #d5e0e8}}
+nav button{{margin:0;background:#edf2f7;color:#233c4d;font-size:12px;border-color:#c5d3de}}
+nav button[aria-pressed="false"]{{opacity:.45}}
+@media(max-width:600px){{#current-frame-monitor-viewer{{height:calc(100dvh - 285px)!important;min-height:320px}}}}
 </style>'''
     banner=(f'<header><h1>{version} · ESP32-CAM-MB · Interactive CAD Viewer</h1>'
             f'<p>{len(parts)} components · Horizontal 4040 · Four joints · '
-            f'Four integrated cable clips · millimeters</p></header>')
+            f'Four integrated cable clips · millimeters</p><button type="button" id="reset-view">Reset view</button></header>')
+    banner += '<nav aria-label="Component visibility">' + ''.join(
+        f'<button type="button" class="group-toggle" data-group="{label}" aria-pressed="true">{label}</button>'
+        for label in labels.values()) + '</nav>'
     footer=('<div class="note"><b>Controls:</b> drag to orbit · pinch/scroll '
-            'to zoom · click legend to show/hide groups. Fully offline. '
+            'to zoom · use group buttons to show/hide parts. Fully offline. '
             '<b>CAD reference only:</b> physical fit and loads unverified.</div>')
     html=html.replace("</head>",header+"</head>",1)
     html=html.replace("<body>","<body>"+banner,1)
-    html=html.replace("</body>",footer+"</body>",1)
+    controls = """<script>
+const plot=document.getElementById('current-frame-monitor-viewer');
+document.getElementById('reset-view').addEventListener('click',function(){
+  Plotly.relayout(plot,{'scene.camera':{eye:{x:2.1,y:-2.0,z:1.35}}});
+});
+document.querySelectorAll('.group-toggle').forEach(function(button){
+  button.addEventListener('click',function(){
+    const visible=button.getAttribute('aria-pressed')!=='true';
+    const indices=plot.data.map((trace,i)=>trace.legendgroup===button.dataset.group?i:-1).filter(i=>i>=0);
+    Plotly.restyle(plot,{visible:visible},indices);
+    button.setAttribute('aria-pressed',String(visible));
+  });
+});
+</script>"""
+    html=html.replace("</body>",footer+controls+"</body>",1)
     viewer=out/"index.html"
     viewer.write_text(html,encoding="utf-8")
     assert "Plotly.newPlot" in html

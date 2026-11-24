@@ -14,10 +14,6 @@ def _blend(s,label,edges,kind,r,count):
 
 def finish_arm(s):
     e=[x for x in s.Edges() if x.geomType()=='LINE'
-       and 7.49<x.BoundingBox().zlen<7.51
-       and any(isclose(abs(x.Center().x),q,abs_tol=.005) for q in (5.0,2.2))]
-    s=_blend(s,'six triangular web corners',e,'fillet',.70,6)
-    e=[x for x in s.Edges() if x.geomType()=='LINE'
        and 7.49<x.BoundingBox().zlen<7.51 and 8.99<x.Center().x<9.01]
     return _blend(s,'two tapered external corners',e,'fillet',1.0,2)
 

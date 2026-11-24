@@ -8,7 +8,7 @@ class MonitorConfig:
     clip_bore_mm: float = 3.8
     clip_outer_radius_mm: float = 3.55
     clip_width_mm: float = 3.6
-    clip_throat_mm: float = 2.65
+    clip_throat_mm: float = 3.0
     first_cable_x_mm: float = -9.5
     first_cable_z_mm: float = 10.25
     second_cable_x_mm: float = -9.5

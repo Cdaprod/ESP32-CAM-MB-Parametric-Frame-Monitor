@@ -24,6 +24,8 @@ def components(base=30,elbow=-30,pitch=12,wrist=0,with_cable=True):
                       'V004_second_arm':('V010_second_arm',second_arm(),b4.pose_two)}
         result=[]
         for name,shape,color,kind in parts:
+            if name=='V006_wrist_adapter':
+                name='V010_wrist_adapter'
             if name=='V006_camera_shell':
                 name='V010_relieved_camera_shell'
             if name=='V006_USB_outboard_cable_reference':

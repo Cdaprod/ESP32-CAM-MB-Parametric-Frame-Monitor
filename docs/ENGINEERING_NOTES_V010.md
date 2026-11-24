@@ -42,3 +42,22 @@ The authoritative report is [`validation_v010.json`](validation_v010.json). On t
 The V010 cable reference is a single round swept solid following pose-dependent tangent circular arcs, rather than separate faceted cylinders. Its effective geometrically drawn radii are recorded per pose. It does not simulate elastic deformation, fatigue, required dynamic bend radius, sag, jacket wear, or connector boot strain. The 2.65 mm nominal snap throat is smaller than the modeled cable jacket and has **not** been tested for repeated insertion or removal. Full printer axis travel, real rail fastener engagement, static deflection and vibration also remain unverified.
 
 [Physical fit register](PHYSICAL_FIT_REGISTER_V010.csv) · [Current BOM](BOM.csv) · [Complete STEP assembly](../step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step).
+
+
+## Engineering polish — 2026-11-24
+
+Patched in the active CadQuery source, without conversion to another CAD system.
+
+- Replace acute triangular arm cutouts with two 13 × 3 mm rounded slots. Within the slotted region, the nominal 18 mm body retains a 5 mm center spine, 3.5 mm outer rails, and R1.5 slot ends. This trades some material for continuous sections and removes acute web corners; no topology optimization or strength claim is made.
+- Widen the wrist bridge outward from 4.35 to 6.35 mm and add a 31 mm tapered underside rib, up to 4 mm deeper than the original bridge. Preserve pitch/wrist bores, nut seats and journal datums. Check this additional envelope against the actual printer.
+- Increase nominal clip throat from 2.65 to 3.0 mm: diametral interference decreases from 0.55 to 0.20 mm for the assumed 3.2 mm cable. Retention, insertion force and material compliance require measured coupons; do not infer fatigue performance.
+- Validate all eight unique printed designs, including inherited key, mount, bezel and updated wrist. Preserve historical wrist exports and publish the active wrist as V010.
+- Give the standalone offline viewer a separate legend area and reset-view control. Use portable annotation fonts for macOS/Linux builds. Run CAD CI on pull requests before merge.
+
+Acceptance still requires measured camera/USB boot dimensions, cable bend and strain relief, material and orientation selection, slicing, clip coupons, clamp/load tests and unpowered full-travel clearance checks. The existing 18 sampled poses establish neither a continuous collision-free envelope nor a structural load rating. No physical printer operation is included.
+
+### Verified results
+
+All eight printed-design meshes pass single-body, watertight, positive-volume and BREP/STL volume agreement checks. All 18 sampled cable poses pass; minimum cable/knob gap remains 1.887 mm. Finished-solid and center-spine section witnesses pass. Eight geometry-derived previews, STEP, STL, GLB and offline HTML were regenerated; release checksums pass. Chrome was inspected at 390 × 844: all four wrapping visibility controls are visible and frame visibility toggles correctly.
+
+Offline OrcaSlicer 2.5.0-rc first-arm feasibility slice: installed Elegoo Neptune 2 0.4 mm nozzle / Balanced 0.20 mm process / Panchroma PLA Matte settings, 4 walls, 30% infill. Result: 37 layers, estimated 30m47s and 4.86 g. The CLI initially failed resolving inherited presets; temporary flattened copies of installed system/user profiles succeeded. No installed profile was changed. G-code remains temporary local analysis output, not a qualified printing recommendation. No printer was contacted. Other parts have not been slice-qualified.

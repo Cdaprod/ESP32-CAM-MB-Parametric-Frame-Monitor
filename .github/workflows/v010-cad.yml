@@ -13,6 +13,8 @@ on:
       - 'tests/test_viewer_current.py'
       - 'requirements.txt'
       - '.github/workflows/v010-cad.yml'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: write

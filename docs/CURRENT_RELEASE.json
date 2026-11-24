@@ -11,7 +11,8 @@
     "stl/V010_first_arm.stl",
     "stl/V010_second_arm.stl",
     "stl/V010_scalloped_thumbwheel.stl",
-    "stl/V010_relieved_camera_shell.stl"
+    "stl/V010_relieved_camera_shell.stl",
+    "stl/V010_wrist_adapter.stl"
   ],
   "previews": [
     "previews/v010_arm_pair.png",
@@ -30,14 +31,13 @@
   "clip_count": 4,
   "nominal_cable_diameter_mm": 3.2,
   "clip_seat_diameter_mm": 3.8,
-  "clip_throat_mm": 2.65,
+  "clip_throat_mm": 3.0,
   "sampled_poses": 18,
   "physical_qualification": "UNVERIFIED",
   "historical_baseline": "V009",
   "pending_work": [
     "Physical USB jacket and clip fatigue qualification",
     "Full printer travel and cable bending",
-    "Topology-inspired wrist adapter redesign",
     "Topology-inspired 4040 mounting plate"
   ],
   "viewer": "viewer/index.html",

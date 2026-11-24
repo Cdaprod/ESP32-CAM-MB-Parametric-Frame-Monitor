@@ -8,6 +8,7 @@
     "integrated_alternating_open_clips": 4,
     "long_outriggers": 0,
     "watertight_new_stls": 4,
+    "watertight_print_designs": 8,
     "min_cable_to_knob_mm": 1.887,
     "min_cable_to_rail_mm": 4.147,
     "physical_qualification": "UNVERIFIED",
@@ -19,13 +20,13 @@
       "name": "V010_first_arm",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 4507.599
+      "mesh_volume_mm3": 4841.987
     },
     {
       "name": "V010_second_arm",
       "watertight": true,
       "single_body": true,
-      "mesh_volume_mm3": 8138.572
+      "mesh_volume_mm3": 8472.67
     },
     {
       "name": "V010_scalloped_thumbwheel",
@@ -38,6 +39,30 @@
       "watertight": true,
       "single_body": true,
       "mesh_volume_mm3": 17410.703
+    },
+    {
+      "name": "V010_wrist_adapter",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 3716.679
+    },
+    {
+      "name": "V004_removable_camera_bezel",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 4652.345
+    },
+    {
+      "name": "V004_mount_plate",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 8514.164
+    },
+    {
+      "name": "V004_recessed_alignment_key",
+      "watertight": true,
+      "single_body": true,
+      "mesh_volume_mm3": 524.176
     }
   ],
   "poses": [
@@ -447,7 +472,7 @@
       },
       "thumbwheel_surface_gap_mm": {
         "M4_thumbwheel_base_roll": 1.912,
-        "M4_thumbwheel_elbow_swing": 1.932,
+        "M4_thumbwheel_elbow_swing": 1.973,
         "M4_thumbwheel_camera_tilt": 4.3,
         "M4_thumbwheel_wrist": 20.34
       },
@@ -589,7 +614,7 @@
     "+Z"
   ],
   "nominal_cable_diameter_mm": 3.2,
-  "nominal_clip_throat_mm": 2.65,
+  "nominal_clip_throat_mm": 3.0,
   "limitations": [
     "18 sampled poses are not an exhaustive four-DOF motion proof",
     "No minimum dynamic cable bend radius, connector, cable strain or sag validation",

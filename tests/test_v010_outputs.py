@@ -20,6 +20,7 @@ assert manifest['component_count']==len(manifest['components'])==30
 assert s['status']=='PASS CAD-only' and s['sampled_poses']==len(report['poses'])==18
 assert s['integrated_alternating_open_clips']==4 and s['long_outriggers']==0
 assert s['watertight_new_stls']==4
+assert s['watertight_print_designs']==len(report['printable_meshes'])==8
 assert s['min_cable_to_knob_mm']>=1.0, 'Cable clearance regressed under new embedded-channel routing'
 assert s['min_cable_to_knob_mm']>=1.0 and s['min_cable_to_rail_mm']>3.0
 assert report['clip_openings_in_order']==['-X','+Z','-X','+Z']

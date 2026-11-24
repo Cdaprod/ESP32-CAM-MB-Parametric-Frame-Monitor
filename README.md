@@ -1,6 +1,6 @@
 # ESP32-CAM-MB · Parametric Frame Monitor
 
-**V010 — Four compact alternating cable clips, topology-inspired links, tactile knobs and relieved enclosure.**
+**V010 — Rounded-slot structural links, reinforced wrist, tactile knobs and relieved enclosure.**
 
 Built by [Cdaprod](https://github.com/Cdaprod) with **Python + CadQuery**, real STEP/STL models, and actual geometry-derived renders.
 
@@ -39,7 +39,9 @@ Print-ready bracket exports are *not claimed*: physical slot fit, fastener prelo
 Orbit, zoom and toggle individual component groups in the standalone viewer. The viewer now retains the complete CAD tessellation rather than omitting triangles, and the cable reference is now a continuous, parameter-driven, pose-dependent tube with exact circular tangent arcs (physical cable bending remains unverified). Its HTML bundles the JavaScript, so after downloading you can open it on your phone or computer without an internet connection. GitHub README pages cannot execute embedded HTML or iframes; this linked preview opens the viewer file, which can be downloaded locally. The same viewer can also be hosted online through GitHub Pages when Pages is enabled.
 
 
-**V010 finishing update:** Both structural arms now use R0.70 mm fillets on re-entrant triangular web corners and R1.0 mm exterior taper blends. The handwheel grip rims have 0.80 mm chamfers; the camera shell has R0.90 mm exterior corner fillets. The bezel and 4040 mounting-plate edges receive 0.30 mm chamfers and the wrist bridge R0.70 mm fillets. All pivot bores, captive-nut pockets, T-slot datums and USB clip throats are preserved. The images below are regenerated from actual finished BREP geometry.
+**V010 engineering polish:** The arms now use two Ø3 × 13 mm rounded lightening slots, retaining a continuous 5 mm center spine and at least 3 mm outer rails in the slotted region. The wrist bridge grows from 4.35 to 6.35 mm wide away from its mating ear and receives a tapered underside rib; pivot centers remain unchanged. The cable throat increases from 2.65 to 3.0 mm to reduce nominal insertion interference. These are design improvements, not measured strength or fatigue results. All eight unique printed designs now receive mesh validation. The mobile viewer includes a reset-view control and a separate legend area.
+
+The updated wrist export is [STEP](step/V010_wrist_adapter.step) / [STL](stl/V010_wrist_adapter.stl); historical V006 exports are preserved. See [engineering details and remaining acceptance gates](docs/ENGINEERING_NOTES_V010.md).
 
 ## Why V010 exists
 
@@ -73,18 +75,18 @@ V010 retains the **35 mm pivot-center spacing**, horizontal 4040 rail, left-side
 | Sampled base/elbow/pitch/wrist poses | **18 / 18 pass** |
 | Distinct U-shaped, short retained clips | 4 |
 | Long cable outrigger webs | 0 |
-| Printable single-volume watertight new parts | **4 / 4 pass** |
+| Unique printed designs with single-volume watertight meshes | **8 / 8 pass** |
 | Nominal cable diameter | 3.2 mm |
 | Nominal U-seat internal diameter | 3.8 mm |
 | Nominal radial cable/clip gap | 0.30 mm |
-| Nominal clip entry throat | 2.65 mm |
+| Nominal clip entry throat | 3.0 mm |
 | Minimum modeled cable/knob clearance | **1.887 mm** |
 | Minimum modeled cable/rail clearance | **4.147 mm** |
 | Requested cable-reference bend radius | **6.0 mm** (locally reduced as required) |
 | Full continuous joint-envelope proof | **Not performed** |
 | Real printed clip fatigue and cable bend | **Not verified** |
 
-The 2.65 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed plastic and actual cable jacket can tolerate repeated insertion **has not been established**. Cable routing uses one continuous round sweep over exact tangent arcs, but is still *reference geometry*, not a strain-controlled flexible cable simulation. Modeled bends can be tighter than the requested 6 mm; inspect the achieved radius in the validation JSON.
+The 3.0 mm throat is narrower than the nominal 3.2 mm cable. Whether the printed plastic and actual cable jacket can tolerate repeated insertion **has not been established**. Cable routing uses one continuous round sweep over exact tangent arcs, but is still *reference geometry*, not a strain-controlled flexible cable simulation. Modeled bends can be tighter than the requested 6 mm; inspect the achieved radius in the validation JSON.
 
 ## Download the actual V010 models
 
@@ -96,7 +98,7 @@ The 2.65 mm throat is narrower than the nominal 3.2 mm cable. Whether the printe
 | Scalloped hand knob (print four) | [STEP](step/V010_scalloped_thumbwheel.step) | [STL](stl/V010_scalloped_thumbwheel.stl) |
 | Relieved camera shell | [STEP](step/V010_relieved_camera_shell.step) | [STL](stl/V010_relieved_camera_shell.stl) |
 
-The existing **V004** alignment key, mounting plate and bezel, and **V006** wrist adapter remain compatible; their historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
+The existing **V004** alignment key, mounting plate and bezel remain compatible. Use the updated **V010 wrist adapter**; historical exports are preserved. Use **V010's** camera shell, both arms and knob for new V010 assembly prints.
 
 ## One build command
 
@@ -119,7 +121,7 @@ xvfb-run -a python src/build.py all
 
 ### Still open for subsequent iterations
 
-This revision also updates the grip surface of the thumbwheel and produces shallow pocket reliefs on the camera housing. However, the **wrist adapter and 4040 mounting plate have not received topology-inspired shape revisions yet**. They remain structurally aligned with previous CAD. The cable still needs a physical strain-relief strategy at the ESP32-CAM-MB connector and proof of minimum cable bend radius around the joints.
+This revision also updates the grip surface of the thumbwheel and produces shallow pocket reliefs on the camera housing. The wrist bridge now has a wider section and underside rib. The 4040 mounting plate retains its prior geometry. The cable still needs a physical strain-relief strategy at the ESP32-CAM-MB connector and proof of minimum cable bend radius around the joints.
 
 ![V009 historical geometry, showing the original dangling guide webs](previews/v009_full_assembly.png)
 

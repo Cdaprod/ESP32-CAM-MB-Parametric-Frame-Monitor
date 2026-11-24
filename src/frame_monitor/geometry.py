@@ -14,9 +14,12 @@ def _skeletal_link(front, back, bottom, thickness=7.5):
     outline=[(-7,front),(7,front),(9,front-8),(9,back+8),
              (7,back),(-7,back),(-9,back+8),(-9,front-8)]
     link=cq.Workplane("XY").polyline(outline).close().extrude(thickness).val().translate((0,0,bottom))
-    for opening in ([(-5,front-9),(-5,back+9),(2.2,back+9)],
-                    [(5,front-9),(5,back+9),(-2.2,front-9)]):
-        tool=cq.Workplane("XY").polyline(opening).close().extrude(thickness+2).val().translate((0,0,bottom-1))
+    # Two rounded lightening slots retain a continuous 5 mm center spine
+    # and >=3 mm outer rails, without acute internal web notches.
+    for x in (-4.0,4.0):
+        tool=(cq.Workplane("XY").center(x,(front+back)/2)
+              .slot2D(13,3,90).extrude(thickness+2).val()
+              .translate((0,0,bottom-1)))
         link=link.cut(tool)
     return link.clean()
 

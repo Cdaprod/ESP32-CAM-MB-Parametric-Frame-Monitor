@@ -11,10 +11,16 @@ from .rail import ROOT, assemble_components, A,V,slot_poly,slot_transform
 
 size=(1760,1180)
 
+def font_path(bold=False):
+    candidates=[Path('/usr/share/fonts/truetype/dejavu') / ('DejaVuSans-Bold.ttf' if bold else 'DejaVuSans.ttf'),
+                Path('/System/Library/Fonts/Supplemental') / ('Arial Bold.ttf' if bold else 'Arial.ttf')]
+    for path in candidates:
+        if path.is_file(): return str(path)
+    raise FileNotFoundError('Install DejaVu Sans or Arial to render annotations')
+
 def _font(size,bold=False):
-    fn=('/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf' if bold
-        else '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf')
-    return ImageFont.truetype(fn,size)
+    return ImageFont.truetype(font_path(bold),size)
+
 
 def vtk_actor(solid,color,opacity=1,wire=False):
     vertices,triangles=solid.tessellate(0.20,0.16)

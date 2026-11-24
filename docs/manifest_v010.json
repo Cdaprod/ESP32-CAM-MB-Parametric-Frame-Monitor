@@ -7,7 +7,7 @@
     "clip_bore_mm": 3.8,
     "clip_outer_radius_mm": 3.55,
     "clip_width_mm": 3.6,
-    "clip_throat_mm": 2.65,
+    "clip_throat_mm": 3.0,
     "first_cable_x_mm": -9.5,
     "first_cable_z_mm": 10.25,
     "second_cable_x_mm": -9.5,
@@ -223,7 +223,7 @@
       "kind": "hardware"
     },
     {
-      "name": "V006_wrist_adapter",
+      "name": "V010_wrist_adapter",
       "kind": "printed"
     },
     {
@@ -275,7 +275,8 @@
     "V010_first_arm",
     "V010_second_arm",
     "V010_scalloped_thumbwheel",
-    "V010_relieved_camera_shell"
+    "V010_relieved_camera_shell",
+    "V010_wrist_adapter"
   ],
   "base": "V006 four-joint articulated wrist; historical versioned scripts not imported"
 }
