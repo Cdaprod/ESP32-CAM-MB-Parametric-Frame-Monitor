@@ -59,7 +59,7 @@
     "M4_captive_hex_nut_elbow_swing": 304,
     "M4_captive_hex_nut_camera_tilt": 304,
     "V010_wrist_adapter": 1228,
-    "V010_relieved_camera_shell": 2552,
+    "V010_relieved_camera_shell": 2560,
     "V006_camera_bezel": 1460,
     "ESP32_CAM_MB_provisional_envelope": 292,
     "M4_thumbwheel_wrist": 3376,
@@ -69,7 +69,7 @@
     "M2p5_bezel_screw_2": 556,
     "M2p5_bezel_screw_3": 556,
     "M2p5_bezel_screw_4": 556,
-    "V006_USB_outboard_cable_reference": 36206
+    "V006_USB_outboard_cable_reference": 36256
   },
   "reference_cable_default_hidden": false,
   "reference_cable_route": {
@@ -80,18 +80,18 @@
     "physical_cable_qualification": "UNVERIFIED"
   },
   "previews_sha256": {
-    "previews/v010_arm_pair.png": "da19b25b7de6f458fc0e026719afe0f06efd39389e7dc22ad1bb11e12b417cc1",
-    "previews/v010_cable_guides.png": "93342b3fc5abe23b4209670d84a95de02e7c34b2dc19b14da7ee0c7246cb477c",
-    "previews/v010_camera_shell.png": "fa223283e5ff30fe4072620d60d71a30acb8165e09d33a562374e2456f74d99e",
-    "previews/v010_first_arm_isolated.png": "8addfc7d59106d413ca1d1d42dfea0d53da871429277efc75fe20d95924c4943",
-    "previews/v010_full_assembly.png": "a99d975f81db6f9bff5c9c313e1b7d5a732b248e239738627ecf014a5842e814",
-    "previews/v010_second_arm_isolated.png": "1757584c3ac3339fbcb758eaddae23ca89e9a480840e03208c6c7bd8ea3e7737",
-    "previews/v010_thumbwheel.png": "b38f17aec6cce1fc67ebac9ee92a7edf085e8c71794c8d4a3c9b94c6bcb77f76",
-    "previews/v010_wrist_20_degrees.png": "df960f1860e376ea41fd5ecd3d7fde0170749917f61931fc4502a6ec72cddf8a"
+    "previews/v010_arm_pair.png": "6dc3012c632bda21e80858d85e3cf47bdb35a4ff622a06f5a6abef6a44b826cd",
+    "previews/v010_cable_guides.png": "980926a4d65d54593b8f7f96b367d4023a4687c0486614f0af9741300405085e",
+    "previews/v010_camera_shell.png": "73e7c19e48b533a03f80f39de7e3131032e2ae035d9c63f69f4fdc45766b3ab2",
+    "previews/v010_first_arm_isolated.png": "f417f68bac104d6bb9692e1f2e227b0afb931e9347653275ddba8aed0f5a3c29",
+    "previews/v010_full_assembly.png": "b499f809ea76e8d791c0cf2baaff8a60323f00764d03221e30b6ad3f719abb0c",
+    "previews/v010_second_arm_isolated.png": "4402634b0293f136fa6b5a8973f5672427d82f56021f3d0266022d7ea100db54",
+    "previews/v010_thumbwheel.png": "c6b1b0e58df953b26c20b52dd653b39b46a7f37ca4b7ae8deca51797487efb8f",
+    "previews/v010_wrist_20_degrees.png": "623574995cccec116e696f0a89041dc2d4e61442be99688e78f2118794627320"
   },
   "assembly_step": "step/COMPLETE_4040_ESP32_CAM_MB_ASSEMBLY_V010.step",
-  "assembly_step_sha256": "a1f633ba1d12c9f5559c358f9d1a4536241b14159fa095b712d6d90dc768795b",
-  "html_sha256": "57c7e2f9b1cb0e4257b07ddfc9bfff1234458cbaab38918913560c8ef7cc33d7",
-  "glb_sha256": "52abd5ed7f990466eb84e6b772b8a8b5159fb3b7427f1ee9824864a7f475b980",
+  "assembly_step_sha256": "f6fbc87ddf9add89b264d6788a363a3584939a55eca2bed9f2729aba5bbbe6c9",
+  "html_sha256": "1fc6541ba7c0a4a324cacb7eba3cbeb138427a33dff4ab8a027a4c37fa007fa8",
+  "glb_sha256": "692b586574a1fba28c53fd6e197c0c2e511697afa8efbfd7131361365cf0490d",
   "status": "CAD reference only; physical load and fit unverified"
 }

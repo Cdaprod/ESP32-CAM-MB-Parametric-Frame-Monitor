@@ -1,6 +1,6 @@
 {
   "html": "viewer/mount_interface.html",
-  "html_sha256": "235f585032d21f333d2f5f09d4380bab6c81c4e4a9c6c5e0f15b95b53f0d7be2",
+  "html_sha256": "0d20458ad687c890c06f665b25e6debdf44874d7208801212ddc4d71bcb262c1",
   "fully_offline": true,
   "variants": {
     "2020_single_2xM5": {
